@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="main_1">#1C5532</color>
+    <color name="main_2">#1C6739</color>
+    <color name="main_3">#238448</color>
+
+    <color name="point_1">#F0683E</color>
+    <color name="point_2">#FFCFC0</color>
+
+    <color name="error">#FF2633</color>
+
+    <color name="background_1">#FBFAF8</color>
+    <color name="background_2">#FAF7F2</color>
 </resources>
