@@ -8,7 +8,7 @@ jdk_version = "1.8"
 
 # Kotlin
 agp = "8.1.4"
-kotlin = "1.9.10"
+kotlin = "1.9.20"
 kotlin-serialization-json = "1.5.1"
 kotlinx-coroutines = "1.7.3"
 
@@ -93,11 +93,12 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 
 sopt-android-application = { id = "com.sopt.now.application", version = "unspecified" }
-sopt-android-feature = { id = "com.sopt.now.feature", version = "unspecified" }
 sopt-android-hilt = { id = "com.sopt.now.hilt", version = "unspecified" }
 sopt-android-kotlin = { id = "com.sopt.now.kotlin", version = "unspecified" }
+sopt-android-library = { id = "com.sopt.now.library", version = "unspecified" }
 sopt-android-test = { id = "com.sopt.now.test", version = "unspecified" }
 sopt-android-serialization = { id = "com.sopt.now.serialization", version = "unspecified" }
 
 [bundles]
+androidx = ["androidx-core-ktx", "androidx-appcompat", "androidx-constraintlayout", "androidx-activity", "androidx-fragment", "androidx-lifecycle-viewmodel"]
 androidx-android-test = ["espresso-core", "androidx-test-ext-junit"]

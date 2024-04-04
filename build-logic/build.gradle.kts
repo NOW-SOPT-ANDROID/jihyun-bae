@@ -21,10 +21,6 @@ gradlePlugin {
             id = "com.sopt.now.application"
             implementationClass = "com.sopt.now.plugin.AndroidApplicationPlugin"
         }
-        create("android-feature") {
-            id = "com.sopt.now.feature"
-            implementationClass = "com.sopt.now.plugin.AndroidFeaturePlugin"
-        }
         create("android-hilt") {
             id = "com.sopt.now.hilt"
             implementationClass = "com.sopt.now.plugin.AndroidHiltPlugin"
@@ -32,6 +28,10 @@ gradlePlugin {
         create("android-kotlin") {
             id = "com.sopt.now.kotlin"
             implementationClass = "com.sopt.now.plugin.AndroidKotlinPlugin"
+        }
+        create("android-library") {
+            id = "com.sopt.now.library"
+            implementationClass = "com.sopt.now.plugin.AndroidLibraryPlugin"
         }
         create("android-test") {
             id = "com.sopt.now.test"
