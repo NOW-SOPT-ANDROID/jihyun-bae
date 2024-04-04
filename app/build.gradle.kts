@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core-designsystem"))
     implementation(project(":core-ui"))
     implementation(project(":feature"))
 }

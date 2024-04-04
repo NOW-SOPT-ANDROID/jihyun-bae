@@ -18,3 +18,4 @@ rootProject.name = "NOW SOPT Android"
 include(":app")
 include(":core-ui")
 include(":feature")
+include(":core-designsystem")
