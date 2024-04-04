@@ -7,6 +7,12 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getString
 import androidx.core.view.ViewCompat
+import com.google.android.material.snackbar.Snackbar
+
+fun View.showSnackbar(message: String, isShort: Boolean = true) {
+    val duration = if (isShort) Snackbar.LENGTH_SHORT else Snackbar.LENGTH_LONG
+    Snackbar.make(this, message, duration).show()
+}
 
 fun View.stringOf(@StringRes resId: Int) = getString(context, resId)
 
