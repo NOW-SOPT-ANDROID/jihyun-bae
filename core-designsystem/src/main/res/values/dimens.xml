@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- common -->
+    <dimen name="horizontal_margin">24dp</dimen>
+
     <!-- button -->
+    <dimen name="button_height">56dp</dimen>
     <dimen name="button_corner_radius">12dp</dimen>
 </resources>
