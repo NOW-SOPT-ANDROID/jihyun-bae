@@ -44,6 +44,7 @@ fun SoptTextField(
             value = value,
             onValueChange = onValueChange,
             modifier = Modifier.fillMaxWidth(),
+            maxLines = 1,
             textStyle = TextStyle(fontSize = 18.sp, color = Color(0xFF262525), lineHeight = 23.sp)
         ) {
             if (value.isEmpty()) {
@@ -51,6 +52,13 @@ fun SoptTextField(
                     text = placeholder,
                     fontSize = 18.sp,
                     color = Color(0xFFCBC8C5),
+                    lineHeight = 23.sp
+                )
+            } else {
+                Text(
+                    text = value,
+                    fontSize = 18.sp,
+                    color = Color(0xFF262525),
                     lineHeight = 23.sp
                 )
             }
