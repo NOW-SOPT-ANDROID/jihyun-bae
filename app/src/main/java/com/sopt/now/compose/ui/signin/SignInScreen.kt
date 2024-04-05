@@ -83,6 +83,7 @@ fun SignInScreen(
             text = "로그인",
             onClick = onClickSignInBtn
         )
+        Spacer(modifier = Modifier.height(24.dp))
     }
 }
 
