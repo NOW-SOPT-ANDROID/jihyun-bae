@@ -1,5 +1,6 @@
 package com.sopt.now.compose.ui.signin
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,7 +27,8 @@ import com.sopt.now.compose.ui.theme.NOWSOPTAndroidTheme
 
 @Composable
 fun SignInScreen(
-    onClickLoginBtn: () -> Unit = {}
+    onClickSignUpText: () -> Unit = {},
+    onClickSignInBtn: () -> Unit = {}
 ) {
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -67,6 +69,7 @@ fun SignInScreen(
         Spacer(modifier = Modifier.height(12.dp))
         Text(
             modifier = Modifier
+                .clickable { onClickSignUpText }
                 .align(Alignment.CenterHorizontally),
             text = "회원가입하기",
             fontSize = 14.sp,
@@ -78,7 +81,7 @@ fun SignInScreen(
         Spacer(modifier = Modifier.height(6.dp))
         SoptButton(
             text = "로그인",
-            onClick = onClickLoginBtn
+            onClick = onClickSignInBtn
         )
     }
 }
