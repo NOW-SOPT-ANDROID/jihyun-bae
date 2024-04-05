@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="SoptEditText">
-        <attr name="soptEditTextTitle" format="reference|string"/>
-        <attr name="soptEditTextHint" format="reference|string"/>
+        <attr name="soptEditTextTitle" format="reference|string" />
+        <attr name="soptEditTextHint" format="reference|string" />
     </declare-styleable>
 </resources>

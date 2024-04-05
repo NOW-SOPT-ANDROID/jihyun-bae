@@ -9,4 +9,4 @@ data class UserModel(
     val password: String,
     val nickname: String,
     val mbti: String
-): Parcelable
+) : Parcelable

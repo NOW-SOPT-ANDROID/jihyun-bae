@@ -1,6 +1,5 @@
 package com.sopt.now.coreui.util.fragment
 
-import android.content.Intent
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat

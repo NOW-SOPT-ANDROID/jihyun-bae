@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import org.sopt.now.designsystem.R
 import org.sopt.now.designsystem.databinding.EditTextSoptBinding
+
 @SuppressLint("CustomViewStyleable")
 class SoptEditText @JvmOverloads constructor(
     context: Context,
