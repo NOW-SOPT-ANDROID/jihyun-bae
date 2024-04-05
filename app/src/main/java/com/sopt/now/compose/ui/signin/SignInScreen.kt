@@ -55,7 +55,7 @@ fun SignInScreen(
         Spacer(modifier = Modifier.height(20.dp))
         SoptTextField(
             title = "비밀번호",
-            onValueChange = { id = it },
+            onValueChange = { password = it },
             placeholder = "비밀번호를 입력해 주세요"
         )
         Spacer(modifier = Modifier.weight(1f))
