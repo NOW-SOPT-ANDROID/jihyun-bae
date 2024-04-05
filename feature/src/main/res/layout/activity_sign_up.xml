@@ -2,9 +2,87 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".signup.SignUpActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/horizontal_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/horizontal_margin" />
+
+    <TextView
+        android:id="@+id/tv_sign_up_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/sign_up_sign_up"
+        android:textAppearance="@style/TextAppearance.Title1"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.sopt.now.component.SoptEditText
+        android:id="@+id/et_sign_up_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_sign_up_title"
+        app:soptEditTextHint="@string/sign_id_hint"
+        app:soptEditTextTitle="@string/sign_id" />
+
+    <com.sopt.now.component.SoptEditText
+        android:id="@+id/et_sign_up_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/et_sign_up_id"
+        app:soptEditTextHint="@string/sign_password_hint"
+        app:soptEditTextTitle="@string/sign_password" />
+
+    <com.sopt.now.component.SoptEditText
+        android:id="@+id/et_sign_up_nickname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/et_sign_up_password"
+        app:soptEditTextHint="@string/sign_nickname_hint"
+        app:soptEditTextTitle="@string/sign_nickname" />
+
+    <com.sopt.now.component.SoptEditText
+        android:id="@+id/et_sign_up_mbti"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/et_sign_up_nickname"
+        app:soptEditTextHint="@string/sign_mbti_hint"
+        app:soptEditTextTitle="@string/sign_mbti" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sign_up"
+        style="@style/Theme.NOWSOPTAndroid.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="@string/sign_up_sign_up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
