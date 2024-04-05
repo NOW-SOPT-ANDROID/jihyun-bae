@@ -7,7 +7,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BindingActivity<T : ViewBinding>(private val inflater: (LayoutInflater) -> T) :
     AppCompatActivity() {
-    private lateinit var binding: T
+    lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -12,6 +12,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core-designsystem"))
+    implementation(project(":core-ui"))
+
     implementation(libs.bundles.androidx)
 
     // Google
