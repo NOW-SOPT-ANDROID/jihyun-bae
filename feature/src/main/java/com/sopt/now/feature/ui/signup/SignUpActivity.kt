@@ -21,7 +21,7 @@ class SignUpActivity :
         super.onCreate(savedInstanceState)
 
         initLayout()
-        addListeners()
+        setSignUpBtnClickListeners()
     }
 
     private fun initLayout() {
@@ -29,7 +29,7 @@ class SignUpActivity :
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
-    private fun addListeners() {
+    private fun setSignUpBtnClickListeners() {
         with(binding) {
             btnSignUp.setOnClickListener {
                 UserModel(

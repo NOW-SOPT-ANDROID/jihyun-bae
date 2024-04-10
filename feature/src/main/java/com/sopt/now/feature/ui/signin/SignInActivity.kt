@@ -25,7 +25,8 @@ class SignInActivity :
         super.onCreate(savedInstanceState)
 
         initLayout()
-        addListeners()
+        setSignInBtnClickListeners()
+        setSignUpTvClickListener()
         setResultLauncher()
     }
 
@@ -34,7 +35,7 @@ class SignInActivity :
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
-    private fun addListeners() {
+    private fun setSignInBtnClickListeners() {
         binding.btnSignIn.setOnClickListener {
             signInViewModel.signIn(
                 inputId = binding.etSignInId.editText.text.toString(),
@@ -46,7 +47,9 @@ class SignInActivity :
                 }
             }
         }
+    }
 
+    private fun setSignUpTvClickListener() {
         binding.tvSignInSignUp.setOnClickListener {
             navigateToSignUp()
         }
