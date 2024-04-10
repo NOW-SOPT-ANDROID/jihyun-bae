@@ -37,14 +37,14 @@ class SignUpActivity :
                     password = etSignUpPassword.editText.text.toString(),
                     nickname = etSignUpNickname.editText.text.toString(),
                     mbti = etSignUpMbti.editText.text.toString()
-                ).apply {
+                ).let { userModel ->
                     signUpViewModel.signUp(
-                        user = this
+                        user = userModel
                     ).let { signUpType ->
                         when (signUpType) {
                             SignUpType.SUCCESS -> {
                                 showToast(stringOf(signUpType.descriptionRes))
-                                navigateSignIn(this)
+                                navigateSignIn(userModel)
                             }
 
                             else -> {
