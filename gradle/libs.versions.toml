@@ -105,3 +105,4 @@ sopt-android-serialization = { id = "com.sopt.now.serialization", version = "uns
 [bundles]
 androidx = ["androidx-core-ktx", "androidx-appcompat", "androidx-constraintlayout", "androidx-activity", "androidx-fragment", "androidx-lifecycle-viewmodel"]
 androidx-android-test = ["espresso-core", "androidx-test-ext-junit"]
+retrofit = ["retrofit", "retrofit-kotlin-serialization-converter", "okhttp-bom", "okhttp", "okhttp-logging-interceptor"]
