@@ -3,6 +3,6 @@ plugins {
 }
 
 android {
-    namespace="com.sopt.now.coreui"
+    namespace="com.sopt.now.core.ui"
 }
 
