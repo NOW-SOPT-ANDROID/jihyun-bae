@@ -70,16 +70,18 @@ class SignInActivity :
     }
 
     private fun navigateToSignUp() {
-        Intent(this@SignInActivity, SignUpActivity::class.java).apply {
-            resultLauncher.launch(this)
+        Intent(this@SignInActivity, SignUpActivity::class.java).let { intent ->
+            resultLauncher.launch(intent)
         }
     }
 
     private fun navigateToMain() {
         Intent(this@SignInActivity, MainActivity::class.java).apply {
             putExtra(USER_INFO, signInViewModel.user)
-            startActivity(this)
-            finish()
+        }.let { intent ->
+            startActivity(intent)
         }
+        finish()
+
     }
 }
