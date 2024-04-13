@@ -16,6 +16,7 @@
     <string name="sign_in_no_account">계정이 없으신가요?</string>
     <string name="sign_in_sign_up"><u>회원가입하기</u></string>
     <string name="sign_in_success">로그인에 성공하였습니다</string>
+    <string name="sign_in_auto_login">자동 로그인 되었습니다.</string>
 
     <!-- sign up -->
     <string name="sign_up_sign_up">회원가입</string>
