@@ -1,6 +1,5 @@
 package com.sopt.now.data.model.remote.request
 
-import com.sopt.now.domain.model.UserEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -31,13 +30,7 @@ class ResponseGetDummyUserListDto(
         val lastName: String,
         @SerialName("avatar")
         val avatar: String
-    ) {
-        fun toUserEntity() =
-            UserEntity(
-                id = this.id,
-                firstName = this.firstName
-            )
-    }
+    )
 
     @Serializable
     data class Support(
@@ -46,6 +39,4 @@ class ResponseGetDummyUserListDto(
         @SerialName("text")
         val text: String
     )
-
-    fun toUserEntityList() = data.map { user -> user.toUserEntity() }
 }

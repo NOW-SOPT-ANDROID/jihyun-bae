@@ -6,8 +6,10 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.sopt.now.data.datasource.local.SoptLocalDataSource
+import com.sopt.now.data.model.local.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,10 +19,7 @@ class SoptLocalDataSourceImpl @Inject constructor(
 ) : SoptLocalDataSource {
     private object PreferencesKeys {
         val isLogin = booleanPreferencesKey(IS_LOGIN)
-        val id = stringPreferencesKey(ID)
-        val password = stringPreferencesKey(PASSWORD)
-        val nickname = stringPreferencesKey(NICKNAME)
-        val mbti = stringPreferencesKey(MBTI)
+        val user = stringPreferencesKey(USER)
     }
 
     override var isLogin: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -33,43 +32,13 @@ class SoptLocalDataSourceImpl @Inject constructor(
         }
     }
 
-    override var id: Flow<String?> = dataStore.data.map { preferences ->
-        preferences[PreferencesKeys.id]
+    override var user: Flow<User?> = dataStore.data.map { preferences ->
+        preferences[PreferencesKeys.user]?.let { user -> Json.decodeFromString(user) }
     }
 
-    override suspend fun setId(id: String) {
+    override suspend fun setUser(user: User) {
         dataStore.edit { preferences ->
-            preferences[PreferencesKeys.id] = id
-        }
-    }
-
-    override var password: Flow<String?> = dataStore.data.map { preferences ->
-        preferences[PreferencesKeys.password]
-    }
-
-    override suspend fun setPassword(password: String) {
-        dataStore.edit { preferences ->
-            preferences[PreferencesKeys.password] = password
-        }
-    }
-
-    override var nickname: Flow<String?> = dataStore.data.map { preferences ->
-        preferences[PreferencesKeys.nickname]
-    }
-
-    override suspend fun setNickname(nickname: String) {
-        dataStore.edit { preferences ->
-            preferences[PreferencesKeys.nickname] = nickname
-        }
-    }
-
-    override var mbti: Flow<String?> = dataStore.data.map { preferences ->
-        preferences[PreferencesKeys.mbti]
-    }
-
-    override suspend fun setMbti(mbti: String) {
-        dataStore.edit { preferences ->
-            preferences[PreferencesKeys.mbti] = mbti
+            preferences[PreferencesKeys.user] = user.toJsonString()
         }
     }
 
@@ -81,9 +50,6 @@ class SoptLocalDataSourceImpl @Inject constructor(
 
     companion object {
         private const val IS_LOGIN = "isLogin"
-        private const val ID = "ID"
-        private const val PASSWORD = "password"
-        private const val NICKNAME = "nickname"
-        private const val MBTI = "mbti"
+        private const val USER = "user"
     }
 }

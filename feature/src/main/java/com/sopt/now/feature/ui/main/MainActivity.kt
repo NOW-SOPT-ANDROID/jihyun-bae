@@ -1,28 +1,36 @@
 package com.sopt.now.feature.ui.main
 
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.sopt.now.coreui.base.BindingActivity
-import com.sopt.now.coreui.util.intent.getCompatibleParcelableExtra
 import com.sopt.now.feature.databinding.ActivityMainBinding
-import com.sopt.now.feature.model.UserModel
-import com.sopt.now.feature.ui.signup.SignUpActivity.Companion.USER_INFO
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.inflate(it) }) {
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initLayout()
+        mainViewModel.fetchUserInfo()
+        collectUserInfo()
     }
 
-    private fun initLayout() {
-        intent.getCompatibleParcelableExtra<UserModel>(USER_INFO)?.let { userModel ->
-            with(binding) {
-                tvMyPageMbti.text = userModel.mbti
-                tvMyPageNickname.text = userModel.nickname
-                tvMyPageId.text =
-                    getString(org.sopt.now.designsystem.R.string.my_page_id, userModel.id)
+    private fun collectUserInfo() {
+        mainViewModel.userInfo.flowWithLifecycle(lifecycle).onEach { userEntity ->
+            userEntity?.let { userInfo ->
+                with(binding) {
+                    tvMyPageMbti.text = userInfo.mbti
+                    tvMyPageNickname.text = userInfo.nickname
+                    tvMyPageId.text =
+                        getString(org.sopt.now.designsystem.R.string.my_page_id, userInfo.id)
+                }
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 }

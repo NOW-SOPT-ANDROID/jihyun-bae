@@ -1,4 +1,4 @@
-package com.sopt.now.feature.ui.signin
+package com.sopt.now.feature.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,17 +11,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val soptRepository: SoptRepository
 ) : ViewModel() {
     private var _userInfo: MutableStateFlow<UserEntity?> = MutableStateFlow(null)
     val userInfo get() = _userInfo.asStateFlow()
-
-    private fun setIsLogin(isLogin: Boolean) {
-        viewModelScope.launch {
-            soptRepository.setIsLogin(isLogin = isLogin)
-        }
-    }
 
     fun fetchUserInfo() {
         viewModelScope.launch {
@@ -30,11 +24,4 @@ class SignInViewModel @Inject constructor(
             }
         }
     }
-
-    fun signIn(id: String, password: String): Boolean = userInfo.value?.let { userEntity ->
-        (userEntity.id == id && userEntity.password == password).let { isLogin ->
-            setIsLogin(isLogin)
-            isLogin
-        }
-    } ?: false
 }

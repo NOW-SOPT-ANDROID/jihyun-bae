@@ -8,11 +8,13 @@ import com.sopt.now.coreui.base.BindingActivity
 import com.sopt.now.coreui.util.context.showToast
 import com.sopt.now.coreui.util.context.stringOf
 import com.sopt.now.coreui.util.view.showSnackbar
+import com.sopt.now.domain.model.UserEntity
 import com.sopt.now.feature.databinding.ActivitySignUpBinding
-import com.sopt.now.feature.model.UserModel
 import com.sopt.now.feature.type.SignUpType
 import com.sopt.now.feature.ui.signin.SignInActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpActivity :
     BindingActivity<ActivitySignUpBinding>({ ActivitySignUpBinding.inflate(it) }) {
     private val signUpViewModel by viewModels<SignUpViewModel>()
@@ -32,19 +34,19 @@ class SignUpActivity :
     private fun setSignUpBtnClickListeners() {
         with(binding) {
             btnSignUp.setOnClickListener {
-                UserModel(
+                UserEntity(
                     id = etSignUpId.editText.text.toString(),
                     password = etSignUpPassword.editText.text.toString(),
                     nickname = etSignUpNickname.editText.text.toString(),
                     mbti = etSignUpMbti.editText.text.toString()
-                ).let { userModel ->
+                ).let { userEntity ->
                     signUpViewModel.signUp(
-                        user = userModel
+                        userEntity = userEntity
                     ).let { signUpType ->
                         when (signUpType) {
                             SignUpType.SUCCESS -> {
                                 showToast(stringOf(signUpType.descriptionRes))
-                                navigateSignIn(userModel)
+                                navigateSignIn()
                             }
 
                             else -> {
@@ -57,10 +59,9 @@ class SignUpActivity :
         }
     }
 
-    private fun navigateSignIn(userInfo: UserModel) {
+    private fun navigateSignIn() {
         Intent(this@SignUpActivity, SignInActivity::class.java).apply {
-            putExtra(USER_INFO, userInfo)
-            setResult(RESULT_OK, this)
+            startActivity(this)
             finish()
         }
     }
