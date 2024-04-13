@@ -11,9 +11,9 @@ import org.sopt.now.designsystem.databinding.DialogSoptBinding
 
 class SoptDialogFragment(
     private val dialogType: DialogType = DialogType.LOGOUT,
-    private val clickLeftBtn: () -> Unit,
-    private val clickRightBtn: () -> Unit,
-    private val onDialogClosed: () -> Unit
+    private val clickLeftBtn: () -> Unit = {},
+    private val clickRightBtn: () -> Unit = {},
+    private val onDialogClosed: () -> Unit = {}
 ) : BindingDialogFragment<DialogSoptBinding>({ DialogSoptBinding.inflate(it) }) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

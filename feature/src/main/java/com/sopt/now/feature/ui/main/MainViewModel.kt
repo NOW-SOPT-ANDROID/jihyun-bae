@@ -24,4 +24,10 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+    fun logout() {
+        viewModelScope.launch {
+            soptRepository.setIsLogin(isLogin = false)
+        }
+    }
 }
