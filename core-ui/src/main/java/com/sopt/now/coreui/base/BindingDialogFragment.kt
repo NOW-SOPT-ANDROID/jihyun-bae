@@ -11,7 +11,7 @@ import androidx.viewbinding.ViewBinding
 abstract class BindingDialogFragment<T : ViewBinding>(private val inflater: (LayoutInflater) -> T) :
     DialogFragment() {
     private var _binding: T? = null
-    private val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
+    val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
 
     override fun onCreateView(
         inflater: LayoutInflater,
