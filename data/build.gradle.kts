@@ -10,6 +10,9 @@ android {
 dependencies {
     implementation(project(":domain"))
 
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
+
     // Third Party
     implementation(libs.bundles.retrofit)
 }

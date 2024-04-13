@@ -42,6 +42,9 @@ dependencies {
     implementation(project(":data-local"))
     implementation(project(":data-remote"))
 
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
+
     // Third Party
     implementation(libs.bundles.retrofit)
 }

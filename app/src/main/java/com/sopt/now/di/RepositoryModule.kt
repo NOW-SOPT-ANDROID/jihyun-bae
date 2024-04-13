@@ -1,7 +1,7 @@
 package com.sopt.now.di
 
-import com.sopt.now.data.repositoryimpl.DummyRepositoryImpl
-import com.sopt.now.domain.repository.DummyRepository
+import com.sopt.now.data.repositoryimpl.SoptRepositoryImpl
+import com.sopt.now.domain.repository.SoptRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,5 +13,5 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindsDummyRepository(dummyRepositoryImpl: DummyRepositoryImpl): DummyRepository
+    abstract fun bindsSoptRepository(soptRepositoryImpl: SoptRepositoryImpl): SoptRepository
 }
