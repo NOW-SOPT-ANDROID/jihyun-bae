@@ -34,7 +34,14 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature"))
     implementation(project(":core-designsystem"))
     implementation(project(":core-ui"))
-    implementation(project(":feature"))
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":data-local"))
+    implementation(project(":data-remote"))
+
+    // Third Party
+    implementation(libs.bundles.retrofit)
 }
