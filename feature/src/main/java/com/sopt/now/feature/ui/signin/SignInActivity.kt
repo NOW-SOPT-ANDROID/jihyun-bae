@@ -47,10 +47,7 @@ class SignInActivity :
                 id = binding.etSignInId.editText.text.toString(),
                 password = binding.etSignInPassword.editText.text.toString()
             ).let { isSignInSuccess ->
-                if (isSignInSuccess) {
-                    navigateToMain()
-                    showToast(stringOf(R.string.sign_in_success))
-                }
+                if (isSignInSuccess) navigateToMain()
             }
         }
     }
@@ -64,7 +61,7 @@ class SignInActivity :
     private fun collectIsLogin() {
         signInViewModel.isLogin.flowWithLifecycle(lifecycle).onEach { isLogin ->
             if (isLogin) {
-                showToast(stringOf(R.string.sign_in_auto_login))
+                showToast(stringOf(R.string.sign_in_success))
                 navigateToMain()
             }
         }.launchIn(lifecycleScope)
