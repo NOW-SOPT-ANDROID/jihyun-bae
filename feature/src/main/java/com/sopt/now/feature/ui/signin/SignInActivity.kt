@@ -27,8 +27,11 @@ class SignInActivity :
     }
 
     private fun initLayout() {
-        binding.etSignInPassword.editText.inputType =
-            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        with(binding) {
+            etSignInId.editText.inputType = InputType.TYPE_CLASS_TEXT
+            etSignInPassword.editText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
     }
 
     private fun setSignInBtnClickListeners() {
