@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.sopt.now.coreui.base.BindingActivity
 import com.sopt.now.coreui.util.context.showToast
 import com.sopt.now.coreui.util.context.stringOf
@@ -11,6 +13,9 @@ import com.sopt.now.feature.databinding.ActivitySignInBinding
 import com.sopt.now.feature.ui.main.MainActivity
 import com.sopt.now.feature.ui.signup.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import org.sopt.now.designsystem.R
 
 @AndroidEntryPoint
 class SignInActivity :
@@ -21,9 +26,11 @@ class SignInActivity :
         super.onCreate(savedInstanceState)
 
         signInViewModel.fetchUserInfo()
+        signInViewModel.fetchAutoLogin()
         initLayout()
         setSignInBtnClickListeners()
         setSignUpTvClickListener()
+        collectIsLogin()
     }
 
     private fun initLayout() {
@@ -42,7 +49,7 @@ class SignInActivity :
             ).let { isSignInSuccess ->
                 if (isSignInSuccess) {
                     navigateToMain()
-                    showToast(stringOf(org.sopt.now.designsystem.R.string.sign_in_success))
+                    showToast(stringOf(R.string.sign_in_success))
                 }
             }
         }
@@ -52,6 +59,15 @@ class SignInActivity :
         binding.tvSignInSignUp.setOnClickListener {
             navigateToSignUp()
         }
+    }
+
+    private fun collectIsLogin() {
+        signInViewModel.isLogin.flowWithLifecycle(lifecycle).onEach { isLogin ->
+            if (isLogin) {
+                showToast(stringOf(R.string.sign_in_auto_login))
+                navigateToMain()
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun navigateToSignUp() {
