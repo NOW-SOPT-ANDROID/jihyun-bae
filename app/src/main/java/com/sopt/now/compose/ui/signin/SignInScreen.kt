@@ -1,5 +1,6 @@
 package com.sopt.now.compose.ui.signin
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -94,6 +95,7 @@ fun SignInScreen(
 
     Column(
         modifier = Modifier
+            .background(Color.White)
             .fillMaxSize()
             .padding(horizontal = 24.dp)
     ) {
