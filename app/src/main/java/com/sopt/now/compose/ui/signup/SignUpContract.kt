@@ -11,12 +11,13 @@ class SignUpContract {
         val user: UserModel = UserModel(id = "", password = "", nickname = "", mbti = "")
     ) : UiState
 
-    sealed interface SignUpSideEffect: UiSideEffect {
-        data class NavigateToSignIn(val userModel: UserModel): SignUpSideEffect
-        data class showToast(val signUpType: SignUpType) : SignUpSideEffect
+    sealed interface SignUpSideEffect : UiSideEffect {
+        data object PopBackStack : SignUpSideEffect
+        data class NavigateToSignIn(val userModel: UserModel) : SignUpSideEffect
+        data class ShowToast(val signUpType: SignUpType) : SignUpSideEffect
     }
 
-    sealed class SignUpEvent: UiEvent {
-        data object OnSignUpBtnClicked: SignUpEvent()
+    sealed class SignUpEvent : UiEvent {
+        data object OnSignUpBtnClicked : SignUpEvent()
     }
 }

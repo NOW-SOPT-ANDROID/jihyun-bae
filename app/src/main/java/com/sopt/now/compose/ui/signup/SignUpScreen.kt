@@ -33,6 +33,7 @@ import com.sopt.now.compose.util.context.showToast
 @Composable
 fun SignUpRoute(
     navController: NavController,
+    popBackStack: () -> Unit,
     viewModel: SignUpViewModel = hiltViewModel(),
     navigateToSignIn: (UserModel) -> Unit
 ) {
@@ -44,11 +45,15 @@ fun SignUpRoute(
         viewModel.sideEffect.flowWithLifecycle(lifecycle = lifecycleOwner.lifecycle)
             .collect { signUpSideEffect ->
                 when (signUpSideEffect) {
+                    SignUpContract.SignUpSideEffect.PopBackStack -> {
+                        popBackStack()
+                    }
+
                     is SignUpContract.SignUpSideEffect.NavigateToSignIn -> {
                         navigateToSignIn(signUpSideEffect.userModel)
                     }
 
-                    is SignUpContract.SignUpSideEffect.showToast -> {
+                    is SignUpContract.SignUpSideEffect.ShowToast -> {
                         with(context) {
                             showToast(getString(signUpSideEffect.signUpType.descriptionRes))
                         }

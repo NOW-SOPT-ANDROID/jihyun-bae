@@ -38,6 +38,7 @@ import com.sopt.now.compose.util.context.showToast
 fun SignInRoute(
     navController: NavController,
     viewModel: SignInViewModel = hiltViewModel(),
+    popBackStack: () -> Unit,
     navigateToHome: (UserModel) -> Unit,
     navigateToSignUp: () -> Unit
 ) {
@@ -51,6 +52,10 @@ fun SignInRoute(
                 when (signInSideEffect) {
                     SignInContract.SignInSideEffect.NavigateToSignUp -> {
                         navigateToSignUp()
+                    }
+
+                    SignInContract.SignInSideEffect.PopBackStack -> {
+                        popBackStack()
                     }
 
                     is SignInContract.SignInSideEffect.NavigateToHome -> {

@@ -31,6 +31,10 @@ class MainNavigator(
     fun navigationSignUp() {
         navHostController.navigationSignUp()
     }
+
+    fun popBackStack() {
+        navHostController.popBackStack()
+    }
 }
 
 @Composable

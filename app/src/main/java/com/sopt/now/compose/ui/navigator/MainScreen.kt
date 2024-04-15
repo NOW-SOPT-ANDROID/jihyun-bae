@@ -25,12 +25,14 @@ fun MainScreen(
 
             signInNavGraph(
                 navController = navigator.navHostController,
+                popBackStack = navigator::popBackStack,
                 navigateHome = navigator::navigationHome,
                 navigateSignup = navigator::navigationSignUp
             )
 
             signUpNavGraph(
                 navController = navigator.navHostController,
+                popBackStack = navigator::popBackStack,
                 navigateSignIn = navigator::navigationSignIn
             )
         }

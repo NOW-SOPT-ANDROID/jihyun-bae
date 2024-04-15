@@ -13,14 +13,15 @@ class SignInContract {
         val inputPassword: String = ""
     ) : UiState
 
-    sealed interface SignInSideEffect: UiSideEffect {
-        data object NavigateToSignUp: SignInSideEffect
-        data class NavigateToHome(val user: UserModel): SignInSideEffect
-        data class ShowToast(@StringRes val message: Int): SignInSideEffect
+    sealed interface SignInSideEffect : UiSideEffect {
+        data object NavigateToSignUp : SignInSideEffect
+        data object PopBackStack : SignInSideEffect
+        data class NavigateToHome(val user: UserModel) : SignInSideEffect
+        data class ShowToast(@StringRes val message: Int) : SignInSideEffect
     }
 
     sealed class SignInEvent : UiEvent {
-        data object OnSignUpTvClicked: SignInEvent()
-        data object OnSignInBtnClicked: SignInEvent()
+        data object OnSignUpTvClicked : SignInEvent()
+        data object OnSignInBtnClicked : SignInEvent()
     }
 }

@@ -13,6 +13,8 @@ class SignUpViewModel @Inject constructor() :
     override suspend fun handleEvent(event: SignUpContract.SignUpEvent) {
         when (event) {
             is SignUpContract.SignUpEvent.OnSignUpBtnClicked -> {
+                setSideEffect { SignUpContract.SignUpSideEffect.ShowToast(SignUpType.SUCCESS) }
+                setSideEffect { SignUpContract.SignUpSideEffect.PopBackStack }
                 setSideEffect { SignUpContract.SignUpSideEffect.NavigateToSignIn(userModel = currentState.user) }
             }
         }
@@ -22,32 +24,31 @@ class SignUpViewModel @Inject constructor() :
         with(currentState.user) {
             when {
                 id.length !in MIN_ID_LENGTH..MAX_ID_LENGTH -> setSideEffect {
-                    SignUpContract.SignUpSideEffect.showToast(
+                    SignUpContract.SignUpSideEffect.ShowToast(
                         SignUpType.ID_ERROR
                     )
                 }
 
                 password.length !in MIN_PASSWORD_LENGTH..MAX_PASSWORD_LENGTH -> setSideEffect {
-                    SignUpContract.SignUpSideEffect.showToast(
+                    SignUpContract.SignUpSideEffect.ShowToast(
                         SignUpType.PASSWORD_ERROR
                     )
                 }
 
                 nickname.isBlank() -> setSideEffect {
-                    SignUpContract.SignUpSideEffect.showToast(
+                    SignUpContract.SignUpSideEffect.ShowToast(
                         SignUpType.NICKNAME_ERROR
                     )
                 }
 
                 !mbti.matches(MBTI_REGEX) -> setSideEffect {
-                    SignUpContract.SignUpSideEffect.showToast(
+                    SignUpContract.SignUpSideEffect.ShowToast(
                         SignUpType.MBTI_ERROR
                     )
                 }
 
                 else -> {
                     setEvent(SignUpContract.SignUpEvent.OnSignUpBtnClicked)
-                    setSideEffect { SignUpContract.SignUpSideEffect.showToast(SignUpType.SUCCESS) }
                 }
             }
         }

@@ -19,7 +19,14 @@ class SignInViewModel @Inject constructor() :
 
             is SignInContract.SignInEvent.OnSignInBtnClicked -> {
                 setSideEffect { SignInContract.SignInSideEffect.ShowToast(R.string.sign_in_success) }
-                currentState.user?.let {setSideEffect { SignInContract.SignInSideEffect.NavigateToHome(user = it) } }
+                setSideEffect { SignInContract.SignInSideEffect.PopBackStack }
+                currentState.user?.let {
+                    setSideEffect {
+                        SignInContract.SignInSideEffect.NavigateToHome(
+                            user = it
+                        )
+                    }
+                }
             }
         }
     }

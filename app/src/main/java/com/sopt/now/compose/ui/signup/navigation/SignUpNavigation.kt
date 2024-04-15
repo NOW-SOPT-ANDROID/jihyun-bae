@@ -12,11 +12,13 @@ fun NavController.navigationSignUp() {
 
 fun NavGraphBuilder.signUpNavGraph(
     navController: NavController,
+    popBackStack: () -> Unit,
     navigateSignIn: (UserModel) -> Unit = {}
 ) {
     composable(route = SignupRoute.ROUTE) {
         SignUpRoute(
             navController = navController,
+            popBackStack = popBackStack,
             navigateToSignIn = navigateSignIn
         )
     }
