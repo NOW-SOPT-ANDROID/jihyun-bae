@@ -16,4 +16,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_home_friend_profile" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_home_add_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_add_gray_400_24"
+        app:backgroundTint="@color/gray_400"
+        app:borderWidth="2dp"
+        app:elevation="0dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="@android:color/transparent"
+        app:tint="@null" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
