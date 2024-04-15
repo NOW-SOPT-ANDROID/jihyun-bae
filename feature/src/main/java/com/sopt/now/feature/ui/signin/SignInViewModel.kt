@@ -14,8 +14,11 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor(
     private val soptRepository: SoptRepository
 ) : ViewModel() {
-    private var _userInfo: MutableStateFlow<UserEntity?> = MutableStateFlow(null)
+    private val _userInfo: MutableStateFlow<UserEntity?> = MutableStateFlow(null)
     val userInfo get() = _userInfo.asStateFlow()
+
+    private val _isLogin: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isLogin get() = _isLogin.asStateFlow()
 
     private fun setIsLogin(isLogin: Boolean) {
         viewModelScope.launch {
@@ -27,6 +30,14 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             soptRepository.user.collect { userEntity ->
                 _userInfo.value = userEntity
+            }
+        }
+    }
+
+    fun fetchAutoLogin() {
+        viewModelScope.launch {
+            soptRepository.isLogin.collect { isLogin ->
+                _isLogin.value = isLogin
             }
         }
     }
