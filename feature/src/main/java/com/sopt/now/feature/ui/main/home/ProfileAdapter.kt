@@ -51,8 +51,8 @@ class ProfileAdapter() : ListAdapter<ProfileModel, RecyclerView.ViewHolder>(
     }
 
     companion object {
-        const val FIRST_POSITION = 0
-        const val VIEW_TYPE_MY_PROFILE = 0
-        const val VIEW_TYPE_FRIEND_PROFILE = 1
+        private const val FIRST_POSITION = 0
+        private const val VIEW_TYPE_MY_PROFILE = 0
+        private const val VIEW_TYPE_FRIEND_PROFILE = 1
     }
 }
