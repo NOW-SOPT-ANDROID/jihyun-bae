@@ -2,6 +2,7 @@ package com.sopt.now.compose.component
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -27,7 +28,8 @@ fun SoptButton(
     Button(
         modifier = modifier
             .padding(padding)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .imePadding(),
         onClick = onClick,
         shape = shape,
         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1C6739)),
