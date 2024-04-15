@@ -1,7 +1,6 @@
 package com.sopt.now.compose.ui.signin
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,6 +33,7 @@ import com.sopt.now.compose.component.SoptTextField
 import com.sopt.now.compose.model.UserModel
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.context.showToast
+import com.sopt.now.compose.util.modifier.noRippleClickable
 
 @Composable
 fun SignInRoute(
@@ -140,7 +140,7 @@ fun SignInScreen(
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(modifier = Modifier
-            .clickable {
+            .noRippleClickable {
                 onSignUpTvClicked()
             }
             .align(Alignment.CenterHorizontally),
@@ -151,7 +151,7 @@ fun SignInScreen(
             color = Color(0xFF656565)
 
         )
-        Spacer(modifier = Modifier.height(6.dp))
+        Spacer(modifier = Modifier.height(24.dp))
         SoptButton(
             text = context.getString(R.string.sign_in_sign_in), onClick = onSignInBtnClicked
         )

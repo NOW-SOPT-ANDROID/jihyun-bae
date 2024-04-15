@@ -142,13 +142,17 @@ fun SignUpScreen(
             )
             Spacer(modifier = Modifier.height(12.dp))
         }
-        SoptButton(
+        Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 24.dp),
-            text = context.getString(R.string.sign_up_sign_up),
-            onClick = onSignUpBtnClicked
-        )
+                .imePadding()
+        ) {
+            SoptButton(
+                text = context.getString(R.string.sign_up_sign_up),
+                onClick = onSignUpBtnClicked
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+        }
     }
 }
 
