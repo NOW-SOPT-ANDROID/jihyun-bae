@@ -37,6 +37,10 @@ class HomeViewModel() : ViewModel() {
         ProfileModel(
             profileImage = "https://avatars.githubusercontent.com/u/85453429?v=4",
             name = "김언지"
+        ),
+        ProfileModel(
+            profileImage = "https://avatars.githubusercontent.com/u/106955456?v=4",
+            name = "배찬우"
         )
     )
     val mockProfileList
