@@ -17,5 +17,12 @@ enum class DialogType(
         description = R.string.logout_description,
         leftBtnText = R.string.dialog_yes,
         rightBtnText = R.string.dialog_no
+    ),
+    DELETE_PROFILE(
+        icon = R.drawable.ic_sad_24,
+        title = R.string.delete_profile,
+        description = R.string.delete_profile_description,
+        leftBtnText = R.string.dialog_yes,
+        rightBtnText = R.string.dialog_no
     )
 }
