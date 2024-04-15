@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,7 +53,7 @@ fun SoptTextField(
             cursorBrush = SolidColor(Color.Black),
             singleLine = true,
             keyboardActions = KeyboardActions.Default,
-            keyboardOptions = KeyboardOptions.Default,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
             visualTransformation = visualTransformation,
             textStyle = TextStyle(fontSize = 18.sp, color = Color(0xFF262525), lineHeight = 23.sp),
             decorationBox = { innerTextField ->
