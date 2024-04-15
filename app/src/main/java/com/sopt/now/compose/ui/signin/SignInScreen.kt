@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -103,6 +104,7 @@ fun SignInScreen(
             .background(Color.White)
             .fillMaxSize()
             .padding(horizontal = 24.dp)
+            .imePadding()
     ) {
         Spacer(modifier = Modifier.height(60.dp))
         Text(
@@ -128,6 +130,7 @@ fun SignInScreen(
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(12.dp))
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             text = context.getString(R.string.sign_in_no_account),
@@ -136,12 +139,11 @@ fun SignInScreen(
             color = Color(0xFFCBC8C5)
         )
         Spacer(modifier = Modifier.height(12.dp))
-        Text(
-            modifier = Modifier
-                .clickable {
-                    onSignUpTvClicked()
-                }
-                .align(Alignment.CenterHorizontally),
+        Text(modifier = Modifier
+            .clickable {
+                onSignUpTvClicked()
+            }
+            .align(Alignment.CenterHorizontally),
             text = context.getString(R.string.sign_in_sign_up),
             fontSize = 14.sp,
             lineHeight = 18.sp,
@@ -151,8 +153,7 @@ fun SignInScreen(
         )
         Spacer(modifier = Modifier.height(6.dp))
         SoptButton(
-            text = context.getString(R.string.sign_in_sign_in),
-            onClick = onSignInBtnClicked
+            text = context.getString(R.string.sign_in_sign_in), onClick = onSignInBtnClicked
         )
         Spacer(modifier = Modifier.height(24.dp))
     }

@@ -1,16 +1,23 @@
 package com.sopt.now.compose.ui.signup
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imeNestedScroll
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -72,6 +79,7 @@ fun SignUpRoute(
     )
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SignUpScreen(
     state: SignUpContract.SignUpState = SignUpContract.SignUpState(),
@@ -83,55 +91,64 @@ fun SignUpScreen(
 ) {
     val context = LocalContext.current
 
-    Column(
+    Box(
         modifier = Modifier
             .background(Color.White)
             .fillMaxSize()
             .padding(horizontal = 24.dp)
     ) {
-        Spacer(modifier = Modifier.height(60.dp))
-        Text(
-            text = context.getString(R.string.sign_up_sign_up),
-            color = Color(0xFF000000),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            lineHeight = 32.sp
-        )
-        Spacer(modifier = Modifier.height(40.dp))
-        SoptTextField(
-            title = context.getString(R.string.sign_id),
-            value = state.user.id,
-            onValueChange = onValueChangeId,
-            placeholder = context.getString(R.string.sign_id_hint)
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        SoptTextField(
-            title = context.getString(R.string.sign_password),
-            value = state.user.password,
-            onValueChange = onValueChangePassword,
-            placeholder = context.getString(R.string.sign_password_hint),
-            visualTransformation = PasswordVisualTransformation()
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        SoptTextField(
-            title = context.getString(R.string.sign_nickname),
-            value = state.user.nickname,
-            onValueChange = onValueChangeNickname,
-            placeholder = context.getString(R.string.sign_nickname_hint)
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        SoptTextField(
-            title = context.getString(R.string.sign_mbti),
-            value = state.user.mbti,
-            onValueChange = onValueChangeMbti,
-            placeholder = context.getString(R.string.sign_mbti_hint)
-        )
-        Spacer(modifier = Modifier.weight(1f))
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .imePadding()
+                .imeNestedScroll()
+        ) {
+            Spacer(modifier = Modifier.height(60.dp))
+            Text(
+                text = context.getString(R.string.sign_up_sign_up),
+                color = Color(0xFF000000),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                lineHeight = 32.sp
+            )
+            Spacer(modifier = Modifier.height(40.dp))
+            SoptTextField(
+                title = context.getString(R.string.sign_id),
+                value = state.user.id,
+                onValueChange = onValueChangeId,
+                placeholder = context.getString(R.string.sign_id_hint)
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            SoptTextField(
+                title = context.getString(R.string.sign_password),
+                value = state.user.password,
+                onValueChange = onValueChangePassword,
+                placeholder = context.getString(R.string.sign_password_hint),
+                visualTransformation = PasswordVisualTransformation()
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            SoptTextField(
+                title = context.getString(R.string.sign_nickname),
+                value = state.user.nickname,
+                onValueChange = onValueChangeNickname,
+                placeholder = context.getString(R.string.sign_nickname_hint)
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            SoptTextField(
+                title = context.getString(R.string.sign_mbti),
+                value = state.user.mbti,
+                onValueChange = onValueChangeMbti,
+                placeholder = context.getString(R.string.sign_mbti_hint)
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+        }
         SoptButton(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 24.dp),
             text = context.getString(R.string.sign_up_sign_up),
             onClick = onSignUpBtnClicked
         )
-        Spacer(modifier = Modifier.height(24.dp))
     }
 }
 
