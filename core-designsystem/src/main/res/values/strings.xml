@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">NOW SOPT Android</string>
 
+    <!-- menu -->
+    <string name="menu_home">홈</string>
+    <string name="menu_list">리스트</string>
+    <string name="menu_my_page">마이페이지</string>
+
     <!-- sign -->
     <string name="sign_id">아이디</string>
     <string name="sign_id_hint">아이디를 입력해 주세요</string>
