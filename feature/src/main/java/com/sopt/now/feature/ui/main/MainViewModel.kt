@@ -14,7 +14,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val soptRepository: SoptRepository
 ) : ViewModel() {
-    private var _userInfo: MutableStateFlow<UserEntity?> = MutableStateFlow(null)
+    private val _userInfo: MutableStateFlow<UserEntity?> = MutableStateFlow(null)
     val userInfo get() = _userInfo.asStateFlow()
 
     fun fetchUserInfo() {
