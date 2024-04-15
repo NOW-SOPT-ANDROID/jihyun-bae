@@ -1,4 +1,4 @@
-package com.sopt.now.feature.ui.main.home
+package com.sopt.now.feature.ui.main.home.recyclerview
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

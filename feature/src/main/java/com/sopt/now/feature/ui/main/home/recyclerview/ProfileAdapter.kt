@@ -1,4 +1,4 @@
-package com.sopt.now.feature.ui.main.home
+package com.sopt.now.feature.ui.main.home.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import com.sopt.now.feature.databinding.ItemHomeFriendProfileBinding
 import com.sopt.now.feature.databinding.ItemHomeMyProfileBinding
 import com.sopt.now.feature.model.ProfileModel
 
-class ProfileAdapter() : ListAdapter<ProfileModel, RecyclerView.ViewHolder>(
+class ProfileAdapter(
+    private val showDeleteProfileDialog: () -> Unit
+) : ListAdapter<ProfileModel, RecyclerView.ViewHolder>(
     ItemDiffCallback<ProfileModel>(
         onContentsTheSame = { old, new -> old == new },
         onItemsTheSame = { old, new -> old.name == new.name }
@@ -19,7 +21,7 @@ class ProfileAdapter() : ListAdapter<ProfileModel, RecyclerView.ViewHolder>(
         when (viewType) {
             VIEW_TYPE_MY_PROFILE -> {
                 MyProfileViewHolder(
-                    ItemHomeMyProfileBinding.inflate(
+                    binding = ItemHomeMyProfileBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
@@ -29,11 +31,12 @@ class ProfileAdapter() : ListAdapter<ProfileModel, RecyclerView.ViewHolder>(
 
             else -> {
                 FriendProfileViewHolder(
-                    ItemHomeFriendProfileBinding.inflate(
+                    binding = ItemHomeFriendProfileBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    showDeleteProfileDialog = showDeleteProfileDialog
                 )
             }
         }
