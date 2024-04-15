@@ -7,7 +7,7 @@
     tools:context=".ui.main.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fcv_main_container"
+        android:id="@+id/fcv_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/view_main_line"

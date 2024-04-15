@@ -11,9 +11,11 @@ import com.sopt.now.coreui.base.BindingFragment
 import com.sopt.now.feature.databinding.FragmentMyPageBinding
 import com.sopt.now.feature.ui.signin.SignInActivity
 import com.sopt.now.type.DialogType
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class MyPageFragment :
     BindingFragment<FragmentMyPageBinding>({ FragmentMyPageBinding.inflate(it) }) {
     private val mainViewModel by viewModels<MyPageViewModel>()

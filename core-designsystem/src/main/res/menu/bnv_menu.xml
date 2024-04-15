@@ -6,7 +6,7 @@
         android:icon="@drawable/selector_menu_home_icon"
         android:title="@string/menu_home" />
     <item
-        android:id="@+id/menu_bakery_list"
+        android:id="@+id/menu_list"
         android:enabled="true"
         android:icon="@drawable/selector_menu_list_icon"
         android:title="@string/menu_list" />
