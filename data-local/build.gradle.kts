@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.sopt.android.library)
     alias(libs.plugins.sopt.android.test)
+    alias(libs.plugins.sopt.android.room)
 }
 
 android {

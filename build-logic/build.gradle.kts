@@ -33,6 +33,10 @@ gradlePlugin {
             id = "com.sopt.now.library"
             implementationClass = "com.sopt.now.plugin.AndroidLibraryPlugin"
         }
+        create("android-room") {
+            id = "com.sopt.now.room"
+            implementationClass = "com.sopt.now.plugin.AndroidRoomPlugin"
+        }
         create("android-test") {
             id = "com.sopt.now.test"
             implementationClass = "com.sopt.now.plugin.AndroidTestPlugin"
