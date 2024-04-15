@@ -1,4 +1,4 @@
-package com.sopt.now.feature.ui.main
+package com.sopt.now.feature.ui.main.mypage
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class MyPageViewModel @Inject constructor(
     private val soptRepository: SoptRepository
 ) : ViewModel() {
     private val _userInfo: MutableStateFlow<UserEntity?> = MutableStateFlow(null)
