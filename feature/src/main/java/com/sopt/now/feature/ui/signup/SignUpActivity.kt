@@ -27,8 +27,13 @@ class SignUpActivity :
     }
 
     private fun initLayout() {
-        binding.etSignUpPassword.editText.inputType =
-            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        with(binding) {
+            etSignUpId.editText.inputType = InputType.TYPE_CLASS_TEXT
+            etSignUpPassword.editText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            etSignUpNickname.editText.inputType = InputType.TYPE_CLASS_TEXT
+            etSignUpMbti.editText.inputType = InputType.TYPE_CLASS_TEXT
+        }
     }
 
     private fun setSignUpBtnClickListeners() {
@@ -46,7 +51,7 @@ class SignUpActivity :
                         when (signUpType) {
                             SignUpType.SUCCESS -> {
                                 showToast(stringOf(signUpType.descriptionRes))
-                                navigateSignIn()
+                                navigateToSignIn()
                             }
 
                             else -> {
@@ -59,14 +64,10 @@ class SignUpActivity :
         }
     }
 
-    private fun navigateSignIn() {
+    private fun navigateToSignIn() {
         Intent(this@SignUpActivity, SignInActivity::class.java).apply {
             startActivity(this)
             finish()
         }
-    }
-
-    companion object {
-        const val USER_INFO = "USER_INFO"
     }
 }

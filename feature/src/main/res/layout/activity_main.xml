@@ -77,4 +77,27 @@
         app:layout_constraintTop_toBottomOf="@id/tv_my_page_nickname"
         tools:text="id : jihyunniiii" />
 
+    <View
+        android:id="@+id/view_my_page_line"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/gray_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_page_id" />
+
+    <TextView
+        android:id="@+id/tv_my_page_logout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingVertical="12dp"
+        android:text="@string/logout"
+        android:textAppearance="@style/TextAppearance.BodyM1"
+        android:textColor="@color/gray_700"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/view_my_page_line" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

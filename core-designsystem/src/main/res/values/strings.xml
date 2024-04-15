@@ -29,4 +29,12 @@
     <string name="my_page_my_page">마이페이지</string>
     <string name="my_page_id">ID : %s</string>
 
+    <!-- logout -->
+    <string name="logout">로그아웃</string>
+    <string name="logout_description">정말로 로그아웃 하실건가요?</string>
+
+    <!-- dialog -->
+    <string name="dialog_yes">네</string>
+    <string name="dialog_no">아니오</string>
+
 </resources>
