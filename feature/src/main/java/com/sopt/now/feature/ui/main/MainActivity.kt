@@ -28,11 +28,23 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
     private fun initBnvMainItemSelectedListener() {
         binding.bnvMain.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                org.sopt.now.designsystem.R.id.menu_home -> navigateToFragment<HomeFragment>()
-                org.sopt.now.designsystem.R.id.menu_list -> navigateToFragment<ListFragment>()
-                org.sopt.now.designsystem.R.id.menu_my_page -> navigateToFragment<MyPageFragment>()
+                org.sopt.now.designsystem.R.id.menu_home -> {
+                    navigateToFragment<HomeFragment>()
+                    true
+                }
+
+                org.sopt.now.designsystem.R.id.menu_list -> {
+                    navigateToFragment<ListFragment>()
+                    true
+                }
+
+                org.sopt.now.designsystem.R.id.menu_my_page -> {
+                    navigateToFragment<MyPageFragment>()
+                    true
+                }
+
+                else -> false
             }
-            true
         }
     }
 
