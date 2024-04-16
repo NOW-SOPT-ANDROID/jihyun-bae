@@ -48,5 +48,4 @@ dependencies {
 
     // Third Party
     implementation(libs.bundles.retrofit)
-    implementation(libs.room.ktx)
 }

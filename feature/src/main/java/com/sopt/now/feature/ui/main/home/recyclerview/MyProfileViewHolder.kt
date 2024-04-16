@@ -3,19 +3,19 @@ package com.sopt.now.feature.ui.main.home.recyclerview
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.sopt.now.domain.model.ProfileEntity
 import com.sopt.now.feature.databinding.ItemHomeMyProfileBinding
-import com.sopt.now.feature.model.ProfileModel
 
 class MyProfileViewHolder(
     private val binding: ItemHomeMyProfileBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun onBind(profileModel: ProfileModel) {
+    fun onBind(profileEntity: ProfileEntity) {
         with(binding) {
-            ivHomeMyProfile.load(profileModel.profileImage)
-            tvHomeMyProfileName.text = profileModel.name
-            tvHomeMyProfileDescription.text = profileModel.selfDescription
+            ivHomeMyProfile.load(profileEntity.profileImage)
+            tvHomeMyProfileName.text = profileEntity.name
+            tvHomeMyProfileDescription.text = profileEntity.selfDescription
             tvHomeMyProfileDescription.visibility =
-                if (profileModel.selfDescription.isNullOrEmpty()) View.GONE else View.VISIBLE
+                if (profileEntity.selfDescription.isNullOrEmpty()) View.GONE else View.VISIBLE
         }
     }
 }

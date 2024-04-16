@@ -3,27 +3,25 @@ package com.sopt.now.feature.ui.main.home.recyclerview
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.sopt.now.domain.model.ProfileEntity
 import com.sopt.now.feature.databinding.ItemHomeFriendProfileBinding
-import com.sopt.now.feature.model.ProfileModel
 
 class FriendProfileViewHolder(
     private val binding: ItemHomeFriendProfileBinding,
-    private val showDeleteProfileDialog: () -> Unit
+    private val showDeleteProfileDialog: (ProfileEntity) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
-    init {
-        binding.root.setOnLongClickListener {
-            showDeleteProfileDialog()
-            return@setOnLongClickListener true
-        }
-    }
-
-    fun onBind(profileModel: ProfileModel) {
+    fun onBind(profileEntity: ProfileEntity) {
         with(binding) {
-            ivHomeFriendProfile.load(profileModel.profileImage)
-            tvHomeFriendProfileName.text = profileModel.name
-            tvHomeFriendProfileDescription.text = profileModel.selfDescription
+            ivHomeFriendProfile.load(profileEntity.profileImage)
+            tvHomeFriendProfileName.text = profileEntity.name
+            tvHomeFriendProfileDescription.text = profileEntity.selfDescription
             tvHomeFriendProfileDescription.visibility =
-                if (profileModel.selfDescription.isNullOrEmpty()) View.GONE else View.VISIBLE
+                if (profileEntity.selfDescription.isNullOrEmpty()) View.GONE else View.VISIBLE
+
+            root.setOnLongClickListener {
+                showDeleteProfileDialog(profileEntity)
+                return@setOnLongClickListener true
+            }
         }
     }
 }

@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.now.coreui.util.view.ItemDiffCallback
+import com.sopt.now.domain.model.ProfileEntity
 import com.sopt.now.feature.databinding.ItemHomeFriendProfileBinding
 import com.sopt.now.feature.databinding.ItemHomeMyProfileBinding
-import com.sopt.now.feature.model.ProfileModel
 
 class ProfileAdapter(
-    private val showDeleteProfileDialog: () -> Unit
-) : ListAdapter<ProfileModel, RecyclerView.ViewHolder>(
-    ItemDiffCallback<ProfileModel>(
+    private val showDeleteProfileDialog: (ProfileEntity) -> Unit
+) : ListAdapter<ProfileEntity, RecyclerView.ViewHolder>(
+    ItemDiffCallback<ProfileEntity>(
         onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old.name == new.name }
+        onItemsTheSame = { old, new -> old.id == new.id }
     )
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
