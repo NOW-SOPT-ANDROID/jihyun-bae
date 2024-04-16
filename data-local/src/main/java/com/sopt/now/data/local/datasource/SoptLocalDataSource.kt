@@ -1,6 +1,6 @@
-package com.sopt.now.data.datasource.local
+package com.sopt.now.data.local.datasource
 
-import com.sopt.now.data.model.local.User
+import com.sopt.now.data.local.model.User
 import kotlinx.coroutines.flow.Flow
 
 interface SoptLocalDataSource {

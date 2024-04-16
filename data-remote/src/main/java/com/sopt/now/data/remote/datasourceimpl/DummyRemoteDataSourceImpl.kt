@@ -1,7 +1,7 @@
 package com.sopt.now.data.remote.datasourceimpl
 
-import com.sopt.now.data.datasource.remote.DummyRemoteDataSource
-import com.sopt.now.data.model.remote.request.ResponseGetDummyUserListDto
+import com.sopt.now.data.remote.datasource.DummyRemoteDataSource
+import com.sopt.now.data.remote.model.request.ResponseGetDummyUserListDto
 import com.sopt.now.data.remote.service.DummyService
 import javax.inject.Inject
 

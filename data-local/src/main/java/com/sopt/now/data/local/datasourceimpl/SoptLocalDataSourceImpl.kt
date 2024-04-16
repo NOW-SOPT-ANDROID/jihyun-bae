@@ -5,8 +5,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.sopt.now.data.datasource.local.SoptLocalDataSource
-import com.sopt.now.data.model.local.User
+import com.sopt.now.data.local.datasource.SoptLocalDataSource
+import com.sopt.now.data.local.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.json.Json

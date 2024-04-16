@@ -9,10 +9,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":domain"))
-    implementation(project(":data"))
-    implementation(project(":data"))
-
     // DataStore
     implementation(libs.androidx.datastore.preferences)
 }

@@ -1,6 +1,6 @@
 package com.sopt.now.data.remote.service
 
-import com.sopt.now.data.model.remote.request.ResponseGetDummyUserListDto
+import com.sopt.now.data.remote.model.request.ResponseGetDummyUserListDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

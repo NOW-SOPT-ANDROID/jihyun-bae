@@ -1,4 +1,4 @@
-package com.sopt.now.data.model.local
+package com.sopt.now.data.local.model
 
 import com.sopt.now.domain.model.UserEntity
 import kotlinx.serialization.Serializable

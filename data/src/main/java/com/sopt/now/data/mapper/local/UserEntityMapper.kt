@@ -1,6 +1,6 @@
-package com.sopt.now.data.mapper
+package com.sopt.now.data.mapper.local
 
-import com.sopt.now.data.model.local.User
+import com.sopt.now.data.local.model.User
 import com.sopt.now.domain.model.UserEntity
 
 fun UserEntity.toUser() = User(
