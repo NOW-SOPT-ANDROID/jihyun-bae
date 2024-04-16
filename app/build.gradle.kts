@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.sopt.android.application)
     alias(libs.plugins.sopt.android.test)
     alias(libs.plugins.sopt.android.hilt)
+    alias(libs.plugins.sopt.android.room)
 }
 
 android {
@@ -47,4 +48,5 @@ dependencies {
 
     // Third Party
     implementation(libs.bundles.retrofit)
+    implementation(libs.room.ktx)
 }
