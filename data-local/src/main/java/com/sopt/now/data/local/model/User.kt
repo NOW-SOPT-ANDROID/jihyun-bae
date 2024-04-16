@@ -1,6 +1,5 @@
 package com.sopt.now.data.local.model
 
-import com.sopt.now.domain.model.UserEntity
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -13,11 +12,4 @@ data class User(
     val mbti: String
 ) {
     fun toJsonString() = Json.encodeToString(this)
-
-    fun toUserEntity() = UserEntity(
-        id = this.id,
-        password = this.password,
-        nickname = this.nickname,
-        mbti = this.mbti
-    )
 }
