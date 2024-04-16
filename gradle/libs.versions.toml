@@ -21,7 +21,7 @@ lifecycle = "2.7.0"
 security = "1.1.0-alpha06"
 splash = "1.0.1"
 datastore = "1.0.0"
-room = "2.4.3"
+room = "2.6.1"
 
 # Google
 material = "1.11.0"
@@ -32,7 +32,7 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 
 # Dagger-Hilt
-dagger-hilt = "2.50"
+dagger-hilt = "2.51"
 
 # Third Party
 coil = "2.4.0"
@@ -40,7 +40,7 @@ timber = "5.0.1"
 okhttp = "4.11.0"
 retrofit = "2.9.0"
 retrofit-kotlin-serialization-converter = "1.0.0"
-activityVersion = "1.8.0"
+activityVersion = "1.8.2"
 roomKtx = "2.6.1"
 
 [libraries]
