@@ -23,6 +23,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
     ScrollableView {
     private val homeViewModel by viewModels<HomeViewModel>()
     private val profileAdapter by lazy { ProfileAdapter(showDeleteProfileDialog = ::showDeleteProfileDialog) }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

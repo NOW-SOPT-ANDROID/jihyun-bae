@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
     private val getProfileListUseCase: GetProfileListUseCase,
     private val insertProfileUseCase: InsertProfileUseCase
 ) : ViewModel() {
-    private val _profileListState = MutableStateFlow<UiState<List<ProfileEntity>>>(UiState.Loading)
+    private val _profileListState = MutableStateFlow<UiState<List<ProfileEntity>>>(UiState.Empty)
     val profileListState get() = _profileListState.asStateFlow()
 
     fun deleteProfile(profile: ProfileEntity) {
@@ -31,6 +31,7 @@ class HomeViewModel @Inject constructor(
 
     fun getProfileList() {
         viewModelScope.launch {
+            _profileListState.value = UiState.Loading
             getProfileListUseCase().onSuccess { profileList ->
                 _profileListState.value = UiState.Success(profileList)
             }.onFailure { throwable ->
