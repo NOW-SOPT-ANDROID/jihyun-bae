@@ -28,4 +28,5 @@
     <!-- main (my page) -->
     <string name="my_page_my_page">마이페이지</string>
     <string name="my_page_id">ID : %s</string>
+    <string name="my_page_logout">로그아웃</string>
 </resources>
