@@ -16,6 +16,7 @@ interface ProfileDao {
 
     @Delete
     suspend fun deleteProfile(profile: Profile)
+
     companion object {
         const val GET_PROFILE_LIST_QUERY = "SELECT * FROM profile_table"
     }
