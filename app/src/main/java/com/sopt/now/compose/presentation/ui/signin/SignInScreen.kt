@@ -28,10 +28,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavController
 import com.sopt.now.compose.R
+import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.component.SoptButton
 import com.sopt.now.compose.util.component.SoptTextField
-import com.sopt.now.compose.presentation.model.UserModel
-import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.context.showToast
 import com.sopt.now.compose.util.modifier.noRippleClickable
 
@@ -40,7 +39,7 @@ fun SignInRoute(
     navController: NavController,
     viewModel: SignInViewModel = hiltViewModel(),
     popBackStack: () -> Unit,
-    navigateToHome: (UserModel) -> Unit,
+    navigateToHome: () -> Unit,
     navigateToSignUp: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -59,8 +58,8 @@ fun SignInRoute(
                         popBackStack()
                     }
 
-                    is SignInContract.SignInSideEffect.NavigateToHome -> {
-                        navigateToHome(signInSideEffect.user)
+                    SignInContract.SignInSideEffect.NavigateToHome -> {
+                        navigateToHome()
                     }
 
                     is SignInContract.SignInSideEffect.ShowToast -> {
@@ -70,14 +69,6 @@ fun SignInRoute(
                     }
                 }
             }
-    }
-
-    LaunchedEffect(true) {
-        navController.previousBackStackEntry?.savedStateHandle?.run {
-            get<UserModel>("user")?.let { userModel: UserModel ->
-                viewModel.setUserInfo(userModel = userModel)
-            }
-        }
     }
 
     SignInScreen(

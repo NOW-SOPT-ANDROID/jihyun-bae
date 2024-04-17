@@ -6,7 +6,6 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.sopt.now.compose.presentation.model.UserModel
 import com.sopt.now.compose.presentation.ui.home.navigation.navigationHome
 import com.sopt.now.compose.presentation.ui.signin.navigation.SignInRoute
 import com.sopt.now.compose.presentation.ui.signin.navigation.navigationSignIn
@@ -20,12 +19,12 @@ class MainNavigator(
 
     val startDestination = SignInRoute.ROUTE
 
-    fun navigationHome(userModel: UserModel) {
-        navHostController.navigationHome(userModel = userModel)
+    fun navigationHome() {
+        navHostController.navigationHome()
     }
 
-    fun navigationSignIn(userModel: UserModel) {
-        navHostController.navigationSignIn(userModel = userModel)
+    fun navigationSignIn() {
+        navHostController.navigationSignIn()
     }
 
     fun navigationSignUp() {

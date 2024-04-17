@@ -1,12 +1,16 @@
 package com.sopt.now.compose.presentation.ui.signup
 
+import com.sopt.now.compose.domain.model.UserEntity
+import com.sopt.now.compose.domain.usecase.SetUserUseCase
 import com.sopt.now.compose.presentation.type.SignUpType
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor() :
+class SignUpViewModel @Inject constructor(
+    private val setUserUseCase: SetUserUseCase
+) :
     BaseViewModel<SignUpContract.SignUpState, SignUpContract.SignUpSideEffect, SignUpContract.SignUpEvent>() {
     override fun createInitialState(): SignUpContract.SignUpState = SignUpContract.SignUpState()
 
@@ -15,7 +19,7 @@ class SignUpViewModel @Inject constructor() :
             is SignUpContract.SignUpEvent.OnSignUpBtnClicked -> {
                 setSideEffect { SignUpContract.SignUpSideEffect.ShowToast(SignUpType.SUCCESS) }
                 setSideEffect { SignUpContract.SignUpSideEffect.PopBackStack }
-                setSideEffect { SignUpContract.SignUpSideEffect.NavigateToSignIn(userModel = currentState.user) }
+                setSideEffect { SignUpContract.SignUpSideEffect.NavigateToSignIn(userEntity = currentState.user) }
             }
         }
     }
@@ -52,6 +56,10 @@ class SignUpViewModel @Inject constructor() :
                 }
             }
         }
+    }
+
+    fun setUser(user: UserEntity) {
+        setUserUseCase(user = user)
     }
 
     fun updateId(id: String) = setState { currentState.copy(user = user.copy(id = id)) }

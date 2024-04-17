@@ -1,24 +1,20 @@
 package com.sopt.now.compose.presentation.ui.signin.navigation
 
-import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.sopt.now.compose.presentation.model.UserModel
 import com.sopt.now.compose.presentation.ui.signin.SignInRoute
 
-fun NavController.navigationSignIn(userModel: UserModel) {
+fun NavController.navigationSignIn() {
     navigate(
         route = SignInRoute.ROUTE
-    ) {
-        currentBackStackEntry?.savedStateHandle?.set("user", userModel)
-    }
+    )
 }
 
 fun NavGraphBuilder.signInNavGraph(
     navController: NavController,
     popBackStack: () -> Unit,
-    navigateHome: (UserModel) -> Unit = {},
+    navigateHome: () -> Unit = {},
     navigateSignup: () -> Unit = {}
 ) {
     composable(route = SignInRoute.ROUTE) {

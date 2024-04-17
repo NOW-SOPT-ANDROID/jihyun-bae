@@ -31,10 +31,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavController
 import com.sopt.now.compose.R
+import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.component.SoptButton
 import com.sopt.now.compose.util.component.SoptTextField
-import com.sopt.now.compose.presentation.model.UserModel
-import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.context.showToast
 
 @Composable
@@ -42,7 +41,7 @@ fun SignUpRoute(
     navController: NavController,
     popBackStack: () -> Unit,
     viewModel: SignUpViewModel = hiltViewModel(),
-    navigateToSignIn: (UserModel) -> Unit
+    navigateToSignIn: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
@@ -57,7 +56,8 @@ fun SignUpRoute(
                     }
 
                     is SignUpContract.SignUpSideEffect.NavigateToSignIn -> {
-                        navigateToSignIn(signUpSideEffect.userModel)
+                        viewModel.setUser(signUpSideEffect.userEntity)
+                        navigateToSignIn()
                     }
 
                     is SignUpContract.SignUpSideEffect.ShowToast -> {
