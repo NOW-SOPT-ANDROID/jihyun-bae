@@ -8,7 +8,9 @@ import com.sopt.now.compose.presentation.ui.home.HomeRoute
 fun NavController.navigationHome() {
     navigate(
         route = HomeRoute.ROUTE
-    )
+    ) {
+        popBackStack(graph.id, inclusive = true)
+    }
 }
 
 fun NavGraphBuilder.homeNavGraph(

@@ -6,7 +6,9 @@ import androidx.navigation.compose.composable
 import com.sopt.now.compose.presentation.ui.signup.SignUpRoute
 
 fun NavController.navigationSignUp() {
-    navigate(route = SignupRoute.ROUTE)
+    navigate(route = SignupRoute.ROUTE) {
+        popBackStack(graph.id, inclusive = true)
+    }
 }
 
 fun NavGraphBuilder.signUpNavGraph(
