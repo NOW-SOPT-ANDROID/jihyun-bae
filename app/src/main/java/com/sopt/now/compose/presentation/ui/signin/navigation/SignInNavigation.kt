@@ -8,7 +8,9 @@ import com.sopt.now.compose.presentation.ui.signin.SignInRoute
 fun NavController.navigationSignIn() {
     navigate(
         route = SignInRoute.ROUTE
-    )
+    ) {
+        popBackStack(graph.id, inclusive = true)
+    }
 }
 
 fun NavGraphBuilder.signInNavGraph(
