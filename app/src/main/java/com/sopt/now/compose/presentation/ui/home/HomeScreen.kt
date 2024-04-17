@@ -6,42 +6,62 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavController
 import com.sopt.now.compose.R
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
+import com.sopt.now.compose.util.modifier.noRippleClickable
 
 @Composable
 fun HomeRoute(
     navController: NavController,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    navigateToSignIn: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    LaunchedEffect(viewModel.sideEffect, lifecycleOwner) {
+        viewModel.sideEffect.flowWithLifecycle(lifecycle = lifecycleOwner.lifecycle)
+            .collect { homeSideEffect ->
+                when (homeSideEffect) {
+                    HomeContract.HomeSideEffect.NavigateToSignIn -> {
+                        navigateToSignIn()
+                    }
+                }
+            }
+    }
 
     HomeScreen(
-        state = uiState
+        state = uiState,
+        onLogoutTvClicked = viewModel::logout
     )
 }
 
 @Composable
 fun HomeScreen(
-    state: HomeContract.HomeState = HomeContract.HomeState()
+    state: HomeContract.HomeState = HomeContract.HomeState(),
+    onLogoutTvClicked: () -> Unit = {}
 ) {
     val context = LocalContext.current
 
@@ -100,6 +120,19 @@ fun HomeScreen(
                 )
             }
         }
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 10.dp)
+                .noRippleClickable {
+                    onLogoutTvClicked()
+                },
+            text = context.getString(R.string.my_page_logout),
+            fontSize = 16.sp,
+            lineHeight = 20.sp,
+            color = Color(0xFF000000)
+        )
     }
 }
 

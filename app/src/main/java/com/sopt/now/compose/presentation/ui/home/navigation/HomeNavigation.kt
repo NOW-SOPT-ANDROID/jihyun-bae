@@ -14,11 +14,13 @@ fun NavController.navigationHome() {
 }
 
 fun NavGraphBuilder.homeNavGraph(
-    navController: NavController
+    navController: NavController,
+    navigateToSignIn: () -> Unit = {}
 ) {
     composable(route = HomeRoute.ROUTE) {
         HomeRoute(
-            navController = navController
+            navController = navController,
+            navigateToSignIn = navigateToSignIn
         )
     }
 }

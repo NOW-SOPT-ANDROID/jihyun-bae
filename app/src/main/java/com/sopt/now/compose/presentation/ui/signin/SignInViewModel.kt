@@ -47,7 +47,7 @@ class SignInViewModel @Inject constructor(
     fun signIn() {
         with(currentState) {
             user?.let { userInfo ->
-                if (userInfo.id == inputId && userInfo.password == inputPassword) {
+                if (userInfo.id.isNotBlank() && userInfo.id == inputId && userInfo.password == inputPassword) {
                     setIsLoginUseCase(isLogin = true)
                     setEvent(SignInContract.SignInEvent.OnSignInBtnClicked)
                 }

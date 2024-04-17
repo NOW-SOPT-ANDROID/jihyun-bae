@@ -10,7 +10,11 @@ class HomeContract {
         val user: UserEntity? = null
     ) : UiState
 
-    sealed interface HomeSideEffect : UiSideEffect
+    sealed interface HomeSideEffect : UiSideEffect {
+        data object NavigateToSignIn : HomeSideEffect
+    }
 
-    sealed class HomeEvent : UiEvent
+    sealed class HomeEvent : UiEvent {
+        data object OnLogoutTvClicked : HomeEvent()
+    }
 }

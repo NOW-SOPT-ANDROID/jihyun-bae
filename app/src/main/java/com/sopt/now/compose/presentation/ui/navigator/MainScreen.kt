@@ -20,7 +20,8 @@ fun MainScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             homeNavGraph(
-                navController = navigator.navHostController
+                navController = navigator.navHostController,
+                navigateToSignIn = navigator::navigationSignIn
             )
 
             signInNavGraph(
