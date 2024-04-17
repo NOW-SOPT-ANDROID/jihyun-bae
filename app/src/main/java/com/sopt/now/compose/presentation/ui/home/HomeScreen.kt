@@ -1,4 +1,4 @@
-package com.sopt.now.compose.ui.home
+package com.sopt.now.compose.presentation.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.sopt.now.compose.R
-import com.sopt.now.compose.model.UserModel
+import com.sopt.now.compose.presentation.model.UserModel
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 
 @Composable

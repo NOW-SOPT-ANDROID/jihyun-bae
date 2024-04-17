@@ -1,7 +1,7 @@
-package com.sopt.now.compose.ui.signup
+package com.sopt.now.compose.presentation.ui.signup
 
-import com.sopt.now.compose.model.UserModel
-import com.sopt.now.compose.type.SignUpType
+import com.sopt.now.compose.presentation.model.UserModel
+import com.sopt.now.compose.presentation.type.SignUpType
 import com.sopt.now.compose.util.base.UiEvent
 import com.sopt.now.compose.util.base.UiSideEffect
 import com.sopt.now.compose.util.base.UiState

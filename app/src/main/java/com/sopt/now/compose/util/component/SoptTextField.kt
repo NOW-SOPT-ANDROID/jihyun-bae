@@ -1,4 +1,4 @@
-package com.sopt.now.compose.component
+package com.sopt.now.compose.util.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

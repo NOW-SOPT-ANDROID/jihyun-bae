@@ -1,7 +1,7 @@
-package com.sopt.now.compose.ui.signin
+package com.sopt.now.compose.presentation.ui.signin
 
 import androidx.annotation.StringRes
-import com.sopt.now.compose.model.UserModel
+import com.sopt.now.compose.presentation.model.UserModel
 import com.sopt.now.compose.util.base.UiEvent
 import com.sopt.now.compose.util.base.UiSideEffect
 import com.sopt.now.compose.util.base.UiState

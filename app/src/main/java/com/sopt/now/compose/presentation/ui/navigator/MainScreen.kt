@@ -1,13 +1,13 @@
-package com.sopt.now.compose.ui.navigator
+package com.sopt.now.compose.presentation.ui.navigator
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import com.sopt.now.compose.ui.home.navigation.homeNavGraph
-import com.sopt.now.compose.ui.signin.navigation.signInNavGraph
-import com.sopt.now.compose.ui.signup.navigation.signUpNavGraph
+import com.sopt.now.compose.presentation.ui.home.navigation.homeNavGraph
+import com.sopt.now.compose.presentation.ui.signin.navigation.signInNavGraph
+import com.sopt.now.compose.presentation.ui.signup.navigation.signUpNavGraph
 
 @Composable
 fun MainScreen(

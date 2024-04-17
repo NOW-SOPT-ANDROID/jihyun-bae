@@ -1,4 +1,4 @@
-package com.sopt.now.compose.ui.navigator
+package com.sopt.now.compose.presentation.ui.navigator
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

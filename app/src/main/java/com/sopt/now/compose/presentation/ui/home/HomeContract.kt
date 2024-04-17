@@ -1,6 +1,6 @@
-package com.sopt.now.compose.ui.home
+package com.sopt.now.compose.presentation.ui.home
 
-import com.sopt.now.compose.model.UserModel
+import com.sopt.now.compose.presentation.model.UserModel
 import com.sopt.now.compose.util.base.UiEvent
 import com.sopt.now.compose.util.base.UiSideEffect
 import com.sopt.now.compose.util.base.UiState

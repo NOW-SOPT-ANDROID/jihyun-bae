@@ -1,10 +1,10 @@
-package com.sopt.now.compose.ui.signup.navigation
+package com.sopt.now.compose.presentation.ui.signup.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.sopt.now.compose.model.UserModel
-import com.sopt.now.compose.ui.signup.SignUpRoute
+import com.sopt.now.compose.presentation.model.UserModel
+import com.sopt.now.compose.presentation.ui.signup.SignUpRoute
 
 fun NavController.navigationSignUp() {
     navigate(route = SignupRoute.ROUTE)

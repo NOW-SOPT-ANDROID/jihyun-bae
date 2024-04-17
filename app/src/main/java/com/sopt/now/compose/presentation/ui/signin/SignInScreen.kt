@@ -1,4 +1,4 @@
-package com.sopt.now.compose.ui.signin
+package com.sopt.now.compose.presentation.ui.signin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -28,9 +28,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavController
 import com.sopt.now.compose.R
-import com.sopt.now.compose.component.SoptButton
-import com.sopt.now.compose.component.SoptTextField
-import com.sopt.now.compose.model.UserModel
+import com.sopt.now.compose.util.component.SoptButton
+import com.sopt.now.compose.util.component.SoptTextField
+import com.sopt.now.compose.presentation.model.UserModel
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.context.showToast
 import com.sopt.now.compose.util.modifier.noRippleClickable

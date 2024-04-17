@@ -1,11 +1,11 @@
-package com.sopt.now.compose.ui.signin.navigation
+package com.sopt.now.compose.presentation.ui.signin.navigation
 
 import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.sopt.now.compose.model.UserModel
-import com.sopt.now.compose.ui.signin.SignInRoute
+import com.sopt.now.compose.presentation.model.UserModel
+import com.sopt.now.compose.presentation.ui.signin.SignInRoute
 
 fun NavController.navigationSignIn(userModel: UserModel) {
     navigate(

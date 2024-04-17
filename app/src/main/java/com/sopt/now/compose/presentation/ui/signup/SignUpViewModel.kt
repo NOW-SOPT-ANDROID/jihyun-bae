@@ -1,6 +1,6 @@
-package com.sopt.now.compose.ui.signup
+package com.sopt.now.compose.presentation.ui.signup
 
-import com.sopt.now.compose.type.SignUpType
+import com.sopt.now.compose.presentation.type.SignUpType
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

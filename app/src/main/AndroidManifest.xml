@@ -14,7 +14,7 @@
         android:theme="@style/Theme.NOWSOPTAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".ui.navigator.MainActivity"
+            android:name=".presentation.ui.navigator.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.NOWSOPTAndroid"

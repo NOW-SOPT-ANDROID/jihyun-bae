@@ -1,4 +1,4 @@
-package com.sopt.now.compose.type
+package com.sopt.now.compose.presentation.type
 
 import androidx.annotation.StringRes
 import com.sopt.now.compose.R
