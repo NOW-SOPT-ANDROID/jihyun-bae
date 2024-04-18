@@ -43,7 +43,7 @@ fun HomeScreen(
             }
             friendProfiles.groupBy { friendProfile ->
                 friendProfile.name.first()
-            }.forEach { (firstName, profileEntities) ->
+            }.toSortedMap().forEach { (firstName, profileEntities) ->
                 stickyHeader {
                     HomeStickyHeader(title = firstName.toString())
                 }
