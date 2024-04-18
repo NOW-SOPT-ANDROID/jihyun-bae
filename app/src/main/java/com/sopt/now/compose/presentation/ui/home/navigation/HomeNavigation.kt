@@ -8,12 +8,7 @@ import androidx.navigation.navOptions
 import com.sopt.now.compose.presentation.ui.home.HomeRoute
 
 fun NavController.navigationHome(
-    navOptions: NavOptions? = navOptions {
-        popBackStack(
-            graph.id,
-            inclusive = true
-        )
-    }
+    navOptions: NavOptions? = null
 ) {
     navigate(
         route = HomeRoute.ROUTE,
