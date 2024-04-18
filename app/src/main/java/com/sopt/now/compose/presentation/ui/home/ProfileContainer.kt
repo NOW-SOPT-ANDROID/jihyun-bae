@@ -1,8 +1,6 @@
 package com.sopt.now.compose.presentation.ui.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -88,15 +86,6 @@ fun ProfileContainer(
                         )
                     }
                 }
-            }
-            if (isMyProfile) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 10.dp)
-                        .height(1.dp)
-                        .background(color = Color.Gray)
-                )
             }
         }
     }
