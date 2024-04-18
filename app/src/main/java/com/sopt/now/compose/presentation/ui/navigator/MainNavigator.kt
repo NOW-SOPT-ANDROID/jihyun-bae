@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
@@ -34,6 +35,7 @@ class MainNavigator(
             launchSingleTop = true
             restoreState = true
         }.let { navOptions ->
+            popBackStack()
             when (mainBottomBarItemType) {
                 MainBottomBarItemType.HOME -> navHostController.navigationHome(navOptions = navOptions)
                 MainBottomBarItemType.LIST -> navHostController.navigationList(navOptions = navOptions)
@@ -42,8 +44,8 @@ class MainNavigator(
         }
     }
 
-    fun navigationHome() {
-        navHostController.navigationHome()
+    fun navigationHome(navOptions: NavOptions) {
+        navHostController.navigationHome(navOptions = navOptions)
     }
 
     fun navigationList() {
