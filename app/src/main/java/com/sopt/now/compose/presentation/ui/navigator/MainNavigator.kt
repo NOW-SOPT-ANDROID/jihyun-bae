@@ -39,6 +39,7 @@ class MainNavigator(
                 MainBottomBarItemType.LIST -> navHostController.navigationList(navOptions = navOptions)
                 MainBottomBarItemType.MyPage -> navHostController.navigationMyPage(navOptions = navOptions)
             }
+            popBackStack()
         }
     }
 
