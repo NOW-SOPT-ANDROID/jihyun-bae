@@ -7,9 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navOptions
 import com.sopt.now.compose.presentation.ui.home.HomeRoute
 
-fun NavController.navigationHome(
-    navOptions: NavOptions? = null
-) {
+fun NavController.navigationHome(navOptions: NavOptions? = null) {
     navigate(
         route = HomeRoute.ROUTE,
         navOptions = navOptions

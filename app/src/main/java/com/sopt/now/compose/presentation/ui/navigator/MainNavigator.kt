@@ -29,9 +29,7 @@ class MainNavigator(
 
     fun navigateMainNavigation(mainBottomBarItemType: MainBottomBarItemType) {
         navOptions {
-            popUpTo(navHostController.graph.startDestinationId) {
-                saveState = true
-            }
+            popBackStack()
             launchSingleTop = true
             restoreState = true
         }.let { navOptions ->
