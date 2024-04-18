@@ -49,6 +49,21 @@ class HomeViewModel @Inject constructor() :
             id = 7,
             profileImage = "https://avatars.githubusercontent.com/u/85453429?v=4",
             name = "김언지"
+        ),
+        ProfileEntity(
+            id = 8,
+            profileImage = "https://avatars.githubusercontent.com/u/106955456?v=4",
+            name = "배찬우"
+        ),
+        ProfileEntity(
+            id = 9,
+            profileImage = "https://avatars.githubusercontent.com/u/127238018?v=4",
+            name = "최준서"
+        ),
+        ProfileEntity(
+            id = 10,
+            profileImage = "https://avatars.githubusercontent.com/u/128459613?v=4",
+            name = "이유빈"
         )
     )
 
