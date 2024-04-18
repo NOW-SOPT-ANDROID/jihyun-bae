@@ -6,7 +6,11 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navOptions
+import com.sopt.now.compose.presentation.type.MainBottomBarItemType
 import com.sopt.now.compose.presentation.ui.home.navigation.navigationHome
+import com.sopt.now.compose.presentation.ui.list.navigation.navigationList
+import com.sopt.now.compose.presentation.ui.mypage.navigation.navigationMyPage
 import com.sopt.now.compose.presentation.ui.signin.navigation.SignInRoute
 import com.sopt.now.compose.presentation.ui.signin.navigation.navigationSignIn
 import com.sopt.now.compose.presentation.ui.signup.navigation.navigationSignUp
@@ -19,8 +23,35 @@ class MainNavigator(
 
     val startDestination = SignInRoute.ROUTE
 
+    val currentMainNavigationItem: MainBottomBarItemType?
+        @Composable get() = currentDestination?.route?.let(MainBottomBarItemType::find)
+
+    fun navigateMainNavigation(mainBottomBarItemType: MainBottomBarItemType) {
+        navOptions {
+            popUpTo(navHostController.graph.startDestinationId) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }.let { navOptions ->
+            when (mainBottomBarItemType) {
+                MainBottomBarItemType.HOME -> navHostController.navigationHome(navOptions = navOptions)
+                MainBottomBarItemType.LIST -> navHostController.navigationList(navOptions = navOptions)
+                MainBottomBarItemType.MyPage -> navHostController.navigationMyPage(navOptions = navOptions)
+            }
+        }
+    }
+
     fun navigationHome() {
         navHostController.navigationHome()
+    }
+
+    fun navigationList() {
+        navHostController.navigationList()
+    }
+
+    fun navigationMyPage() {
+        navHostController.navigationMyPage()
     }
 
     fun navigationSignIn() {
@@ -34,6 +65,11 @@ class MainNavigator(
     fun popBackStack() {
         navHostController.popBackStack()
     }
+
+    @Composable
+    fun showBottomBar(): Boolean =
+        currentDestination?.route?.let { currentRoute -> currentRoute in MainBottomBarItemType }
+            ?: false
 }
 
 @Composable

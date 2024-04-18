@@ -2,26 +2,28 @@ package com.sopt.now.compose.presentation.ui.home.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import androidx.navigation.navOptions
 import com.sopt.now.compose.presentation.ui.home.HomeRoute
 
-fun NavController.navigationHome() {
-    navigate(
-        route = HomeRoute.ROUTE
-    ) {
-        popBackStack(graph.id, inclusive = true)
+fun NavController.navigationHome(
+    navOptions: NavOptions? = navOptions {
+        popBackStack(
+            graph.id,
+            inclusive = true
+        )
     }
+) {
+    navigate(
+        route = HomeRoute.ROUTE,
+        navOptions = navOptions
+    )
 }
 
-fun NavGraphBuilder.homeNavGraph(
-    navController: NavController,
-    navigateToSignIn: () -> Unit = {}
-) {
+fun NavGraphBuilder.homeNavGraph() {
     composable(route = HomeRoute.ROUTE) {
-        HomeRoute(
-            navController = navController,
-            navigateToSignIn = navigateToSignIn
-        )
+        HomeRoute()
     }
 }
 
