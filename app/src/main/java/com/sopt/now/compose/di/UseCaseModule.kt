@@ -1,9 +1,11 @@
 package com.sopt.now.compose.di
 
+import com.sopt.now.compose.domain.repository.FakeRepoListRepository
 import com.sopt.now.compose.domain.repository.ProfileRepository
 import com.sopt.now.compose.domain.repository.SoptRepository
 import com.sopt.now.compose.domain.usecase.ClearDataSourceUseCase
 import com.sopt.now.compose.domain.usecase.DeleteProfileUseCase
+import com.sopt.now.compose.domain.usecase.GetFakeRepoListUseCase
 import com.sopt.now.compose.domain.usecase.GetIsLoginUseCase
 import com.sopt.now.compose.domain.usecase.GetProfileListUseCase
 import com.sopt.now.compose.domain.usecase.GetUserUseCase
@@ -28,6 +30,11 @@ class UseCaseModule {
     @Singleton
     fun providesDeleteProfileUseCase(profileRepository: ProfileRepository): DeleteProfileUseCase =
         DeleteProfileUseCase(profileRepository = profileRepository)
+
+    @Provides
+    @Singleton
+    fun providesGetFakeRepoListUseCase(fakeRepoListRepository: FakeRepoListRepository) =
+        GetFakeRepoListUseCase(fakeRepoListRepository = fakeRepoListRepository)
 
     @Provides
     @Singleton
