@@ -23,6 +23,8 @@ import com.sopt.now.compose.util.modifier.noRippleClickable
 fun SoptButton(
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(12.dp),
+    backgroundColor: Color =  Color(0xFF1C6739),
+    textColor: Color = Color(0xFFF9F9F9),
     text: String = "",
     padding: PaddingValues = PaddingValues(vertical = 18.dp),
     onClick: () -> Unit
@@ -35,7 +37,7 @@ fun SoptButton(
             )
             .clip(shape = shape)
             .background(
-                color = Color(0xFF1C6739),
+                color = backgroundColor,
                 shape = shape
             )
             .padding(padding),
@@ -43,7 +45,7 @@ fun SoptButton(
     ) {
         Text(
             text = text,
-            color = Color(0xFFF9F9F9),
+            color = textColor,
             fontSize = 16.sp,
             lineHeight = 20.sp
         )
