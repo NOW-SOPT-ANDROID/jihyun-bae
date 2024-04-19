@@ -105,7 +105,9 @@ class HomeViewModel @Inject constructor(
         setState {
             currentState.copy(
                 showAddProfileDialog = false,
-                showDeleteProfileDialog = showDeleteProfileDialog.copy(first = false)
+                showDeleteProfileDialog = showDeleteProfileDialog.copy(first = false),
+                inputName = "",
+                inputSelfDescription = ""
             )
         }
     }
