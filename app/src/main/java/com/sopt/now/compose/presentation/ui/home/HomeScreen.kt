@@ -92,7 +92,7 @@ fun HomeScreen(
                 .fillMaxSize()
                 .background(Color.White)
         ) {
-            state.profileList.partition { it.id == 0 }.let { (myProfiles, friendProfiles) ->
+            state.profileList.partition { it.id == 1 }.let { (myProfiles, friendProfiles) ->
                 items(myProfiles) { myProfile ->
                     ProfileContainer(profileEntity = myProfile)
                 }

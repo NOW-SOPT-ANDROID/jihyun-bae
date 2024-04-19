@@ -35,7 +35,7 @@ fun ProfileContainer(
 ) {
     val context = LocalContext.current
 
-    (profileEntity.id == 0).let { isMyProfile ->
+    (profileEntity.id == 1).let { isMyProfile ->
         Column(
             modifier = modifier
                 .padding(horizontal = 24.dp)
