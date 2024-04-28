@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.sopt.now.coreui.base.BindingActivity
+import com.sopt.now.coreui.util.view.ScrollableView
 import com.sopt.now.feature.R
 import com.sopt.now.feature.databinding.ActivityMainBinding
 import com.sopt.now.feature.ui.main.home.HomeFragment
@@ -19,6 +20,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
 
         initLayout()
         initBnvMainItemSelectedListener()
+        initBnvMainItemReselectedListener()
     }
 
     private fun initLayout() {
@@ -44,6 +46,14 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
                 }
 
                 else -> false
+            }
+        }
+    }
+
+    private fun initBnvMainItemReselectedListener() {
+        binding.bnvMain.setOnItemReselectedListener {
+            supportFragmentManager.findFragmentById(R.id.fcv_main)?.let { currentFragment ->
+                if (currentFragment is ScrollableView) currentFragment.scrollToTop()
             }
         }
     }

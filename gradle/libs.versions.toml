@@ -21,6 +21,7 @@ lifecycle = "2.7.0"
 security = "1.1.0-alpha06"
 splash = "1.0.1"
 datastore = "1.0.0"
+room = "2.6.1"
 
 # Google
 material = "1.11.0"
@@ -31,7 +32,7 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 
 # Dagger-Hilt
-dagger-hilt = "2.50"
+dagger-hilt = "2.51"
 
 # Third Party
 coil = "2.4.0"
@@ -39,7 +40,8 @@ timber = "5.0.1"
 okhttp = "4.11.0"
 retrofit = "2.9.0"
 retrofit-kotlin-serialization-converter = "1.0.0"
-activityVersion = "1.8.0"
+activityVersion = "1.8.2"
+roomKtx = "2.6.1"
 
 [libraries]
 # Kotlin
@@ -59,6 +61,9 @@ androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle
 androidx-security = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "security" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 # Google
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -84,6 +89,7 @@ okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-i
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-kotlin-serialization-converter" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activityVersion" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -101,6 +107,7 @@ sopt-android-kotlin = { id = "com.sopt.now.kotlin", version = "unspecified" }
 sopt-android-library = { id = "com.sopt.now.library", version = "unspecified" }
 sopt-android-test = { id = "com.sopt.now.test", version = "unspecified" }
 sopt-android-serialization = { id = "com.sopt.now.serialization", version = "unspecified" }
+sopt-android-room = { id = "com.sopt.now.room", version = "unspecified" }
 
 [bundles]
 androidx = ["androidx-core-ktx", "androidx-appcompat", "androidx-constraintlayout", "androidx-activity", "androidx-fragment", "androidx-lifecycle-viewmodel"]
