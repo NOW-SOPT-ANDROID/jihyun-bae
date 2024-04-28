@@ -12,7 +12,7 @@ class AndroidRoomPlugin : Plugin<Project> {
         dependencies {
             "implementation"(libs.findLibrary("androidx.room.runtime").get())
             "implementation"(libs.findLibrary("androidx.room.ktx").get())
-            "implementation"(libs.findLibrary("androidx.room.compiler").get())
+            "kapt"(libs.findLibrary("androidx.room.compiler").get())
         }
     }
 }

@@ -11,7 +11,4 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data-local"))
     implementation(project(":data-remote"))
-
-    // DataStore
-    implementation(libs.androidx.datastore.preferences)
 }

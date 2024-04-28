@@ -1,48 +1,49 @@
 package com.sopt.now.feature.ui.main.home
 
 import androidx.lifecycle.ViewModel
-import com.sopt.now.feature.model.ProfileModel
+import androidx.lifecycle.viewModelScope
+import com.sopt.now.coreui.util.view.UiState
+import com.sopt.now.domain.model.ProfileEntity
+import com.sopt.now.domain.usecase.DeleteProfileUseCase
+import com.sopt.now.domain.usecase.GetProfileListUseCase
+import com.sopt.now.domain.usecase.InsertProfileUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel() : ViewModel() {
-    private val _mockProfileList = listOf<ProfileModel>(
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/103172971?v=4",
-            name = "배지현",
-        ),
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/91470334?v=4",
-            name = "이가을"
-        ),
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/112953135?v=4",
-            name = "이석찬"
-        ),
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/131870144?v=4",
-            name = "김윤서"
-        ),
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/93872496?v=4",
-            name = "곽의진",
-            selfDescription = "팟짱 ㅋ"
-        ),
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/113014331?v=4",
-            name = "우상욱"
-        ),
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/52882799?v=4",
-            name = "박동민"
-        ),
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/85453429?v=4",
-            name = "김언지"
-        ),
-        ProfileModel(
-            profileImage = "https://avatars.githubusercontent.com/u/106955456?v=4",
-            name = "배찬우"
-        )
-    )
-    val mockProfileList
-        get() = _mockProfileList
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val deleteProfileUseCase: DeleteProfileUseCase,
+    private val getProfileListUseCase: GetProfileListUseCase,
+    private val insertProfileUseCase: InsertProfileUseCase
+) : ViewModel() {
+    private val _profileListState = MutableStateFlow<UiState<List<ProfileEntity>>>(UiState.Empty)
+    val profileListState get() = _profileListState.asStateFlow()
+
+    fun deleteProfile(profile: ProfileEntity) {
+        viewModelScope.launch {
+            deleteProfileUseCase(profile = profile)
+            getProfileList()
+        }
+    }
+
+    fun getProfileList() {
+        viewModelScope.launch {
+            _profileListState.value = UiState.Loading
+            getProfileListUseCase().onSuccess { profileList ->
+                _profileListState.value = UiState.Success(profileList)
+            }.onFailure { throwable ->
+                _profileListState.value = UiState.Error(throwable.message)
+            }
+        }
+    }
+
+    fun insertProfile(profile: ProfileEntity) {
+        viewModelScope.launch {
+            insertProfileUseCase(profile = profile)
+            getProfileList()
+        }
+    }
 }
