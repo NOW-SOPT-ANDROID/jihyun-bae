@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/horizontal_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/horizontal_margin" />
+
+    <TextView
+        android:id="@+id/tv_my_page_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/my_page_my_page"
+        android:textAppearance="@style/TextAppearance.Title1"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_my_page_profile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_profile_74"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_page_title" />
+
+    <TextView
+        android:id="@+id/tv_my_page_mbti"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/shape_border_radius_10"
+        android:backgroundTint="@color/point_2"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:textAppearance="@style/TextAppearance.CaptionM1"
+        android:textColor="@color/point_1"
+        app:layout_constraintStart_toEndOf="@id/iv_my_page_profile"
+        app:layout_constraintTop_toTopOf="@id/iv_my_page_profile"
+        tools:text="ESFJ" />
+
+    <TextView
+        android:id="@+id/tv_my_page_nickname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textAppearance="@style/TextAppearance.Title2"
+        android:textColor="@color/gray_600"
+        app:layout_constraintStart_toStartOf="@id/tv_my_page_mbti"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_page_mbti"
+        tools:text="배지현" />
+
+    <TextView
+        android:id="@+id/tv_my_page_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textAppearance="@style/TextAppearance.CaptionM1"
+        android:textColor="@color/gray_400"
+        app:layout_constraintStart_toStartOf="@id/tv_my_page_nickname"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_page_nickname"
+        tools:text="id : jihyunniiii" />
+
+    <View
+        android:id="@+id/view_my_page_line"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/gray_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_page_id" />
+
+    <TextView
+        android:id="@+id/tv_my_page_logout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingVertical="12dp"
+        android:text="@string/logout"
+        android:textAppearance="@style/TextAppearance.BodyM1"
+        android:textColor="@color/gray_700"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/view_my_page_line" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

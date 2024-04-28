@@ -1,69 +1,68 @@
 package com.sopt.now.feature.ui.main
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
-import com.sopt.now.component.SoptDialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.sopt.now.coreui.base.BindingActivity
+import com.sopt.now.coreui.util.view.ScrollableView
+import com.sopt.now.feature.R
 import com.sopt.now.feature.databinding.ActivityMainBinding
-import com.sopt.now.feature.ui.signin.SignInActivity
-import com.sopt.now.type.DialogType
+import com.sopt.now.feature.ui.main.home.HomeFragment
+import com.sopt.now.feature.ui.main.list.ListFragment
+import com.sopt.now.feature.ui.main.mypage.MyPageFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.inflate(it) }) {
-    private val mainViewModel by viewModels<MainViewModel>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mainViewModel.fetchUserInfo()
-        setLogoutTvClickListeners()
-        collectUserInfo()
+        initLayout()
+        initBnvMainItemSelectedListener()
+        initBnvMainItemReselectedListener()
     }
 
-    private fun setLogoutTvClickListeners() {
-        binding.tvMyPageLogout.setOnClickListener {
-            showLogoutDialog()
-        }
+    private fun initLayout() {
+        supportFragmentManager.findFragmentById(R.id.fcv_main) ?: navigateToFragment<HomeFragment>()
     }
 
-    private fun collectUserInfo() {
-        mainViewModel.userInfo.flowWithLifecycle(lifecycle).onEach { userEntity ->
-            userEntity?.let { userInfo ->
-                with(binding) {
-                    tvMyPageMbti.text = userInfo.mbti
-                    tvMyPageNickname.text = userInfo.nickname
-                    tvMyPageId.text =
-                        getString(org.sopt.now.designsystem.R.string.my_page_id, userInfo.id)
+    private fun initBnvMainItemSelectedListener() {
+        binding.bnvMain.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                org.sopt.now.designsystem.R.id.menu_home -> {
+                    navigateToFragment<HomeFragment>()
+                    true
                 }
-            }
-        }.launchIn(lifecycleScope)
-    }
 
-    private fun showLogoutDialog() {
-        SoptDialogFragment(
-            dialogType = DialogType.LOGOUT,
-            clickLeftBtn = {
-                mainViewModel.logout()
-                navigateToSignIn()
-            }
-        ).show(supportFragmentManager, LOGOUT_DIALOG)
-    }
+                org.sopt.now.designsystem.R.id.menu_list -> {
+                    navigateToFragment<ListFragment>()
+                    true
+                }
 
-    private fun navigateToSignIn() {
-        Intent(this@MainActivity, SignInActivity::class.java).apply {
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(this)
-            finish()
+                org.sopt.now.designsystem.R.id.menu_my_page -> {
+                    navigateToFragment<MyPageFragment>()
+                    true
+                }
+
+                else -> false
+            }
         }
     }
 
-    companion object {
-        const val LOGOUT_DIALOG = "logoutDialog"
+    private fun initBnvMainItemReselectedListener() {
+        binding.bnvMain.setOnItemReselectedListener {
+            supportFragmentManager.findFragmentById(R.id.fcv_main)?.let { currentFragment ->
+                if (currentFragment is ScrollableView) currentFragment.scrollToTop()
+            }
+        }
+    }
+
+    private inline fun <reified T : Fragment> navigateToFragment() {
+        if (supportFragmentManager.findFragmentById(R.id.fcv_main) !is T) {
+            supportFragmentManager.commit {
+                replace<T>(R.id.fcv_main, T::class.java.canonicalName)
+            }
+        }
     }
 }

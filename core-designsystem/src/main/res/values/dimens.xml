@@ -3,6 +3,9 @@
     <!-- common -->
     <dimen name="horizontal_margin">24dp</dimen>
 
+    <!-- bottom navi -->
+    <dimen name="bottom_navi_height">86dp</dimen>
+
     <!-- button -->
     <dimen name="button_height">56dp</dimen>
     <dimen name="button_corner_radius">12dp</dimen>

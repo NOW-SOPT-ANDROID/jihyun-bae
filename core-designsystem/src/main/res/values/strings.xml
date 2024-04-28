@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">NOW SOPT Android</string>
 
+    <!-- menu -->
+    <string name="menu_home">홈</string>
+    <string name="menu_list">리스트</string>
+    <string name="menu_my_page">마이페이지</string>
+
     <!-- sign -->
     <string name="sign_id">아이디</string>
     <string name="sign_id_hint">아이디를 입력해 주세요</string>
@@ -32,6 +37,19 @@
     <!-- logout -->
     <string name="logout">로그아웃</string>
     <string name="logout_description">정말로 로그아웃 하실건가요?</string>
+
+    <!-- delete profile -->
+    <string name="delete_profile">친구 삭제</string>
+    <string name="delete_profile_description">정말로 삭제하실건가요?</string>
+
+    <!-- add profile -->
+    <string name="add_profile">친구 추가</string>
+    <string name="add_profile_description">추가하실 친구의 정보를 입력해 주세요</string>
+    <string name="add_profile_name">이름</string>
+    <string name="add_profile_name_hint">이름을 입력해 주세요</string>
+    <string name="add_profile_self_description">한 줄 소개</string>
+    <string name="add_profile_self_description_hint">한 줄 소개를 입력해 주세요</string>
+    <string name="add_profile_submit">확인</string>
 
     <!-- dialog -->
     <string name="dialog_yes">네</string>
