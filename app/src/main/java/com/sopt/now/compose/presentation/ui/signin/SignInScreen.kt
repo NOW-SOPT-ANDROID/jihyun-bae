@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
+import androidx.navigation.navOptions
 import com.sopt.now.compose.R
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.component.SoptButton
@@ -39,7 +41,7 @@ fun SignInRoute(
     navController: NavController,
     viewModel: SignInViewModel = hiltViewModel(),
     popBackStack: () -> Unit,
-    navigateToHome: () -> Unit,
+    navigateToHome: (NavOptions) -> Unit,
     navigateToSignUp: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -59,7 +61,9 @@ fun SignInRoute(
                     }
 
                     SignInContract.SignInSideEffect.NavigateToHome -> {
-                        navigateToHome()
+                        navigateToHome(navOptions {
+                            popBackStack()
+                        })
                     }
 
                     is SignInContract.SignInSideEffect.ShowToast -> {

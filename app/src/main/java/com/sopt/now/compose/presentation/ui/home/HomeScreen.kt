@@ -1,42 +1,37 @@
 package com.sopt.now.compose.presentation.ui.home
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.flowWithLifecycle
-import androidx.navigation.NavController
-import com.sopt.now.compose.R
+import com.sopt.now.compose.domain.model.ProfileEntity
+import com.sopt.now.compose.presentation.type.DialogType
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
-import com.sopt.now.compose.util.modifier.noRippleClickable
+import com.sopt.now.compose.util.component.SoptAlertDialog
 
 @Composable
 fun HomeRoute(
-    navController: NavController,
-    viewModel: HomeViewModel = hiltViewModel(),
-    navigateToSignIn: () -> Unit
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -45,94 +40,109 @@ fun HomeRoute(
         viewModel.sideEffect.flowWithLifecycle(lifecycle = lifecycleOwner.lifecycle)
             .collect { homeSideEffect ->
                 when (homeSideEffect) {
-                    HomeContract.HomeSideEffect.NavigateToSignIn -> {
-                        navigateToSignIn()
+                    is HomeContract.HomeSideEffect.CloseDialog -> viewModel.updateCloseDialog()
+
+                    is HomeContract.HomeSideEffect.DeleteProfile -> {
+                        viewModel.deleteProfile()
                     }
+
+                    is HomeContract.HomeSideEffect.InsertProfile -> {
+                        viewModel.insertProfile()
+                    }
+
+                    is HomeContract.HomeSideEffect.GetProfileList -> viewModel.getProfileList()
+
+                    is HomeContract.HomeSideEffect.ShowAddProfileDialog -> viewModel.updateAddProfileDialog()
+
+                    is HomeContract.HomeSideEffect.ShowDeleteProfileDialog -> viewModel.updateShowDeleteProfileDialog(
+                        homeSideEffect.profileEntity
+                    )
                 }
             }
+
     }
 
     HomeScreen(
         state = uiState,
-        onLogoutTvClicked = viewModel::logout
+        onDeleteFriendDialogLeftBtnClick = viewModel::setDeleteProfileDialogLeftBtnClickedEvent,
+        onDeleteFriendDialogRightBtnClick = viewModel::setClosedDialogClickedEvent,
+        onAddFriendDialogBtnClick = viewModel::setAddProfileDialogLeftBtnClickedEvent,
+        onProfileLongClick = viewModel::setProfileContainerLongClickedEvent,
+        onValueChangeName = viewModel::updateName,
+        onValueChangeSelfDescription = viewModel::updateSelfDescription,
+        onFabClick = viewModel::setAddProfileFabClickedEvent
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     state: HomeContract.HomeState = HomeContract.HomeState(),
-    onLogoutTvClicked: () -> Unit = {}
+    onDeleteFriendDialogLeftBtnClick: () -> Unit = {},
+    onDeleteFriendDialogRightBtnClick: () -> Unit = {},
+    onAddFriendDialogBtnClick: () -> Unit = {},
+    onProfileLongClick: (ProfileEntity) -> Unit = {},
+    onValueChangeName: (String) -> Unit = {},
+    onValueChangeSelfDescription: (String) -> Unit = {},
+    onFabClick: () -> Unit = {}
 ) {
-    val context = LocalContext.current
-
-    Column(
-        modifier = Modifier
-            .background(Color.White)
-            .fillMaxSize()
-            .padding(horizontal = 24.dp)
-    ) {
-        Spacer(modifier = Modifier.height(60.dp))
-        Text(
-            text = context.getString(R.string.my_page_my_page),
-            color = Color(0xFF000000),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            lineHeight = 32.sp
+    Box {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White)
+        ) {
+            state.profileList.partition { it.id == 1 }.let { (myProfiles, friendProfiles) ->
+                items(myProfiles) { myProfile ->
+                    ProfileContainer(profileEntity = myProfile)
+                }
+                friendProfiles.groupBy { friendProfile ->
+                    friendProfile.name.first()
+                }.toSortedMap().forEach { (firstName, profileEntities) ->
+                    stickyHeader {
+                        HomeStickyHeader(title = firstName.toString())
+                    }
+                    items(profileEntities) { profile ->
+                        ProfileContainer(
+                            profileEntity = profile,
+                            onLongClick = onProfileLongClick
+                        )
+                    }
+                }
+            }
+        }
+        FloatingActionButton(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 24.dp, end = 24.dp),
+            onClick = { onFabClick() },
+            content = { Icon(imageVector = Icons.Filled.Add, contentDescription = null) }
         )
-        Spacer(modifier = Modifier.height(40.dp))
-        Row {
-            Image(
-                painter = painterResource(id = R.drawable.ic_profile_74),
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.width(20.dp))
-            Column {
-                state.user?.let {
-                    Text(
-                        modifier = Modifier
-                            .background(
-                                color = Color(0xFFFFCFC0),
-                                shape = RoundedCornerShape(12.dp)
-                            )
-                            .padding(vertical = 4.dp, horizontal = 10.dp),
-                        text = it.mbti,
-                        fontSize = 12.sp,
-                        lineHeight = 16.sp,
-                        color = Color(0xFFF0683E)
-                    )
-                }
-                Spacer(modifier = Modifier.height(6.dp))
-                state.user?.let {
-                    Text(
-                        text = it.nickname,
-                        fontSize = 20.sp,
-                        lineHeight = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF3D3A3A)
-                    )
-                }
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "id : " + (state.user?.id ?: ""),
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp,
-                    color = Color(0xFF878784)
+
+        if (state.showAddProfileDialog) {
+            Column(
+                modifier = Modifier.align(Alignment.Center)
+            ) {
+                AddProfileAlertDialog(
+                    state = state,
+                    clickBtn = onAddFriendDialogBtnClick,
+                    onValueChangeName = onValueChangeName,
+                    onValueChangeSelfDescription = onValueChangeSelfDescription
                 )
             }
         }
-        Spacer(modifier = Modifier.height(10.dp))
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 10.dp)
-                .noRippleClickable {
-                    onLogoutTvClicked()
-                },
-            text = context.getString(R.string.my_page_logout),
-            fontSize = 16.sp,
-            lineHeight = 20.sp,
-            color = Color(0xFF000000)
-        )
+
+        if (state.showDeleteProfileDialog.first) {
+            Column(
+                modifier = Modifier.align(Alignment.Center)
+            ) {
+                SoptAlertDialog(
+                    dialogType = DialogType.DELETE_PROFILE,
+                    clickLeftBtn = onDeleteFriendDialogLeftBtnClick,
+                    clickRightBtn = onDeleteFriendDialogRightBtnClick
+                )
+            }
+        }
     }
 }
 
