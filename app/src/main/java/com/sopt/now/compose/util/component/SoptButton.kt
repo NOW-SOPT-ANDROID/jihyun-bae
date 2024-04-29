@@ -2,7 +2,6 @@ package com.sopt.now.compose.util.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,10 +22,9 @@ import com.sopt.now.compose.util.modifier.noRippleClickable
 fun SoptButton(
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(12.dp),
-    backgroundColor: Color =  Color(0xFF1C6739),
+    backgroundColor: Color = Color(0xFF1C6739),
     textColor: Color = Color(0xFFF9F9F9),
     text: String = "",
-    padding: PaddingValues = PaddingValues(vertical = 18.dp),
     onClick: () -> Unit
 ) {
     Box(
@@ -40,7 +38,7 @@ fun SoptButton(
                 color = backgroundColor,
                 shape = shape
             )
-            .padding(padding),
+            .padding(vertical = 18.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
