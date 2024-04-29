@@ -98,9 +98,7 @@ fun MyPageScreen(
                         lineHeight = 16.sp,
                         color = Color(0xFFF0683E)
                     )
-                }
-                Spacer(modifier = Modifier.height(6.dp))
-                state.user?.let {
+                    Spacer(modifier = Modifier.height(6.dp))
                     Text(
                         text = it.nickname,
                         fontSize = 20.sp,
@@ -108,14 +106,14 @@ fun MyPageScreen(
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF3D3A3A)
                     )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "id : " + (it.id),
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp,
+                        color = Color(0xFF878784)
+                    )
                 }
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "id : " + (state.user?.id ?: ""),
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp,
-                    color = Color(0xFF878784)
-                )
             }
         }
         Spacer(modifier = Modifier.height(10.dp))
