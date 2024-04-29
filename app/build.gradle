@@ -83,5 +83,10 @@ dependencies {
     implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha06'
 
     // coil
-    implementation "io.coil-kt:coil-compose:1.4.0"
+    implementation "io.coil-kt:coil-compose:2.4.0"
+
+    // room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }

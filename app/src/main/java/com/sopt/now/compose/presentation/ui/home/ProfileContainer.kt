@@ -1,8 +1,6 @@
 package com.sopt.now.compose.presentation.ui.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,7 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,20 +19,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.sopt.now.compose.R
 import com.sopt.now.compose.domain.model.ProfileEntity
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
+import com.sopt.now.compose.util.modifier.noRippleClickable
 
 @Composable
 fun ProfileContainer(
     modifier: Modifier = Modifier,
-    profileEntity: ProfileEntity
+    profileEntity: ProfileEntity,
+    onLongClick: (ProfileEntity) -> Unit = {}
 ) {
     val context = LocalContext.current
 
-    (profileEntity.id == 0).let { isMyProfile ->
+    (profileEntity.id == 1).let { isMyProfile ->
         Column(
             modifier = modifier
                 .padding(horizontal = 24.dp)
@@ -54,17 +54,20 @@ fun ProfileContainer(
             Row(
                 modifier = modifier
                     .fillMaxWidth(1f)
-                    .wrapContentHeight()
-                    .padding(vertical = 10.dp),
+                    .padding(vertical = 10.dp)
+                    .noRippleClickable {
+                        onLongClick(profileEntity)
+                    },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 val profileSize = if (isMyProfile) 70.dp else 50.dp
                 Image(
-                    painter = rememberImagePainter(
-                        data = profileEntity.profileImage,
-                        builder = {
-                            transformations(CircleCropTransformation())
-                        }
+                    painter = rememberAsyncImagePainter(
+                        ImageRequest.Builder(LocalContext.current)
+                            .data(data = profileEntity.profileImage)
+                            .apply(block = fun ImageRequest.Builder.() {
+                                transformations(CircleCropTransformation())
+                            }).build()
                     ),
                     contentDescription = null,
                     modifier = modifier.size(profileSize)
@@ -88,15 +91,6 @@ fun ProfileContainer(
                         )
                     }
                 }
-            }
-            if (isMyProfile) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 10.dp)
-                        .height(1.dp)
-                        .background(color = Color.Gray)
-                )
             }
         }
     }
