@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.sopt.now.coreui.base.BindingActivity
 import com.sopt.now.coreui.util.context.showToast
 import com.sopt.now.coreui.util.context.stringOf
+import com.sopt.now.coreui.util.view.UiState
 import com.sopt.now.feature.databinding.ActivitySignInBinding
 import com.sopt.now.feature.ui.main.MainActivity
 import com.sopt.now.feature.ui.signup.SignUpActivity
@@ -25,12 +26,12 @@ class SignInActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        signInViewModel.fetchUserInfo()
-        signInViewModel.fetchAutoLogin()
+        signInViewModel.fetchUserId()
         initLayout()
+        collectUserId()
+        collectSignInState()
         setSignInBtnClickListeners()
         setSignUpTvClickListener()
-        collectIsLogin()
     }
 
     private fun initLayout() {
@@ -41,14 +42,34 @@ class SignInActivity :
         }
     }
 
+    private fun collectUserId() {
+        signInViewModel.userId.flowWithLifecycle(lifecycle).onEach { userId ->
+            userId?.let {
+                showToast(getString(R.string.sign_in_success, userId))
+                navigateToMain()
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun collectSignInState() {
+        signInViewModel.signInState.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    uiState.data?.let { signInViewModel.setUserId(userId = it) }
+                }
+
+                is UiState.Error -> showToast(uiState.message.orEmpty())
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
+    }
+
     private fun setSignInBtnClickListeners() {
         binding.btnSignIn.setOnClickListener {
             signInViewModel.signIn(
-                id = binding.etSignInId.editText.text.toString(),
+                authenticationId = binding.etSignInId.editText.text.toString(),
                 password = binding.etSignInPassword.editText.text.toString()
-            ).let { isSignInSuccess ->
-                if (isSignInSuccess) navigateToMain()
-            }
+            )
         }
     }
 
@@ -56,15 +77,6 @@ class SignInActivity :
         binding.tvSignInSignUp.setOnClickListener {
             navigateToSignUp()
         }
-    }
-
-    private fun collectIsLogin() {
-        signInViewModel.isLogin.flowWithLifecycle(lifecycle).onEach { isLogin ->
-            if (isLogin) {
-                showToast(stringOf(R.string.sign_in_success))
-                navigateToMain()
-            }
-        }.launchIn(lifecycleScope)
     }
 
     private fun navigateToSignUp() {
