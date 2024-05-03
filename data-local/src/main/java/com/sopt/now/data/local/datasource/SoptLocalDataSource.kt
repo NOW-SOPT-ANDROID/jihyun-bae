@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface SoptLocalDataSource {
     var isLogin: Flow<Boolean>
     suspend fun setIsLogin(isLogin: Boolean)
-    var user: Flow<User?>
-    suspend fun setUser(user: User)
+    var userId: Flow<Int?>
+    suspend fun setUserId(userId: Int)
     suspend fun clear(): Unit
 }

@@ -18,12 +18,10 @@ class SoptRepositoryImpl @Inject constructor(
         soptLocalDataSource.setIsLogin(isLogin = isLogin)
     }
 
-    override var user: Flow<UserEntity?> = soptLocalDataSource.user.map { user ->
-        user?.toUserEntity()
-    }
+    override var userId: Flow<Int?> = soptLocalDataSource.userId
 
-    override suspend fun setUser(userEntity: UserEntity) {
-        soptLocalDataSource.setUser(user = userEntity.toUser())
+    override suspend fun setUserId(userId: Int) {
+        soptLocalDataSource.setUserId(userId = userId)
     }
 
     override suspend fun clear() {

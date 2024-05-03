@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface SoptRepository {
     var isLogin: Flow<Boolean>
     suspend fun setIsLogin(isLogin: Boolean)
-    var user: Flow<UserEntity?>
-    suspend fun setUser(userEntity: UserEntity)
+    var userId: Flow<Int?>
+    suspend fun setUserId(userId: Int)
     suspend fun clear(): Unit
 }
