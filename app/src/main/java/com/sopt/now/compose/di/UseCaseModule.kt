@@ -2,14 +2,20 @@ package com.sopt.now.compose.di
 
 import com.sopt.now.compose.domain.repository.FakeRepoListRepository
 import com.sopt.now.compose.domain.repository.ProfileRepository
+import com.sopt.now.compose.domain.repository.ReqresRepository
+import com.sopt.now.compose.domain.repository.SoptAuthRepository
 import com.sopt.now.compose.domain.repository.SoptRepository
 import com.sopt.now.compose.domain.usecase.ClearDataSourceUseCase
 import com.sopt.now.compose.domain.usecase.DeleteProfileUseCase
 import com.sopt.now.compose.domain.usecase.GetFakeRepoListUseCase
 import com.sopt.now.compose.domain.usecase.GetIsLoginUseCase
 import com.sopt.now.compose.domain.usecase.GetProfileListUseCase
+import com.sopt.now.compose.domain.usecase.GetReqresListUsersUseCase
+import com.sopt.now.compose.domain.usecase.GetUserInfoUseCase
 import com.sopt.now.compose.domain.usecase.GetUserUseCase
 import com.sopt.now.compose.domain.usecase.InsertProfileUseCase
+import com.sopt.now.compose.domain.usecase.PostSignInUseCase
+import com.sopt.now.compose.domain.usecase.PostSignUpUseCase
 import com.sopt.now.compose.domain.usecase.SetIsLoginUseCase
 import com.sopt.now.compose.domain.usecase.SetUserUseCase
 import dagger.Module
@@ -48,6 +54,16 @@ class UseCaseModule {
 
     @Provides
     @Singleton
+    fun providesGetReqresListUserUseCase(reqresRepository: ReqresRepository): GetReqresListUsersUseCase =
+        GetReqresListUsersUseCase(reqresRepository = reqresRepository)
+
+    @Provides
+    @Singleton
+    fun providesGetUserInfoUseCase(soptAuthRepository: SoptAuthRepository): GetUserInfoUseCase =
+        GetUserInfoUseCase(soptAuthRepository = soptAuthRepository)
+
+    @Provides
+    @Singleton
     fun providesGetUserUseCase(soptRepository: SoptRepository): GetUserUseCase =
         GetUserUseCase(soptRepository = soptRepository)
 
@@ -55,6 +71,16 @@ class UseCaseModule {
     @Singleton
     fun providesInsertProfileUseCase(profileRepository: ProfileRepository): InsertProfileUseCase =
         InsertProfileUseCase(profileRepository = profileRepository)
+
+    @Provides
+    @Singleton
+    fun providesPostSignInUseCase(soptAuthRepository: SoptAuthRepository): PostSignInUseCase =
+        PostSignInUseCase(soptAuthRepository = soptAuthRepository)
+
+    @Provides
+    @Singleton
+    fun providesPostSignUpUseCase(soptAuthRepository: SoptAuthRepository): PostSignUpUseCase =
+        PostSignUpUseCase(soptAuthRepository = soptAuthRepository)
 
     @Provides
     @Singleton
