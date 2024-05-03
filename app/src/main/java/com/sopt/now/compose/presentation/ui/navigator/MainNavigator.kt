@@ -9,6 +9,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.sopt.now.compose.presentation.type.MainBottomBarItemType
+import com.sopt.now.compose.presentation.ui.follower.navigation.navigationFollower
 import com.sopt.now.compose.presentation.ui.home.navigation.navigationHome
 import com.sopt.now.compose.presentation.ui.list.navigation.navigationList
 import com.sopt.now.compose.presentation.ui.mypage.navigation.navigationMyPage
@@ -35,7 +36,7 @@ class MainNavigator(
         }.let { navOptions ->
             popBackStack()
             when (mainBottomBarItemType) {
-                MainBottomBarItemType.HOME -> navHostController.navigationHome(navOptions = navOptions)
+                MainBottomBarItemType.HOME -> navHostController.navigationFollower(navOptions = navOptions)
                 MainBottomBarItemType.LIST -> navHostController.navigationList(navOptions = navOptions)
                 MainBottomBarItemType.MyPage -> navHostController.navigationMyPage(navOptions = navOptions)
             }
@@ -44,6 +45,10 @@ class MainNavigator(
 
     fun navigationHome(navOptions: NavOptions) {
         navHostController.navigationHome(navOptions = navOptions)
+    }
+
+    fun navigationFollower(navOptions: NavOptions) {
+        navHostController.navigationFollower(navOptions = navOptions)
     }
 
     fun navigationList() {

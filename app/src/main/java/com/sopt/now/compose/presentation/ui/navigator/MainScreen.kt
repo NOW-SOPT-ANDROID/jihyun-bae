@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import com.sopt.now.compose.presentation.type.MainBottomBarItemType
+import com.sopt.now.compose.presentation.ui.follower.navigation.followerNavGraph
 import com.sopt.now.compose.presentation.ui.home.navigation.homeNavGraph
 import com.sopt.now.compose.presentation.ui.list.navigation.listNavGraph
 import com.sopt.now.compose.presentation.ui.mypage.navigation.myPageNavGraph
@@ -39,6 +40,8 @@ fun MainScreen(
         ) {
             homeNavGraph()
 
+            followerNavGraph()
+
             listNavGraph()
 
             myPageNavGraph(
@@ -48,7 +51,7 @@ fun MainScreen(
             signInNavGraph(
                 navController = navigator.navHostController,
                 popBackStack = navigator::popBackStack,
-                navigateHome = navigator::navigationHome,
+                navigateHome = navigator::navigationFollower,
                 navigateSignup = navigator::navigationSignUp
             )
 
