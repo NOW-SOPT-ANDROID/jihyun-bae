@@ -56,13 +56,12 @@ fun SignUpRoute(
                     }
 
                     is SignUpContract.SignUpSideEffect.NavigateToSignIn -> {
-                        viewModel.setUser(signUpSideEffect.userEntity)
                         navigateToSignIn()
                     }
 
                     is SignUpContract.SignUpSideEffect.ShowToast -> {
                         with(context) {
-                            showToast(getString(signUpSideEffect.signUpType.descriptionRes))
+                            showToast(signUpSideEffect.message)
                         }
                     }
                 }
@@ -75,7 +74,7 @@ fun SignUpRoute(
         onValueChangeId = viewModel::updateId,
         onValueChangePassword = viewModel::updatePassword,
         onValueChangeNickname = viewModel::updateNickname,
-        onValueChangeMbti = viewModel::updateMbti
+        onValueChangeMbti = viewModel::updatePhone
     )
 }
 
@@ -114,7 +113,7 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(40.dp))
             SoptTextField(
                 title = context.getString(R.string.sign_id),
-                value = state.user.id,
+                value = state.user.authenticationId,
                 onValueChange = onValueChangeId,
                 placeholder = context.getString(R.string.sign_id_hint)
             )
@@ -135,10 +134,10 @@ fun SignUpScreen(
             )
             Spacer(modifier = Modifier.height(20.dp))
             SoptTextField(
-                title = context.getString(R.string.sign_mbti),
-                value = state.user.mbti,
+                title = context.getString(R.string.sign_phone),
+                value = state.user.phone,
                 onValueChange = onValueChangeMbti,
-                placeholder = context.getString(R.string.sign_mbti_hint)
+                placeholder = context.getString(R.string.sign_phone_hint)
             )
             Spacer(modifier = Modifier.height(12.dp))
         }

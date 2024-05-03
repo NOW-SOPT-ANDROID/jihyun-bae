@@ -13,8 +13,8 @@
     <string name="sign_password_hint">비밀번호를 입력해 주세요</string>
     <string name="sign_nickname">닉네임</string>
     <string name="sign_nickname_hint">닉네임을 입력해 주세요</string>
-    <string name="sign_mbti">MBTI</string>
-    <string name="sign_mbti_hint">MBTI를 입력해 주세요</string>
+    <string name="sign_phone">전화번호</string>
+    <string name="sign_phone_hint">전화번호를 입력해 주세요</string>
 
     <!-- sign in -->
     <string name="sign_in_sign_in">로그인</string>

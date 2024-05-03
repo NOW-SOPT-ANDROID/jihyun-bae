@@ -1,20 +1,25 @@
 package com.sopt.now.compose.presentation.ui.signup
 
-import com.sopt.now.compose.domain.model.UserEntity
-import com.sopt.now.compose.presentation.type.SignUpType
+import com.sopt.now.compose.domain.model.SoptUserEntity
 import com.sopt.now.compose.util.base.UiEvent
 import com.sopt.now.compose.util.base.UiSideEffect
 import com.sopt.now.compose.util.base.UiState
 
 class SignUpContract {
     data class SignUpState(
-        val user: UserEntity = UserEntity(id = "", password = "", nickname = "", mbti = "")
+        val user: SoptUserEntity = SoptUserEntity(
+            authenticationId = "",
+            password = "",
+            nickname = "",
+            phone = ""
+        ),
+        val userId: Int? = null
     ) : UiState
 
     sealed interface SignUpSideEffect : UiSideEffect {
         data object PopBackStack : SignUpSideEffect
-        data class NavigateToSignIn(val userEntity: UserEntity) : SignUpSideEffect
-        data class ShowToast(val signUpType: SignUpType) : SignUpSideEffect
+        data object NavigateToSignIn : SignUpSideEffect
+        data class ShowToast(val message: String) : SignUpSideEffect
     }
 
     sealed class SignUpEvent : UiEvent {
