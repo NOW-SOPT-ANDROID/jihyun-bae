@@ -7,5 +7,5 @@ fun Profile.toProfileEntity() = ProfileEntity(
     id = this.id,
     profileImage = this.profileImage,
     name = this.name,
-    selfDescription=this.selfDescription
+    selfDescription = this.selfDescription
 )

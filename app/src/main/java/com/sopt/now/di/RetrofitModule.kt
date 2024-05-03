@@ -1,8 +1,10 @@
 package com.sopt.now.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.sopt.now.BuildConfig
 import com.sopt.now.BuildConfig.DEBUG
 import com.sopt.now.di.qualifier.Auth
+import com.sopt.now.di.qualifier.Reqres
 import com.sopt.now.di.qualifier.Sopt
 import com.sopt.now.interceptor.AuthInterceptor
 import dagger.Module
@@ -63,12 +65,28 @@ object RetrofitModule {
     @Provides
     @Sopt
     @Singleton
-    fun providesPingleRetrofit(
+    fun providesSoptRetrofit(
         okHttpClient: OkHttpClient,
         json: Json
     ): Retrofit =
         Retrofit.Builder()
-            .baseUrl("BuildConfig.BASE_URL")
+            .baseUrl(BuildConfig.SOPT_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(
+                json.asConverterFactory(requireNotNull("application/json".toMediaTypeOrNull()))
+            )
+            .build()
+
+    @ExperimentalSerializationApi
+    @Provides
+    @Reqres
+    @Singleton
+    fun providesReqresRetrofit(
+        okHttpClient: OkHttpClient,
+        json: Json
+    ): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.REQRES_IN_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(
                 json.asConverterFactory(requireNotNull("application/json".toMediaTypeOrNull()))

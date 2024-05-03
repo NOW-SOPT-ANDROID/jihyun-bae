@@ -1,7 +1,7 @@
 package com.sopt.now.di
 
 
-import com.sopt.now.data.remote.service.DummyService
+import com.sopt.now.data.remote.service.SoptService
 import com.sopt.now.di.qualifier.Sopt
 import dagger.Module
 import dagger.Provides
@@ -15,8 +15,8 @@ import javax.inject.Singleton
 object ServiceModule {
     @Provides
     @Singleton
-    fun providesDummyService(
+    fun providesSoptService(
         @Sopt retrofit: Retrofit
-    ): DummyService =
-        retrofit.create(DummyService::class.java)
+    ): SoptService =
+        retrofit.create(SoptService::class.java)
 }
