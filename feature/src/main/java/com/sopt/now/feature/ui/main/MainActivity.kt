@@ -8,7 +8,7 @@ import com.sopt.now.coreui.base.BindingActivity
 import com.sopt.now.coreui.util.view.ScrollableView
 import com.sopt.now.feature.R
 import com.sopt.now.feature.databinding.ActivityMainBinding
-import com.sopt.now.feature.ui.main.home.HomeFragment
+import com.sopt.now.feature.ui.main.home.follower.FollowerFragment
 import com.sopt.now.feature.ui.main.list.ListFragment
 import com.sopt.now.feature.ui.main.mypage.MyPageFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,14 +24,15 @@ class MainActivity : BindingActivity<ActivityMainBinding>({ ActivityMainBinding.
     }
 
     private fun initLayout() {
-        supportFragmentManager.findFragmentById(R.id.fcv_main) ?: navigateToFragment<HomeFragment>()
+        supportFragmentManager.findFragmentById(R.id.fcv_main)
+            ?: navigateToFragment<FollowerFragment>()
     }
 
     private fun initBnvMainItemSelectedListener() {
         binding.bnvMain.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 org.sopt.now.designsystem.R.id.menu_home -> {
-                    navigateToFragment<HomeFragment>()
+                    navigateToFragment<FollowerFragment>()
                     true
                 }
 
