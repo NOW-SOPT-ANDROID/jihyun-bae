@@ -7,6 +7,9 @@ plugins {
     id 'kotlinx-serialization'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.sopt.now.compose'
     compileSdk 34
@@ -17,6 +20,9 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "SOPT_BASE_URL", properties["sopt.base.url"].toString())
+        buildConfigField("String", "REQRES_IN_BASE_URL", properties["reqres.in.base.url"].toString())
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
