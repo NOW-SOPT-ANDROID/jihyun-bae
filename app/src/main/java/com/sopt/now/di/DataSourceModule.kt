@@ -5,8 +5,10 @@ import com.sopt.now.data.local.datasource.SoptLocalDataSource
 import com.sopt.now.data.local.datasourceimpl.ProfileLocalDataSourceImpl
 import com.sopt.now.data.local.datasourceimpl.SoptLocalDataSourceImpl
 import com.sopt.now.data.remote.datasource.FakeRepoListRemoteDataSource
+import com.sopt.now.data.remote.datasource.ReqresRemoteDataSource
 import com.sopt.now.data.remote.datasource.SoptRemoteDataSource
 import com.sopt.now.data.remote.datasourceimpl.FakeRepoListRemoteDataSourceImpl
+import com.sopt.now.data.remote.datasourceimpl.ReqresRemoteDataSourceImpl
 import com.sopt.now.data.remote.datasourceimpl.SoptRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -27,7 +29,11 @@ abstract class DataSourceModule {
 
     @Binds
     @Singleton
-    abstract fun bindsDummyRemoteDataSource(dummyRemoteDataSourceImpl: FakeRepoListRemoteDataSourceImpl): FakeRepoListRemoteDataSource
+    abstract fun bindsFakeRepoListRemoteDataSource(fakeRepoListRemoteDataSourceImpl: FakeRepoListRemoteDataSourceImpl): FakeRepoListRemoteDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindReqresRemoteDataSource(reqresRemoteDataSourceImpl: ReqresRemoteDataSourceImpl): ReqresRemoteDataSource
 
     @Binds
     @Singleton

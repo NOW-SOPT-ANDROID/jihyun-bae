@@ -11,4 +11,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data-local"))
     implementation(project(":data-remote"))
+
+    // Third Party
+    implementation(libs.bundles.retrofit)
 }
