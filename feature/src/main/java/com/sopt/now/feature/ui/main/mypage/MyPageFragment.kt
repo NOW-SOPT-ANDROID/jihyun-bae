@@ -8,12 +8,14 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.sopt.now.component.SoptDialogFragment
 import com.sopt.now.coreui.base.BindingFragment
+import com.sopt.now.coreui.util.view.UiState
 import com.sopt.now.feature.databinding.FragmentMyPageBinding
 import com.sopt.now.feature.ui.signin.SignInActivity
 import com.sopt.now.type.DialogType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.sopt.now.designsystem.R
 
 @AndroidEntryPoint
 class MyPageFragment :
@@ -23,9 +25,10 @@ class MyPageFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainViewModel.fetchUserInfo()
+        mainViewModel.fetchUserId()
         setLogoutTvClickListeners()
-        collectUserInfo()
+        collectUserId()
+        collectGetUserInfoState()
     }
 
     private fun setLogoutTvClickListeners() {
@@ -34,16 +37,32 @@ class MyPageFragment :
         }
     }
 
-    private fun collectUserInfo() {
-        mainViewModel.userInfo.flowWithLifecycle(viewLifecycleOwner.lifecycle)
-            .onEach { userEntity ->
-                userEntity?.let { userInfo ->
-                    with(binding) {
-                        tvMyPageMbti.text = userInfo.mbti
-                        tvMyPageNickname.text = userInfo.nickname
-                        tvMyPageId.text =
-                            getString(org.sopt.now.designsystem.R.string.my_page_id, userInfo.id)
+    private fun collectUserId() {
+        mainViewModel.userId.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach { userId ->
+                userId?.let { mainViewModel.getUserInfo(memberId = it) }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun collectGetUserInfoState() {
+        mainViewModel.getUserInfoState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach { uiState ->
+                when (uiState) {
+                    is UiState.Success -> {
+                        uiState.data?.let { soptUserInfoEntity ->
+                            with(binding) {
+                                tvMyPagePhone.text = soptUserInfoEntity.phone
+                                tvMyPageNickname.text = soptUserInfoEntity.nickname
+                                tvMyPageId.text =
+                                    getString(
+                                        R.string.my_page_id,
+                                        soptUserInfoEntity.authenticationId
+                                    )
+                            }
+                        }
                     }
+
+                    else -> Unit
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
