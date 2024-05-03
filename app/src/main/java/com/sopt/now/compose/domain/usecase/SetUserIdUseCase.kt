@@ -2,8 +2,8 @@ package com.sopt.now.compose.domain.usecase
 
 import com.sopt.now.compose.domain.repository.SoptRepository
 
-class GetUserUseCase(
+class SetUserIdUseCase(
     private val soptRepository: SoptRepository
 ) {
-    operator fun invoke() = soptRepository.getUser()
+    operator fun invoke(userId: Int) = soptRepository.setUserId(userId = userId)
 }

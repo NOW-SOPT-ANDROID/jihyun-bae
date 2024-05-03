@@ -2,7 +2,7 @@ package com.sopt.now.compose.presentation.ui.mypage
 
 import com.sopt.now.compose.domain.model.UserEntity
 import com.sopt.now.compose.domain.usecase.ClearDataSourceUseCase
-import com.sopt.now.compose.domain.usecase.GetUserUseCase
+import com.sopt.now.compose.domain.usecase.GetUserIdUseCase
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
     private val clearDataSourceUseCase: ClearDataSourceUseCase,
-    private val getUserUseCase: GetUserUseCase
+    private val getUserUseCase: GetUserIdUseCase
 ) : BaseViewModel<MyPageContract.MyPageState, MyPageContract.MyPageSideEffect, MyPageContract.MyPageEvent>() {
 
     init {

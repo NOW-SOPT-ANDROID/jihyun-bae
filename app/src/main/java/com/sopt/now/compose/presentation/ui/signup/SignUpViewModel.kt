@@ -1,7 +1,7 @@
 package com.sopt.now.compose.presentation.ui.signup
 
 import com.sopt.now.compose.domain.model.UserEntity
-import com.sopt.now.compose.domain.usecase.SetUserUseCase
+import com.sopt.now.compose.domain.usecase.SetUserIdUseCase
 import com.sopt.now.compose.presentation.type.SignUpType
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val setUserUseCase: SetUserUseCase
+    private val setUserUseCase: SetUserIdUseCase
 ) :
     BaseViewModel<SignUpContract.SignUpState, SignUpContract.SignUpSideEffect, SignUpContract.SignUpEvent>() {
     override fun createInitialState(): SignUpContract.SignUpState = SignUpContract.SignUpState()

@@ -3,7 +3,7 @@ package com.sopt.now.compose.presentation.ui.signin
 import com.sopt.now.compose.R
 import com.sopt.now.compose.domain.model.UserEntity
 import com.sopt.now.compose.domain.usecase.GetIsLoginUseCase
-import com.sopt.now.compose.domain.usecase.GetUserUseCase
+import com.sopt.now.compose.domain.usecase.GetUserIdUseCase
 import com.sopt.now.compose.domain.usecase.SetIsLoginUseCase
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val getUserUseCase: GetUserUseCase,
+    private val getUserUseCase: GetUserIdUseCase,
     private val getIsLoginUseCase: GetIsLoginUseCase,
     private val setIsLoginUseCase: SetIsLoginUseCase
 ) : BaseViewModel<SignInContract.SignInState, SignInContract.SignInSideEffect, SignInContract.SignInEvent>() {

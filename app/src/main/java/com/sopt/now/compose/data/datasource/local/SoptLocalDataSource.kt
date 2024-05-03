@@ -4,6 +4,6 @@ import com.sopt.now.compose.data.model.local.User
 
 interface SoptLocalDataSource {
     var isLogin: Boolean
-    var user: User
+    var userId: Int
     fun clear()
 }

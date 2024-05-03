@@ -12,12 +12,12 @@ import com.sopt.now.compose.domain.usecase.GetIsLoginUseCase
 import com.sopt.now.compose.domain.usecase.GetProfileListUseCase
 import com.sopt.now.compose.domain.usecase.GetReqresListUsersUseCase
 import com.sopt.now.compose.domain.usecase.GetUserInfoUseCase
-import com.sopt.now.compose.domain.usecase.GetUserUseCase
+import com.sopt.now.compose.domain.usecase.GetUserIdUseCase
 import com.sopt.now.compose.domain.usecase.InsertProfileUseCase
 import com.sopt.now.compose.domain.usecase.PostSignInUseCase
 import com.sopt.now.compose.domain.usecase.PostSignUpUseCase
 import com.sopt.now.compose.domain.usecase.SetIsLoginUseCase
-import com.sopt.now.compose.domain.usecase.SetUserUseCase
+import com.sopt.now.compose.domain.usecase.SetUserIdUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,8 +64,8 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesGetUserUseCase(soptRepository: SoptRepository): GetUserUseCase =
-        GetUserUseCase(soptRepository = soptRepository)
+    fun providesGetUserIdUseCase(soptRepository: SoptRepository): GetUserIdUseCase =
+        GetUserIdUseCase(soptRepository = soptRepository)
 
     @Provides
     @Singleton
@@ -89,6 +89,6 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesSetUserUseCase(soptRepository: SoptRepository): SetUserUseCase =
-        SetUserUseCase(soptRepository = soptRepository)
+    fun providesSetUserIdUseCase(soptRepository: SoptRepository): SetUserIdUseCase =
+        SetUserIdUseCase(soptRepository = soptRepository)
 }
