@@ -8,7 +8,6 @@ import com.sopt.now.compose.util.base.UiState
 
 class SignInContract {
     data class SignInState(
-        val user: UserEntity? = null,
         val inputId: String = "",
         val inputPassword: String = ""
     ) : UiState
@@ -17,7 +16,7 @@ class SignInContract {
         data object NavigateToSignUp : SignInSideEffect
         data object PopBackStack : SignInSideEffect
         data object NavigateToHome : SignInSideEffect
-        data class ShowToast(@StringRes val message: Int) : SignInSideEffect
+        data class ShowToast(val message: String) : SignInSideEffect
     }
 
     sealed class SignInEvent : UiEvent {

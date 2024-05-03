@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.sopt.now.BuildConfig
+import com.sopt.now.compose.BuildConfig
 import com.sopt.now.compose.data.datasource.local.SoptLocalDataSource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.encodeToString
@@ -37,8 +37,8 @@ class SoptLocalDataSourceImpl @Inject constructor(
         set(value) = pref.edit { putBoolean(IS_LOGIN, value) }
 
     override var userId: Int
-        get() = pref.getInt(USER_ID, DEFALULT_USER_ID)
-        set(value) = pref.edit { putString(USER_ID, Json.encodeToString(value)) }
+        get() = pref.getInt(USER_ID, DEFAULT_USER_ID)
+        set(value) = pref.edit { putInt(USER_ID, value) }
 
     override fun clear() {
         pref.edit { clear() }
@@ -48,6 +48,6 @@ class SoptLocalDataSourceImpl @Inject constructor(
         const val FILE_NAME = "soptDataStore"
         const val IS_LOGIN = "isLogin"
         const val USER_ID = "user_ID"
-        const val DEFALULT_USER_ID = 1
+        const val DEFAULT_USER_ID = 1
     }
 }

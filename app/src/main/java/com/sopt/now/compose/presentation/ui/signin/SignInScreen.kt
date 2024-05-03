@@ -68,7 +68,7 @@ fun SignInRoute(
 
                     is SignInContract.SignInSideEffect.ShowToast -> {
                         with(context) {
-                            showToast(getString(signInSideEffect.message))
+                            showToast(signInSideEffect.message)
                         }
                     }
                 }

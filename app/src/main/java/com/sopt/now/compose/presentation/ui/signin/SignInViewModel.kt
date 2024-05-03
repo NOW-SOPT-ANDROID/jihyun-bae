@@ -1,23 +1,30 @@
 package com.sopt.now.compose.presentation.ui.signin
 
+import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.sopt.now.compose.R
 import com.sopt.now.compose.domain.model.UserEntity
 import com.sopt.now.compose.domain.usecase.GetIsLoginUseCase
 import com.sopt.now.compose.domain.usecase.GetUserIdUseCase
+import com.sopt.now.compose.domain.usecase.PostSignInUseCase
 import com.sopt.now.compose.domain.usecase.SetIsLoginUseCase
+import com.sopt.now.compose.domain.usecase.SetUserIdUseCase
+import com.sopt.now.compose.presentation.ui.signup.SignUpContract
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val getUserUseCase: GetUserIdUseCase,
+    private val getUserIdUseCase: GetUserIdUseCase,
     private val getIsLoginUseCase: GetIsLoginUseCase,
-    private val setIsLoginUseCase: SetIsLoginUseCase
+    private val setIsLoginUseCase: SetIsLoginUseCase,
+    private val setUserIdUseCase: SetUserIdUseCase,
+    private val signInUseCase: PostSignInUseCase
 ) : BaseViewModel<SignInContract.SignInState, SignInContract.SignInSideEffect, SignInContract.SignInEvent>() {
     init {
         if (getIsLoginUseCase()) setSideEffect { SignInContract.SignInSideEffect.NavigateToHome }
-        setUserInfo(userEntity = getUserUseCase())
     }
 
     override fun createInitialState(): SignInContract.SignInState = SignInContract.SignInState()
@@ -29,15 +36,11 @@ class SignInViewModel @Inject constructor(
             }
 
             is SignInContract.SignInEvent.OnSignInBtnClicked -> {
-                setSideEffect { SignInContract.SignInSideEffect.ShowToast(R.string.sign_in_success) }
+                setSideEffect { SignInContract.SignInSideEffect.ShowToast(getUserIdUseCase().toString()) }
                 setSideEffect { SignInContract.SignInSideEffect.PopBackStack }
                 setSideEffect { SignInContract.SignInSideEffect.NavigateToHome }
             }
         }
-    }
-
-    private fun setUserInfo(userEntity: UserEntity) {
-        setState { currentState.copy(user = userEntity) }
     }
 
     fun signUp() {
@@ -45,12 +48,13 @@ class SignInViewModel @Inject constructor(
     }
 
     fun signIn() {
-        with(currentState) {
-            user?.let { userInfo ->
-                if (userInfo.id.isNotBlank() && userInfo.id == inputId && userInfo.password == inputPassword) {
-                    setIsLoginUseCase(isLogin = true)
-                    setEvent(SignInContract.SignInEvent.OnSignInBtnClicked)
-                }
+        viewModelScope.launch {
+            signInUseCase(authenticationId = currentState.inputId, password = currentState.inputPassword).onSuccess { userId ->
+                setIsLoginUseCase(isLogin = true)
+                userId?.let { setUserIdUseCase(userId = it) }
+                setEvent(SignInContract.SignInEvent.OnSignInBtnClicked)
+            }.onFailure { throwable ->
+                throwable.message?.let { setSideEffect { SignInContract.SignInSideEffect.ShowToast(it) } }
             }
         }
     }

@@ -13,9 +13,9 @@ class MyPageViewModel @Inject constructor(
     private val getUserUseCase: GetUserIdUseCase
 ) : BaseViewModel<MyPageContract.MyPageState, MyPageContract.MyPageSideEffect, MyPageContract.MyPageEvent>() {
 
-    init {
-        setUserInfo(userEntity = getUserUseCase())
-    }
+//    init {
+//        setUserInfo(userEntity = getUserUseCase())
+//    }
 
     override fun createInitialState(): MyPageContract.MyPageState = MyPageContract.MyPageState()
 
