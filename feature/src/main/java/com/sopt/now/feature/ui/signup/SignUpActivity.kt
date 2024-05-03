@@ -55,7 +55,7 @@ class SignUpActivity :
 
     private fun setSignUpBtnClickListeners() {
         with(binding) {
-            btnSignUp.setOnClickListener { soptUserEntity ->
+            btnSignUp.setOnClickListener {
                 signUpViewModel.signUp(
                     soptUserEntity = SoptUserEntity(
                         authenticationId = etSignUpId.editText.text.toString(),

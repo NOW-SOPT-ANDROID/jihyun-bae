@@ -16,7 +16,7 @@ class SignUpViewModel @Inject constructor(
     private val postSignUpUseCase: PostSignUpUseCase
 ) : ViewModel() {
     private val _signUpState = MutableSharedFlow<UiState<String>>()
-    val signUpState = _signUpState.asSharedFlow()
+    val signUpState get() = _signUpState.asSharedFlow()
 
     fun signUp(soptUserEntity: SoptUserEntity) {
         viewModelScope.launch {
