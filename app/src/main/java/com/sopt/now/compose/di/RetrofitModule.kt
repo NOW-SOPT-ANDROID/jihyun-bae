@@ -1,8 +1,8 @@
 package com.sopt.now.compose.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.sopt.now.BuildConfig
-import com.sopt.now.BuildConfig.DEBUG
+import com.sopt.now.compose.BuildConfig
+import com.sopt.now.compose.BuildConfig.DEBUG
 import com.sopt.now.compose.di.qualifier.Reqres
 import com.sopt.now.compose.di.qualifier.Sopt
 import dagger.Module
