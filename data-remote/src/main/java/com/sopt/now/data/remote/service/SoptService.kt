@@ -9,5 +9,5 @@ interface SoptService {
     @POST("member/join")
     suspend fun signUp(
         @Body requestSignUpDto: RequestSignUpDto
-    ): BaseResponse
+    ): BaseResponse<Unit>
 }
