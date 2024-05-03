@@ -13,8 +13,8 @@
     <string name="sign_password_hint">비밀번호를 입력해 주세요</string>
     <string name="sign_nickname">닉네임</string>
     <string name="sign_nickname_hint">닉네임을 입력해 주세요</string>
-    <string name="sign_mbti">MBTI</string>
-    <string name="sign_mbti_hint">MBTI를 입력해 주세요</string>
+    <string name="sign_phone">전화번호</string>
+    <string name="sign_phone_hint">전화번호를 입력해 주세요</string>
 
     <!-- sign in -->
     <string name="sign_in_sign_in">로그인</string>
@@ -25,9 +25,9 @@
     <!-- sign up -->
     <string name="sign_up_sign_up">회원가입</string>
     <string name="sign_up_id_error">6~10글자의 아이디를 입력해 주세요</string>
-    <string name="sign_up_password_error">8~12글자의 비밀번호를 입력해 주세요</string>
+    <string name="sign_up_password_error">최소 8글자 이상, 숫자, 문자, 특수문자가 포함된 비밀번호를 입력해 주세요</string>
     <string name="sign_up_nickname_error">한 글자 이상의 닉네임을 입력해 주세요</string>
-    <string name="sign_up_mbti_error">MBTI를 확인해 주세요</string>
+    <string name="sign_up_phone_error">010-0000-0000의 형태로 입력해 주세요</string>
     <string name="sign_up_success">회원가입에 성공하였습니다</string>
 
     <!-- main (my page) -->
