@@ -2,10 +2,12 @@ package com.sopt.now.di
 
 import com.sopt.now.domain.repository.FakeRepoListRepository
 import com.sopt.now.domain.repository.ProfileRepository
+import com.sopt.now.domain.repository.SoptAuthRepository
 import com.sopt.now.domain.usecase.DeleteProfileUseCase
 import com.sopt.now.domain.usecase.GetFakeRepoListUseCase
 import com.sopt.now.domain.usecase.GetProfileListUseCase
 import com.sopt.now.domain.usecase.InsertProfileUseCase
+import com.sopt.now.domain.usecase.PostSignUpUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,4 +36,9 @@ class UseCaseModule {
     @Singleton
     fun providesInsertProfileUseCase(profileRepository: ProfileRepository): InsertProfileUseCase =
         InsertProfileUseCase(profileRepository = profileRepository)
+
+    @Provides
+    @Singleton
+    fun providesPostSignUpUseCase(soptAuthRepository: SoptAuthRepository): PostSignUpUseCase =
+        PostSignUpUseCase(soptAuthRepository = soptAuthRepository)
 }

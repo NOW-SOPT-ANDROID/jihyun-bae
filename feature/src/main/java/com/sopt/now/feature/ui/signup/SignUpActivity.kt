@@ -4,15 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.sopt.now.coreui.base.BindingActivity
 import com.sopt.now.coreui.util.context.showToast
-import com.sopt.now.coreui.util.context.stringOf
-import com.sopt.now.coreui.util.view.showSnackbar
-import com.sopt.now.domain.model.UserEntity
+import com.sopt.now.coreui.util.view.UiState
+import com.sopt.now.domain.model.SoptUserEntity
 import com.sopt.now.feature.databinding.ActivitySignUpBinding
-import com.sopt.now.feature.type.SignUpType
 import com.sopt.now.feature.ui.signin.SignInActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class SignUpActivity :
@@ -23,6 +25,7 @@ class SignUpActivity :
         super.onCreate(savedInstanceState)
 
         initLayout()
+        collectSignUpState()
         setSignUpBtnClickListeners()
     }
 
@@ -32,34 +35,35 @@ class SignUpActivity :
             etSignUpPassword.editText.inputType =
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             etSignUpNickname.editText.inputType = InputType.TYPE_CLASS_TEXT
-            etSignUpMbti.editText.inputType = InputType.TYPE_CLASS_TEXT
+            etSignUpPhone.editText.inputType = InputType.TYPE_CLASS_TEXT
         }
+    }
+
+    private fun collectSignUpState() {
+        signUpViewModel.signUpState.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    showToast(uiState.data)
+                    navigateToSignIn()
+                }
+
+                is UiState.Error -> showToast(uiState.message.orEmpty())
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun setSignUpBtnClickListeners() {
         with(binding) {
-            btnSignUp.setOnClickListener {
-                UserEntity(
-                    id = etSignUpId.editText.text.toString(),
-                    password = etSignUpPassword.editText.text.toString(),
-                    nickname = etSignUpNickname.editText.text.toString(),
-                    mbti = etSignUpMbti.editText.text.toString()
-                ).let { userEntity ->
-                    signUpViewModel.signUp(
-                        userEntity = userEntity
-                    ).let { signUpType ->
-                        when (signUpType) {
-                            SignUpType.SUCCESS -> {
-                                showToast(stringOf(signUpType.descriptionRes))
-                                navigateToSignIn()
-                            }
-
-                            else -> {
-                                binding.root.showSnackbar(stringOf(signUpType.descriptionRes))
-                            }
-                        }
-                    }
-                }
+            btnSignUp.setOnClickListener { soptUserEntity ->
+                signUpViewModel.signUp(
+                    soptUserEntity = SoptUserEntity(
+                        authenticationId = etSignUpId.editText.text.toString(),
+                        password = etSignUpPassword.editText.text.toString(),
+                        nickname = etSignUpNickname.editText.text.toString(),
+                        phone = etSignUpPhone.editText.text.toString()
+                    )
+                )
             }
         }
     }
