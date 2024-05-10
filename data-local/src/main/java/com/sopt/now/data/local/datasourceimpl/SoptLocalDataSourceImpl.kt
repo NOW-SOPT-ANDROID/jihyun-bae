@@ -5,12 +5,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import com.sopt.now.data.local.datasource.SoptLocalDataSource
-import com.sopt.now.data.local.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -23,7 +20,7 @@ class SoptLocalDataSourceImpl @Inject constructor(
         val userId = intPreferencesKey(USER_ID)
     }
 
-    override var isLogin: Flow<Boolean> = dataStore.data.map { preferences ->
+    override val isLogin: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[PreferencesKeys.isLogin] ?: false
     }
 
@@ -33,7 +30,7 @@ class SoptLocalDataSourceImpl @Inject constructor(
         }
     }
 
-    override var userId: Flow<Int?> = dataStore.data.map { preferences ->
+    override val userId: Flow<Int?> = dataStore.data.map { preferences ->
         preferences[PreferencesKeys.userId]
     }
 
