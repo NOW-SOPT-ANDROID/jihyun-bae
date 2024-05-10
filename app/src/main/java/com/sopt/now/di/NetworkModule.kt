@@ -23,7 +23,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
+object NetworkModule {
     @OptIn(ExperimentalSerializationApi::class)
     @Provides
     @Singleton
