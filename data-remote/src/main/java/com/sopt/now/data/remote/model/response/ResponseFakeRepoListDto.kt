@@ -107,7 +107,7 @@ data class ResponseFakeRepoListDto(
     val openIssues: Int,
     @SerialName("open_issues_count")
     val openIssuesCount: Int,
-    val owner: Owner,
+    val responseOwnerDto: ResponseOwnerDto,
     @SerialName("private")
     val isPrivate: Boolean,
     @SerialName("pulls_url")
@@ -149,7 +149,7 @@ data class ResponseFakeRepoListDto(
     val webCommitSignoffRequired: Boolean,
 ) {
     @Serializable
-    data class Owner(
+    data class ResponseOwnerDto(
         val login: String,
         val id: Int,
         @SerialName("node_id")

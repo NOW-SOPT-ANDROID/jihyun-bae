@@ -14,12 +14,12 @@ data class ResponseReqresListUsersDto(
     @SerialName("total_pages")
     val totalPages: Int,
     @SerialName("data")
-    val data: List<User>,
+    val data: List<ResponseUserDto>,
     @SerialName("support")
-    val support: Support
+    val responseSupportDto: ResponseSupportDto
 ) {
     @Serializable
-    data class User(
+    data class ResponseUserDto(
         @SerialName("id")
         val id: Int,
         @SerialName("email")
@@ -33,7 +33,7 @@ data class ResponseReqresListUsersDto(
     )
 
     @Serializable
-    data class Support(
+    data class ResponseSupportDto(
         @SerialName("url")
         val url: String,
         @SerialName("text")
