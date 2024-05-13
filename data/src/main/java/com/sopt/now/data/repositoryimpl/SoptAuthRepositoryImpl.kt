@@ -12,9 +12,9 @@ import javax.inject.Inject
 class SoptAuthRepositoryImpl @Inject constructor(
     private val soptRemoteDataSource: SoptRemoteDataSource
 ) : SoptAuthRepository {
-    override suspend fun signIn(authenticationId: String, password: String): Result<Int?> =
+    override suspend fun postSignIn(authenticationId: String, password: String): Result<Int?> =
         runCatching {
-            soptRemoteDataSource.signIn(
+            soptRemoteDataSource.postSignIn(
                 requestSignInDto = RequestSignInDto(
                     authenticationId = authenticationId,
                     password = password
@@ -22,8 +22,8 @@ class SoptAuthRepositoryImpl @Inject constructor(
             ).headers()[LOCATION]?.toInt()
         }
 
-    override suspend fun signUp(soptUserEntity: SoptUserEntity): Result<String> = runCatching {
-        soptRemoteDataSource.signUp(requestSignUpDto = soptUserEntity.toRequestSignUpDto()).message
+    override suspend fun postSignUp(soptUserEntity: SoptUserEntity): Result<String> = runCatching {
+        soptRemoteDataSource.postSignUp(requestSignUpDto = soptUserEntity.toRequestSignUpDto()).message
     }
 
     override suspend fun getUserInfo(memberId: Int): Result<SoptUserInfoEntity?> = runCatching {

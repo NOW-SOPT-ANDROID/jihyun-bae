@@ -6,5 +6,5 @@ class PostSignInUseCase(
     private val soptAuthRepository: SoptAuthRepository
 ) {
     suspend operator fun invoke(authenticationId: String, password: String) =
-        soptAuthRepository.signIn(authenticationId = authenticationId, password = password)
+        soptAuthRepository.postSignIn(authenticationId = authenticationId, password = password)
 }

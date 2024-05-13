@@ -7,5 +7,5 @@ class PostSignUpUseCase(
     private val soptAuthRepository: SoptAuthRepository
 ) {
     suspend operator fun invoke(soptUserEntity: SoptUserEntity) =
-        soptAuthRepository.signUp(soptUserEntity = soptUserEntity)
+        soptAuthRepository.postSignUp(soptUserEntity = soptUserEntity)
 }
