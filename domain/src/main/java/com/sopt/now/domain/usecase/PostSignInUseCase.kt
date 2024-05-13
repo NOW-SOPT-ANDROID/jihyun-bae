@@ -5,6 +5,6 @@ import com.sopt.now.domain.repository.SoptAuthRepository
 class PostSignInUseCase(
     private val soptAuthRepository: SoptAuthRepository
 ) {
-    suspend operator fun invoke(authenticationId: String, password: String) =
+    suspend operator fun invoke(authenticationId: String, password: String): Result<Int?> =
         soptAuthRepository.postSignIn(authenticationId = authenticationId, password = password)
 }
