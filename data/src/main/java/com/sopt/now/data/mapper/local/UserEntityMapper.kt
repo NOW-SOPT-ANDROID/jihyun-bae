@@ -1,9 +1,9 @@
 package com.sopt.now.data.mapper.local
 
-import com.sopt.now.data.local.model.User
-import com.sopt.now.domain.model.UserEntity
+import com.sopt.now.data.local.model.UserEntity
+import com.sopt.now.domain.model.UserModel
 
-fun UserEntity.toUser() = User(
+fun UserEntity.toUserEntity() = UserModel(
     id = this.id,
     password = this.password,
     nickname = this.nickname,

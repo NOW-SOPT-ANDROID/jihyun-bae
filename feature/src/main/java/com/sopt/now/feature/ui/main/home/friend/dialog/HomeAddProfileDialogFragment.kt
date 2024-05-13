@@ -4,11 +4,11 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import com.sopt.now.coreui.base.BindingDialogFragment
-import com.sopt.now.domain.model.ProfileEntity
+import com.sopt.now.domain.model.ProfileModel
 import com.sopt.now.feature.databinding.DialogHomeAddProfileBinding
 
 class HomeAddProfileDialogFragment(
-    private val clickSubmitBtn: (ProfileEntity) -> Unit = {},
+    private val clickSubmitBtn: (ProfileModel) -> Unit = {},
     private val onDialogClosed: () -> Unit = {}
 ) : BindingDialogFragment<DialogHomeAddProfileBinding>({ DialogHomeAddProfileBinding.inflate(it) }) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class HomeAddProfileDialogFragment(
             btnDialogHomeAddProfileSubmit.setOnClickListener {
                 if (!etDialogHomeAddProfileName.editText.text.isNullOrEmpty()) {
                     clickSubmitBtn(
-                        ProfileEntity(
+                        ProfileModel(
                             name = etDialogHomeAddProfileName.editText.text.toString(),
                             selfDescription = etDialogHomeAddProfileSelfDescription.editText.text.toString()
                         )

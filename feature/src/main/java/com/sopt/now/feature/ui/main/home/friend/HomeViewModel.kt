@@ -3,7 +3,7 @@ package com.sopt.now.feature.ui.main.home.friend
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sopt.now.coreui.util.view.UiState
-import com.sopt.now.domain.model.ProfileEntity
+import com.sopt.now.domain.model.ProfileModel
 import com.sopt.now.domain.usecase.DeleteProfileUseCase
 import com.sopt.now.domain.usecase.GetProfileListUseCase
 import com.sopt.now.domain.usecase.InsertProfileUseCase
@@ -19,10 +19,10 @@ class HomeViewModel @Inject constructor(
     private val getProfileListUseCase: GetProfileListUseCase,
     private val insertProfileUseCase: InsertProfileUseCase
 ) : ViewModel() {
-    private val _profileListState = MutableStateFlow<UiState<List<ProfileEntity>>>(UiState.Empty)
+    private val _profileListState = MutableStateFlow<UiState<List<ProfileModel>>>(UiState.Empty)
     val profileListState get() = _profileListState.asStateFlow()
 
-    fun deleteProfile(profile: ProfileEntity) {
+    fun deleteProfile(profile: ProfileModel) {
         viewModelScope.launch {
             deleteProfileUseCase(profile = profile)
             getProfileList()
@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun insertProfile(profile: ProfileEntity) {
+    fun insertProfile(profile: ProfileModel) {
         viewModelScope.launch {
             insertProfileUseCase(profile = profile)
             getProfileList()

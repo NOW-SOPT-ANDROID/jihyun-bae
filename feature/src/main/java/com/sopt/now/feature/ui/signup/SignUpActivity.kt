@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.sopt.now.coreui.base.BindingActivity
 import com.sopt.now.coreui.util.context.showToast
 import com.sopt.now.coreui.util.view.UiState
-import com.sopt.now.domain.model.SoptUserEntity
+import com.sopt.now.domain.model.SoptUserModel
 import com.sopt.now.feature.databinding.ActivitySignUpBinding
 import com.sopt.now.feature.ui.signin.SignInActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,7 +57,7 @@ class SignUpActivity :
         with(binding) {
             btnSignUp.setOnClickListener {
                 signUpViewModel.signUp(
-                    soptUserEntity = SoptUserEntity(
+                    soptUserModel = SoptUserModel(
                         authenticationId = etSignUpId.editText.text.toString(),
                         password = etSignUpPassword.editText.text.toString(),
                         nickname = etSignUpNickname.editText.text.toString(),

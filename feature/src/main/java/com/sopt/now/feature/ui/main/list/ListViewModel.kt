@@ -3,7 +3,7 @@ package com.sopt.now.feature.ui.main.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sopt.now.coreui.util.view.UiState
-import com.sopt.now.domain.model.FakeRepoEntity
+import com.sopt.now.domain.model.FakeRepoModel
 import com.sopt.now.domain.usecase.GetFakeRepoListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ class ListViewModel @Inject constructor(
     private val getFakeRepoListUseCase: GetFakeRepoListUseCase
 ) : ViewModel() {
     private val _fakeRepoListState =
-        MutableStateFlow<UiState<List<FakeRepoEntity>>>(UiState.Empty)
+        MutableStateFlow<UiState<List<FakeRepoModel>>>(UiState.Empty)
     val fakeRepoListState get() = _fakeRepoListState.asStateFlow()
 
     fun getFakeRepoList() {

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.sopt.now.coreui.util.view.ItemDiffCallback
-import com.sopt.now.domain.model.ReqresUserEntity
+import com.sopt.now.domain.model.ReqresUserModel
 import com.sopt.now.feature.databinding.ItemHomeFriendProfileBinding
 
-class FollowerAdapter() : ListAdapter<ReqresUserEntity, FollowerViewHolder>(
-    ItemDiffCallback<ReqresUserEntity>(
+class FollowerAdapter() : ListAdapter<ReqresUserModel, FollowerViewHolder>(
+    ItemDiffCallback<ReqresUserModel>(
         onContentsTheSame = { old, new -> old == new },
         onItemsTheSame = { old, new -> old.id == new.id }
     )
@@ -23,6 +23,6 @@ class FollowerAdapter() : ListAdapter<ReqresUserEntity, FollowerViewHolder>(
         )
 
     override fun onBindViewHolder(holder: FollowerViewHolder, position: Int) {
-        holder.onBind(reqresUserEntity = currentList[position])
+        holder.onBind(reqresUserModel = currentList[position])
     }
 }

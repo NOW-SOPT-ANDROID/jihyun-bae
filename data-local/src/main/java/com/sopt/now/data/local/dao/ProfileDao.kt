@@ -4,18 +4,18 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.sopt.now.data.local.model.Profile
+import com.sopt.now.data.local.model.ProfileEntity
 
 @Dao
 interface ProfileDao {
     @Query(GET_PROFILE_LIST_QUERY)
-    suspend fun getProfileList(): List<Profile>
+    suspend fun getProfileList(): List<ProfileEntity>
 
     @Insert
-    suspend fun insertProfile(profile: Profile)
+    suspend fun insertProfile(profileEntity: ProfileEntity)
 
     @Delete
-    suspend fun deleteProfile(profile: Profile)
+    suspend fun deleteProfile(profileEntity: ProfileEntity)
 
     companion object {
         const val GET_PROFILE_LIST_QUERY = "SELECT * FROM profile_table"

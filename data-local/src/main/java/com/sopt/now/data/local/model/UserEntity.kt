@@ -5,7 +5,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Serializable
-data class User(
+data class UserEntity(
     val id: String,
     val password: String,
     val nickname: String,

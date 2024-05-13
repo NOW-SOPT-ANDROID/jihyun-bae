@@ -9,7 +9,7 @@ import com.sopt.now.component.SoptDialogFragment
 import com.sopt.now.coreui.base.BindingFragment
 import com.sopt.now.coreui.util.view.ScrollableView
 import com.sopt.now.coreui.util.view.UiState
-import com.sopt.now.domain.model.ProfileEntity
+import com.sopt.now.domain.model.ProfileModel
 import com.sopt.now.feature.databinding.FragmentHomeBinding
 import com.sopt.now.feature.ui.main.home.friend.dialog.HomeAddProfileDialogFragment
 import com.sopt.now.feature.ui.main.home.friend.recyclerview.ProfileAdapter
@@ -60,11 +60,11 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>({ FragmentHomeBinding.
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun showDeleteProfileDialog(profileEntity: ProfileEntity) {
+    private fun showDeleteProfileDialog(profileModel: ProfileModel) {
         SoptDialogFragment(
             dialogType = DialogType.DELETE_PROFILE,
             clickLeftBtn = {
-                homeViewModel.deleteProfile(profile = profileEntity)
+                homeViewModel.deleteProfile(profile = profileModel)
             }
         ).show(childFragmentManager, DELETE_PROFILE_DIALOG)
     }

@@ -3,7 +3,7 @@ package com.sopt.now.feature.ui.main.mypage
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sopt.now.coreui.util.view.UiState
-import com.sopt.now.domain.model.SoptUserInfoEntity
+import com.sopt.now.domain.model.SoptUserInfoModel
 import com.sopt.now.domain.repository.SoptRepository
 import com.sopt.now.domain.usecase.GetUserInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +22,7 @@ class MyPageViewModel @Inject constructor(
     private val _userId: MutableStateFlow<Int?> = MutableStateFlow(null)
     val userId get() = _userId.asStateFlow()
 
-    private val _getUserInfoState = MutableSharedFlow<UiState<SoptUserInfoEntity?>>()
+    private val _getUserInfoState = MutableSharedFlow<UiState<SoptUserInfoModel?>>()
     val getUserInfoState get() = _getUserInfoState.asSharedFlow()
 
     fun fetchUserId() {

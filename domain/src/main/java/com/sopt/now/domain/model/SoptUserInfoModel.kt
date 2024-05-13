@@ -1,8 +1,7 @@
 package com.sopt.now.domain.model
 
-data class SoptUserEntity(
+data class SoptUserInfoModel(
     val authenticationId: String,
-    val password: String,
     val nickname: String,
     val phone: String
 )
