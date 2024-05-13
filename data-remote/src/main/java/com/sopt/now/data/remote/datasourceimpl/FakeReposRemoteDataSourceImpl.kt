@@ -1,17 +1,17 @@
 package com.sopt.now.data.remote.datasourceimpl
 
-import com.sopt.now.data.remote.datasource.FakeRepoListRemoteDataSource
-import com.sopt.now.data.remote.model.response.ResponseFakeRepoListDto
+import com.sopt.now.data.remote.datasource.FakeReposRemoteDataSource
+import com.sopt.now.data.remote.model.response.ResponseFakeReposDto
 import com.sopt.now.data.remote.util.AssetLoader
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-class FakeRepoListRemoteDataSourceImpl @Inject constructor(
+class FakeReposRemoteDataSourceImpl @Inject constructor(
     private val assetLoader: AssetLoader
-) : FakeRepoListRemoteDataSource {
-    override suspend fun getFakeRepoList(): Array<ResponseFakeRepoListDto> =
+) : FakeReposRemoteDataSource {
+    override suspend fun getFakeRepos(): Array<ResponseFakeReposDto> =
         assetLoader.getJsonString(FAKE_REPO_LIST)?.let { jsonString ->
-            Json.decodeFromString<Array<ResponseFakeRepoListDto>>(jsonString)
+            Json.decodeFromString<Array<ResponseFakeReposDto>>(jsonString)
         } ?: emptyArray()
 
     companion object {

@@ -8,7 +8,7 @@ import javax.inject.Inject
 class ProfileLocalDataSourceImpl @Inject constructor(
  private val profileDatabase: ProfileDatabase
 ): ProfileLocalDataSource {
-    override suspend fun getProfileList(): List<ProfileEntity> = profileDatabase.profileDao().getProfileList()
+    override suspend fun getProfiles(): List<ProfileEntity> = profileDatabase.profileDao().getProfileList()
 
     override suspend fun insertProfile(profileEntity: ProfileEntity) {
         profileDatabase.profileDao().insertProfile(profileEntity = profileEntity)

@@ -1,11 +1,11 @@
 package com.sopt.now.di
 
-import com.sopt.now.domain.repository.FakeRepoListRepository
+import com.sopt.now.domain.repository.FakeReposRepository
 import com.sopt.now.domain.repository.ProfileRepository
 import com.sopt.now.domain.repository.ReqresRepository
 import com.sopt.now.domain.repository.SoptAuthRepository
 import com.sopt.now.domain.usecase.DeleteProfileUseCase
-import com.sopt.now.domain.usecase.GetFakeRepoListUseCase
+import com.sopt.now.domain.usecase.GetFakeReposUseCase
 import com.sopt.now.domain.usecase.GetProfileListUseCase
 import com.sopt.now.domain.usecase.GetReqresListUsersUseCase
 import com.sopt.now.domain.usecase.GetUserInfoUseCase
@@ -28,8 +28,8 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesGetFakeRepoListUseCase(fakeRepoListRepository: FakeRepoListRepository): GetFakeRepoListUseCase =
-        GetFakeRepoListUseCase(fakeRepoListRepository = fakeRepoListRepository)
+    fun providesGetFakeReposUseCase(fakeReposRepository: FakeReposRepository): GetFakeReposUseCase =
+        GetFakeReposUseCase(fakeReposRepository = fakeReposRepository)
 
     @Provides
     @Singleton

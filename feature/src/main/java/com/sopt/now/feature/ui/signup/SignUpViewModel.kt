@@ -21,7 +21,7 @@ class SignUpViewModel @Inject constructor(
     fun signUp(soptUserModel: SoptUserModel) {
         viewModelScope.launch {
             _signUpState.emit(UiState.Loading)
-            postSignUpUseCase(soptUserEntity = soptUserModel).onSuccess { message ->
+            postSignUpUseCase(soptUserModel = soptUserModel).onSuccess { message ->
                 _signUpState.emit(UiState.Success(message))
             }.onFailure { throwable ->
                 _signUpState.emit(UiState.Error(throwable.message))

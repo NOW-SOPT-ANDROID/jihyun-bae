@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseFakeRepoListDto(
+data class ResponseFakeReposDto(
     val id: Int,
     @SerialName("node_id")
     val nodeId: String,
