@@ -6,8 +6,8 @@ import com.sopt.now.coreui.util.view.UiState
 import com.sopt.now.domain.model.ReqresUserModel
 import com.sopt.now.domain.usecase.GetReqresListUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,8 +15,9 @@ import javax.inject.Inject
 class FollowerViewModel @Inject constructor(
     private val getReqresListUsersUseCase: GetReqresListUsersUseCase
 ) : ViewModel() {
-    private val _getReqresListUsersState = MutableSharedFlow<UiState<List<ReqresUserModel>>>()
-    val getReqresListUserState get() = _getReqresListUsersState.asSharedFlow()
+    private val _getReqresListUsersState =
+        MutableStateFlow<UiState<List<ReqresUserModel>>>(UiState.Empty)
+    val getReqresListUserState get() = _getReqresListUsersState.asStateFlow()
 
     fun getReqresListUsers(page: Int = 1) {
         viewModelScope.launch {

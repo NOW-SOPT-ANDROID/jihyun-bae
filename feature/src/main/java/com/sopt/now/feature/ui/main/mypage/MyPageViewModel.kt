@@ -7,9 +7,7 @@ import com.sopt.now.domain.model.SoptUserInfoModel
 import com.sopt.now.domain.repository.SoptRepository
 import com.sopt.now.domain.usecase.GetUserInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,8 +20,8 @@ class MyPageViewModel @Inject constructor(
     private val _userId: MutableStateFlow<Int?> = MutableStateFlow(null)
     val userId get() = _userId.asStateFlow()
 
-    private val _getUserInfoState = MutableSharedFlow<UiState<SoptUserInfoModel?>>()
-    val getUserInfoState get() = _getUserInfoState.asSharedFlow()
+    private val _getUserInfoState = MutableStateFlow<UiState<SoptUserInfoModel?>>(UiState.Empty)
+    val getUserInfoState get() = _getUserInfoState.asStateFlow()
 
     fun fetchUserId() {
         viewModelScope.launch {
