@@ -42,6 +42,7 @@ retrofit = "2.9.0"
 retrofit-kotlin-serialization-converter = "1.0.0"
 activityVersion = "1.8.2"
 roomKtx = "2.6.1"
+inject = "1"
 
 [libraries]
 # Kotlin
@@ -90,6 +91,7 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-kotlin-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-kotlin-serialization-converter" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activityVersion" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "inject" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
