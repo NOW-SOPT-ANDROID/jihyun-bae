@@ -7,12 +7,7 @@ import com.sopt.now.compose.util.base.UiState
 
 class SignUpContract {
     data class SignUpState(
-        val user: SoptUserEntity = SoptUserEntity(
-            authenticationId = "",
-            password = "",
-            nickname = "",
-            phone = ""
-        ),
+        val user: SoptUserEntity = SoptUserEntity(),
         val userId: Int? = null
     ) : UiState
 
