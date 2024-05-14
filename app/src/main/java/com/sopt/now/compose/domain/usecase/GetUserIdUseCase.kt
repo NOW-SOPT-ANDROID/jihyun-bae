@@ -5,5 +5,5 @@ import com.sopt.now.compose.domain.repository.SoptRepository
 class GetUserIdUseCase(
     private val soptRepository: SoptRepository
 ) {
-    operator fun invoke() = soptRepository.getUserId()
+    operator fun invoke() : Int = soptRepository.getUserId()
 }
