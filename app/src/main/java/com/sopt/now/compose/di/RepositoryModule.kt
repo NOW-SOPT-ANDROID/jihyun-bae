@@ -5,7 +5,7 @@ import com.sopt.now.compose.data.repository.ProfileRepositoryImpl
 import com.sopt.now.compose.data.repository.ReqresRepositoryImpl
 import com.sopt.now.compose.data.repository.SoptAuthRepositoryImpl
 import com.sopt.now.compose.data.repository.SoptRepositoryImpl
-import com.sopt.now.compose.domain.repository.FakeRepoListRepository
+import com.sopt.now.compose.domain.repository.FakeReposRepository
 import com.sopt.now.compose.domain.repository.ProfileRepository
 import com.sopt.now.compose.domain.repository.ReqresRepository
 import com.sopt.now.compose.domain.repository.SoptAuthRepository
@@ -21,7 +21,7 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindsRepoListRepository(repoListRepositoryImpl: FakeRepoListRepositoryImpl): FakeRepoListRepository
+    abstract fun bindsRepoListRepository(repoListRepositoryImpl: FakeRepoListRepositoryImpl): FakeReposRepository
 
     @Binds
     @Singleton

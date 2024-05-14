@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseReqresListUsersDto(
+data class ResponseReqresUsersDto(
     @SerialName("page")
     val page: Int,
     @SerialName("per_page")

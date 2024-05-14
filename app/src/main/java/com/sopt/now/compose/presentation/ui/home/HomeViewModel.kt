@@ -3,7 +3,7 @@ package com.sopt.now.compose.presentation.ui.home
 import androidx.lifecycle.viewModelScope
 import com.sopt.now.compose.domain.model.ProfileModel
 import com.sopt.now.compose.domain.usecase.DeleteProfileUseCase
-import com.sopt.now.compose.domain.usecase.GetProfileListUseCase
+import com.sopt.now.compose.domain.usecase.GetProfilesUseCase
 import com.sopt.now.compose.domain.usecase.InsertProfileUseCase
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val deleteProfileUseCase: DeleteProfileUseCase,
-    private val getProfileListUseCase: GetProfileListUseCase,
+    private val getProfilesUseCase: GetProfilesUseCase,
     private val insertProfileUseCase: InsertProfileUseCase
 ) :
     BaseViewModel<HomeContract.HomeState, HomeContract.HomeSideEffect, HomeContract.HomeEvent>() {
@@ -58,7 +58,7 @@ class HomeViewModel @Inject constructor(
 
     fun getProfileList() {
         viewModelScope.launch {
-            getProfileListUseCase().onSuccess { profileList ->
+            getProfilesUseCase().onSuccess { profileList ->
                 setState { currentState.copy(profileList = profileList) }
             }
         }

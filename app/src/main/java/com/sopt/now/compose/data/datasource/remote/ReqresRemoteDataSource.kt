@@ -1,7 +1,7 @@
 package com.sopt.now.compose.data.datasource.remote
 
-import com.sopt.now.compose.data.model.remote.response.ResponseReqresListUsersDto
+import com.sopt.now.compose.data.model.remote.response.ResponseReqresUsersDto
 
 interface ReqresRemoteDataSource {
-    suspend fun getReqresListUsers(page: Int): ResponseReqresListUsersDto
+    suspend fun getReqresUsers(page: Int): ResponseReqresUsersDto
 }

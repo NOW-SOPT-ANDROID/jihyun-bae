@@ -20,7 +20,7 @@ fun FollowerRoute(
 ) {
     val uistate by viewModel.uiState.collectAsState()
 
-    viewModel.getReqresListUsers()
+    viewModel.getReqresUsers()
 
     FollowerScreen(
         state = uistate

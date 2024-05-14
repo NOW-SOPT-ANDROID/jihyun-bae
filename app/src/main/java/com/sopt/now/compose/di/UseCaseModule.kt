@@ -1,16 +1,16 @@
 package com.sopt.now.compose.di
 
-import com.sopt.now.compose.domain.repository.FakeRepoListRepository
+import com.sopt.now.compose.domain.repository.FakeReposRepository
 import com.sopt.now.compose.domain.repository.ProfileRepository
 import com.sopt.now.compose.domain.repository.ReqresRepository
 import com.sopt.now.compose.domain.repository.SoptAuthRepository
 import com.sopt.now.compose.domain.repository.SoptRepository
 import com.sopt.now.compose.domain.usecase.ClearDataSourceUseCase
 import com.sopt.now.compose.domain.usecase.DeleteProfileUseCase
-import com.sopt.now.compose.domain.usecase.GetFakeRepoListUseCase
+import com.sopt.now.compose.domain.usecase.GetFakeReposUseCase
 import com.sopt.now.compose.domain.usecase.GetIsLoginUseCase
-import com.sopt.now.compose.domain.usecase.GetProfileListUseCase
-import com.sopt.now.compose.domain.usecase.GetReqresListUsersUseCase
+import com.sopt.now.compose.domain.usecase.GetProfilesUseCase
+import com.sopt.now.compose.domain.usecase.GetReqresUsersUseCase
 import com.sopt.now.compose.domain.usecase.GetUserInfoUseCase
 import com.sopt.now.compose.domain.usecase.GetUserIdUseCase
 import com.sopt.now.compose.domain.usecase.InsertProfileUseCase
@@ -39,8 +39,8 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesGetFakeRepoListUseCase(fakeRepoListRepository: FakeRepoListRepository) =
-        GetFakeRepoListUseCase(fakeRepoListRepository = fakeRepoListRepository)
+    fun providesGetFakeRepoListUseCase(fakeReposRepository: FakeReposRepository) =
+        GetFakeReposUseCase(fakeReposRepository = fakeReposRepository)
 
     @Provides
     @Singleton
@@ -49,13 +49,13 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesGetProfileListUseCase(profileRepository: ProfileRepository): GetProfileListUseCase =
-        GetProfileListUseCase(profileRepository = profileRepository)
+    fun providesGetProfileListUseCase(profileRepository: ProfileRepository): GetProfilesUseCase =
+        GetProfilesUseCase(profileRepository = profileRepository)
 
     @Provides
     @Singleton
-    fun providesGetReqresListUserUseCase(reqresRepository: ReqresRepository): GetReqresListUsersUseCase =
-        GetReqresListUsersUseCase(reqresRepository = reqresRepository)
+    fun providesGetReqresListUserUseCase(reqresRepository: ReqresRepository): GetReqresUsersUseCase =
+        GetReqresUsersUseCase(reqresRepository = reqresRepository)
 
     @Provides
     @Singleton

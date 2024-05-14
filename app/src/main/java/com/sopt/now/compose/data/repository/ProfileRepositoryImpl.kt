@@ -11,8 +11,8 @@ import javax.inject.Inject
 class ProfileRepositoryImpl @Inject constructor(
     private val profileLocalDataSource: ProfileLocalDataSource
 ) : ProfileRepository {
-    override suspend fun getProfileList(): Result<List<ProfileModel>> = runCatching {
-        profileLocalDataSource.getProfileList().map { profileEntity: ProfileEntity ->
+    override suspend fun getProfiles(): Result<List<ProfileModel>> = runCatching {
+        profileLocalDataSource.getProfiles().map { profileEntity: ProfileEntity ->
             profileEntity.toProfileModel()
         }
     }
