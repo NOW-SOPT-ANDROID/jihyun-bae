@@ -3,11 +3,11 @@ package com.sopt.now.compose.data.datasource.remote
 import com.sopt.now.compose.data.model.remote.request.RequestSignInDto
 import com.sopt.now.compose.data.model.remote.request.RequestSignUpDto
 import com.sopt.now.compose.data.model.remote.response.ResponseUserInfoDto
-import com.sopt.now.compose.data.model.remote.response.base.BaseResponse
+import com.sopt.now.compose.data.model.remote.response.base.BaseResponseDto
 import retrofit2.Response
 
 interface SoptRemoteDataSource {
-    suspend fun postSignIn(requestSignInDto: RequestSignInDto): Response<BaseResponse<Unit>>
-    suspend fun postSignUp(requestSignUpDto: RequestSignUpDto): BaseResponse<Unit>
-    suspend fun getUserInfo(memberId: Int): BaseResponse<ResponseUserInfoDto>
+    suspend fun postSignIn(requestSignInDto: RequestSignInDto): Response<BaseResponseDto<Unit>>
+    suspend fun postSignUp(requestSignUpDto: RequestSignUpDto): BaseResponseDto<Unit>
+    suspend fun getUserInfo(memberId: Int): BaseResponseDto<ResponseUserInfoDto>
 }

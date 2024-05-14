@@ -12,8 +12,8 @@ class ReqresRepositoryImpl @Inject constructor(
 ) : ReqresRepository {
     override suspend fun getReqresListUsers(page: Int): Result<List<ReqresUserEntity>> =
         runCatching {
-            reqresRemoteDataSource.getReqresListUsers(page = page).data.map { user: ResponseReqresListUsersDto.User ->
-                user.toReqresUserEntity()
+            reqresRemoteDataSource.getReqresListUsers(page = page).data.map { responseUserDto: ResponseReqresListUsersDto.ResponseUserDto ->
+                responseUserDto.toReqresUserEntity()
             }
         }
 }
