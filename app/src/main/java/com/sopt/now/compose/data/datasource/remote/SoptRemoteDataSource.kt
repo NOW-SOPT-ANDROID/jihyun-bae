@@ -7,7 +7,7 @@ import com.sopt.now.compose.data.model.remote.response.base.BaseResponseDto
 import retrofit2.Response
 
 interface SoptRemoteDataSource {
-    suspend fun postSignIn(requestSignInDto: RequestSignInDto): Response<BaseResponseDto<Unit>>
+    suspend fun postSignIn(requestSignInDto: RequestSignInDto): String?
     suspend fun postSignUp(requestSignUpDto: RequestSignUpDto): BaseResponseDto<Unit>
     suspend fun getUserInfo(memberId: Int): BaseResponseDto<ResponseUserInfoDto>
 }

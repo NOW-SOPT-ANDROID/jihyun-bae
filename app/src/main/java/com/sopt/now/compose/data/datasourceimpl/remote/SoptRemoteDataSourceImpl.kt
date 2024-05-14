@@ -12,12 +12,16 @@ import javax.inject.Inject
 class SoptRemoteDataSourceImpl @Inject constructor(
     private val soptService: SoptService
 ) : SoptRemoteDataSource {
-    override suspend fun postSignIn(requestSignInDto: RequestSignInDto): Response<BaseResponseDto<Unit>> =
-        soptService.signIn(requestSignInDto = requestSignInDto)
+    override suspend fun postSignIn(requestSignInDto: RequestSignInDto): String? =
+        soptService.signIn(requestSignInDto = requestSignInDto).headers()[LOCATION]
 
     override suspend fun postSignUp(requestSignUpDto: RequestSignUpDto): BaseResponseDto<Unit> =
         soptService.signUp(requestSignUpDto = requestSignUpDto)
 
     override suspend fun getUserInfo(memberId: Int): BaseResponseDto<ResponseUserInfoDto> =
         soptService.getUserInfo(memberId = memberId)
+
+    companion object {
+        const val LOCATION = "Location"
+    }
 }

@@ -19,7 +19,7 @@ class SoptAuthRepositoryImpl @Inject constructor(
                     authenticationId = authenticationId,
                     password = password
                 )
-            ).headers()[LOCATION]?.toInt()
+            )?.toInt()
         }
 
     override suspend fun postSignUp(soptUserModel: SoptUserModel): Result<String> = runCatching {
