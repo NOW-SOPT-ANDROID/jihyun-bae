@@ -4,8 +4,8 @@ import com.sopt.now.data.mapper.local.toRequestSignUpDto
 import com.sopt.now.data.mapper.remote.toSoptUserInfoEntity
 import com.sopt.now.data.remote.datasource.SoptRemoteDataSource
 import com.sopt.now.data.remote.model.request.RequestSignInDto
-import com.sopt.now.domain.model.SoptUserModel
 import com.sopt.now.domain.model.SoptUserInfoModel
+import com.sopt.now.domain.model.SoptUserModel
 import com.sopt.now.domain.repository.SoptAuthRepository
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ class SoptAuthRepositoryImpl @Inject constructor(
                     authenticationId = authenticationId,
                     password = password
                 )
-            ).headers()[LOCATION]?.toInt()
+            )?.toInt()
         }
 
     override suspend fun postSignUp(soptUserModel: SoptUserModel): Result<String> = runCatching {
