@@ -107,6 +107,7 @@ data class ResponseFakeRepoListDto(
     val openIssues: Int,
     @SerialName("open_issues_count")
     val openIssuesCount: Int,
+    @SerialName("owner")
     val responseOwnerDto: ResponseOwnerDto,
     @SerialName("private")
     val isPrivate: Boolean,
