@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.sopt.now.compose.domain.model.ReqresUserEntity
+import com.sopt.now.compose.domain.model.ReqresUserModel
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 
 @Composable
@@ -37,7 +37,7 @@ fun FollowerScreen(
             .background(Color.White)
     ) {
         items(state.followerList) { reqresUserEntity ->
-            FollowerContainer(reqresUserEntity = reqresUserEntity)
+            FollowerContainer(reqresUserModel = reqresUserEntity)
         }
     }
 }
@@ -49,7 +49,7 @@ fun FollowerScreenPreview() {
         FollowerScreen(
             state = FollowerContract.FollowerState(
                 followerList = listOf(
-                    ReqresUserEntity(
+                    ReqresUserModel(
                         id = 0,
                         avatar = "https://avatars.githubusercontent.com/u/103172971?v=4",
                         firstName = "ㅋㅋ",

@@ -23,19 +23,19 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.sopt.now.compose.R
-import com.sopt.now.compose.domain.model.ProfileEntity
+import com.sopt.now.compose.domain.model.ProfileModel
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.modifier.noRippleClickable
 
 @Composable
 fun ProfileContainer(
     modifier: Modifier = Modifier,
-    profileEntity: ProfileEntity,
-    onLongClick: (ProfileEntity) -> Unit = {}
+    profileModel: ProfileModel,
+    onLongClick: (ProfileModel) -> Unit = {}
 ) {
     val context = LocalContext.current
 
-    (profileEntity.id == 1).let { isMyProfile ->
+    (profileModel.id == 1).let { isMyProfile ->
         Column(
             modifier = modifier
                 .padding(horizontal = 24.dp)
@@ -56,7 +56,7 @@ fun ProfileContainer(
                     .fillMaxWidth(1f)
                     .padding(vertical = 10.dp)
                     .noRippleClickable {
-                        onLongClick(profileEntity)
+                        onLongClick(profileModel)
                     },
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -64,7 +64,7 @@ fun ProfileContainer(
                 Image(
                     painter = rememberAsyncImagePainter(
                         ImageRequest.Builder(LocalContext.current)
-                            .data(data = profileEntity.profileImage)
+                            .data(data = profileModel.profileImage)
                             .apply(block = fun ImageRequest.Builder.() {
                                 transformations(CircleCropTransformation())
                             }).build()
@@ -75,13 +75,13 @@ fun ProfileContainer(
                 Spacer(modifier = Modifier.width(20.dp))
                 Column {
                     Text(
-                        text = profileEntity.name,
+                        text = profileModel.name,
                         fontSize = 20.sp,
                         lineHeight = 28.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF3D3A3A)
                     )
-                    profileEntity.selfDescription?.let {
+                    profileModel.selfDescription?.let {
                         Spacer(modifier = Modifier.height(6.dp))
                         Text(
                             text = it,
@@ -101,7 +101,7 @@ fun ProfileContainer(
 fun FriendProfileContainerPreview() {
     NOWSOPTAndroidTheme {
         ProfileContainer(
-            profileEntity = ProfileEntity(
+            profileModel = ProfileModel(
                 id = 0,
                 profileImage = "https://avatars.githubusercontent.com/u/103172971?v=4",
                 name = "배지현",

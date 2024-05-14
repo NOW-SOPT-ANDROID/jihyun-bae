@@ -1,15 +1,11 @@
 package com.sopt.now.compose.presentation.ui.signin
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.sopt.now.compose.R
-import com.sopt.now.compose.domain.model.UserEntity
 import com.sopt.now.compose.domain.usecase.GetIsLoginUseCase
 import com.sopt.now.compose.domain.usecase.GetUserIdUseCase
 import com.sopt.now.compose.domain.usecase.PostSignInUseCase
 import com.sopt.now.compose.domain.usecase.SetIsLoginUseCase
 import com.sopt.now.compose.domain.usecase.SetUserIdUseCase
-import com.sopt.now.compose.presentation.ui.signup.SignUpContract
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

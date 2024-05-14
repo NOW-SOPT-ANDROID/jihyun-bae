@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.sopt.now.compose.domain.model.FakeRepoEntity
+import com.sopt.now.compose.domain.model.FakeRepoModel
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 
 @Composable
@@ -35,7 +35,7 @@ fun ListScreen(
             .background(Color.White)
     ) {
         items(state.fakeRepoList) { fakeRepoEntity ->
-            FakeRepoContainer(fakeRepoEntity = fakeRepoEntity)
+            FakeRepoContainer(fakeRepoModel = fakeRepoEntity)
         }
     }
 }
@@ -47,7 +47,7 @@ fun ListScreenPreview() {
         ListScreen(
             state = ListContract.ListState(
                 fakeRepoList = listOf(
-                    FakeRepoEntity(
+                    FakeRepoModel(
                         id = 0,
                         name = "repo",
                         description = null

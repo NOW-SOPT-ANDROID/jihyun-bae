@@ -15,13 +15,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sopt.now.compose.domain.model.FakeRepoEntity
+import com.sopt.now.compose.domain.model.FakeRepoModel
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 
 @Composable
 fun FakeRepoContainer(
     modifier: Modifier = Modifier,
-    fakeRepoEntity: FakeRepoEntity
+    fakeRepoModel: FakeRepoModel
 ) {
     Column(
         modifier = modifier
@@ -30,13 +30,13 @@ fun FakeRepoContainer(
     ) {
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            text = fakeRepoEntity.name,
+            text = fakeRepoModel.name,
             fontSize = 20.sp,
             lineHeight = 28.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF3D3A3A)
         )
-        fakeRepoEntity.description?.let {
+        fakeRepoModel.description?.let {
             Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = it,
@@ -60,7 +60,7 @@ fun FakeRepoContainer(
 fun FakeRepoContainerPreview() {
     NOWSOPTAndroidTheme {
         FakeRepoContainer(
-            fakeRepoEntity = FakeRepoEntity(
+            fakeRepoModel = FakeRepoModel(
                 id = 0,
                 name = "Repo Name",
                 description = null

@@ -1,9 +1,9 @@
 package com.sopt.now.compose.data.mapper
 
 import com.sopt.now.compose.data.model.remote.response.ResponseReqresListUsersDto
-import com.sopt.now.compose.domain.model.ReqresUserEntity
+import com.sopt.now.compose.domain.model.ReqresUserModel
 
-fun ResponseReqresListUsersDto.ResponseUserDto.toReqresUserEntity() = ReqresUserEntity(
+fun ResponseReqresListUsersDto.ResponseUserDto.toReqresUserModel() = ReqresUserModel(
     id = this.id,
     email = this.email,
     firstName = this.firstName,

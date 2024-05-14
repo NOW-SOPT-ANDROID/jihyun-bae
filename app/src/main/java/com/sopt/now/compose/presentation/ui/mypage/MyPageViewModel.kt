@@ -1,11 +1,9 @@
 package com.sopt.now.compose.presentation.ui.mypage
 
 import androidx.lifecycle.viewModelScope
-import com.sopt.now.compose.domain.model.UserEntity
 import com.sopt.now.compose.domain.usecase.ClearDataSourceUseCase
 import com.sopt.now.compose.domain.usecase.GetUserIdUseCase
 import com.sopt.now.compose.domain.usecase.GetUserInfoUseCase
-import com.sopt.now.compose.presentation.ui.signin.SignInContract
 import com.sopt.now.compose.util.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

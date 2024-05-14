@@ -1,7 +1,7 @@
 package com.sopt.now.compose.presentation.ui.home
 
 import androidx.lifecycle.viewModelScope
-import com.sopt.now.compose.domain.model.ProfileEntity
+import com.sopt.now.compose.domain.model.ProfileModel
 import com.sopt.now.compose.domain.usecase.DeleteProfileUseCase
 import com.sopt.now.compose.domain.usecase.GetProfileListUseCase
 import com.sopt.now.compose.domain.usecase.InsertProfileUseCase
@@ -35,7 +35,7 @@ class HomeViewModel @Inject constructor(
             }
 
             is HomeContract.HomeEvent.OnProfileContainerLongClicked -> {
-                setSideEffect { HomeContract.HomeSideEffect.ShowDeleteProfileDialog(profileEntity = event.profileEntity) }
+                setSideEffect { HomeContract.HomeSideEffect.ShowDeleteProfileDialog(profileModel = event.profileModel) }
             }
 
             is HomeContract.HomeEvent.OnDeleteProfileDialogLeftBtnClicked -> {
@@ -67,7 +67,7 @@ class HomeViewModel @Inject constructor(
     fun insertProfile() {
         viewModelScope.launch {
             insertProfileUseCase(
-                profile = ProfileEntity(
+                profile = ProfileModel(
                     name = currentState.inputName,
                     selfDescription = currentState.inputSelfDescription.ifEmpty { null }
                 )
@@ -85,8 +85,8 @@ class HomeViewModel @Inject constructor(
         setEvent(HomeContract.HomeEvent.OnAddProfileDialogBtnClicked)
     }
 
-    fun setProfileContainerLongClickedEvent(profile: ProfileEntity) {
-        setEvent(HomeContract.HomeEvent.OnProfileContainerLongClicked(profileEntity = profile))
+    fun setProfileContainerLongClickedEvent(profile: ProfileModel) {
+        setEvent(HomeContract.HomeEvent.OnProfileContainerLongClicked(profileModel = profile))
     }
 
     fun setDeleteProfileDialogLeftBtnClickedEvent() {
@@ -112,7 +112,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun updateShowDeleteProfileDialog(profile: ProfileEntity) {
+    fun updateShowDeleteProfileDialog(profile: ProfileModel) {
         setState {
             currentState.copy(
                 showDeleteProfileDialog = showDeleteProfileDialog.copy(

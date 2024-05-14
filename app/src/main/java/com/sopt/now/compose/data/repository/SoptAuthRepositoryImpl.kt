@@ -2,10 +2,10 @@ package com.sopt.now.compose.data.repository
 
 import com.sopt.now.compose.data.datasource.remote.SoptRemoteDataSource
 import com.sopt.now.compose.data.mapper.toRequestSignUpDto
-import com.sopt.now.compose.data.mapper.toSoptUserInfoEntity
+import com.sopt.now.compose.data.mapper.toSoptUserInfoModel
 import com.sopt.now.compose.data.model.remote.request.RequestSignInDto
-import com.sopt.now.compose.domain.model.SoptUserEntity
-import com.sopt.now.compose.domain.model.SoptUserInfoEntity
+import com.sopt.now.compose.domain.model.SoptUserModel
+import com.sopt.now.compose.domain.model.SoptUserInfoModel
 import com.sopt.now.compose.domain.repository.SoptAuthRepository
 import javax.inject.Inject
 
@@ -22,12 +22,12 @@ class SoptAuthRepositoryImpl @Inject constructor(
             ).headers()[LOCATION]?.toInt()
         }
 
-    override suspend fun postSignUp(soptUserEntity: SoptUserEntity): Result<String> = runCatching {
-        soptRemoteDataSource.postSignUp(requestSignUpDto = soptUserEntity.toRequestSignUpDto()).message
+    override suspend fun postSignUp(soptUserModel: SoptUserModel): Result<String> = runCatching {
+        soptRemoteDataSource.postSignUp(requestSignUpDto = soptUserModel.toRequestSignUpDto()).message
     }
 
-    override suspend fun getUserInfo(memberId: Int): Result<SoptUserInfoEntity?> = runCatching {
-        soptRemoteDataSource.getUserInfo(memberId = memberId).data?.toSoptUserInfoEntity()
+    override suspend fun getUserInfo(memberId: Int): Result<SoptUserInfoModel?> = runCatching {
+        soptRemoteDataSource.getUserInfo(memberId = memberId).data?.toSoptUserInfoModel()
     }
 
     companion object {

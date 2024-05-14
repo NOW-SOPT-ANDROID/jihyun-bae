@@ -1,13 +1,13 @@
 package com.sopt.now.compose.presentation.ui.signup
 
-import com.sopt.now.compose.domain.model.SoptUserEntity
+import com.sopt.now.compose.domain.model.SoptUserModel
 import com.sopt.now.compose.util.base.UiEvent
 import com.sopt.now.compose.util.base.UiSideEffect
 import com.sopt.now.compose.util.base.UiState
 
 class SignUpContract {
     data class SignUpState(
-        val user: SoptUserEntity = SoptUserEntity(),
+        val user: SoptUserModel = SoptUserModel(),
         val userId: Int? = null
     ) : UiState
 

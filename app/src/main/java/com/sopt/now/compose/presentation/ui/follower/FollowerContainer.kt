@@ -22,13 +22,13 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.sopt.now.compose.domain.model.ReqresUserEntity
+import com.sopt.now.compose.domain.model.ReqresUserModel
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 
 @Composable
 fun FollowerContainer(
     modifier: Modifier = Modifier,
-    reqresUserEntity: ReqresUserEntity
+    reqresUserModel: ReqresUserModel
 ) {
     val context = LocalContext.current
 
@@ -46,7 +46,7 @@ fun FollowerContainer(
             Image(
                 painter = rememberAsyncImagePainter(
                     ImageRequest.Builder(LocalContext.current)
-                        .data(data = reqresUserEntity.avatar)
+                        .data(data = reqresUserModel.avatar)
                         .apply(block = fun ImageRequest.Builder.() {
                             transformations(CircleCropTransformation())
                         }).build()
@@ -57,7 +57,7 @@ fun FollowerContainer(
             Spacer(modifier = Modifier.width(20.dp))
             Column {
                 Text(
-                    text = reqresUserEntity.lastName,
+                    text = reqresUserModel.lastName,
                     fontSize = 20.sp,
                     lineHeight = 28.sp,
                     fontWeight = FontWeight.Bold,
@@ -65,7 +65,7 @@ fun FollowerContainer(
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = reqresUserEntity.email,
+                    text = reqresUserModel.email,
                     fontSize = 12.sp,
                     lineHeight = 16.sp,
                     color = Color(0xFF878784)
@@ -80,7 +80,7 @@ fun FollowerContainer(
 fun FriendProfileContainerPreview() {
     NOWSOPTAndroidTheme {
         FollowerContainer(
-            reqresUserEntity = ReqresUserEntity(
+            reqresUserModel = ReqresUserModel(
                 id = 0,
                 avatar = "https://avatars.githubusercontent.com/u/103172971?v=4",
                 firstName = "ㅋㅋ",

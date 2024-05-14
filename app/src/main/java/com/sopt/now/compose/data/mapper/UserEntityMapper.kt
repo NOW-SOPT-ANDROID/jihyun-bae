@@ -1,9 +1,9 @@
 package com.sopt.now.compose.data.mapper
 
-import com.sopt.now.compose.data.model.local.User
-import com.sopt.now.compose.domain.model.UserEntity
+import com.sopt.now.compose.data.model.local.UserEntity
+import com.sopt.now.compose.domain.model.UserModel
 
-fun UserEntity.toUser() = User(
+fun UserModel.toUserEntity() = UserEntity(
     id = this.id,
     password = this.password,
     nickname = this.nickname,

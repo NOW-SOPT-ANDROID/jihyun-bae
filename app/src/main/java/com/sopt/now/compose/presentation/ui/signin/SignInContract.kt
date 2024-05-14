@@ -1,7 +1,5 @@
 package com.sopt.now.compose.presentation.ui.signin
 
-import androidx.annotation.StringRes
-import com.sopt.now.compose.domain.model.UserEntity
 import com.sopt.now.compose.util.base.UiEvent
 import com.sopt.now.compose.util.base.UiSideEffect
 import com.sopt.now.compose.util.base.UiState
