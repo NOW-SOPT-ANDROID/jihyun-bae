@@ -7,7 +7,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.sopt.now.compose.R
-import com.sopt.now.compose.presentation.ui.home.navigation.HomeRoute
+import com.sopt.now.compose.presentation.ui.follower.navigation.FollowerRoute
 import com.sopt.now.compose.presentation.ui.list.navigation.ListRoute
 import com.sopt.now.compose.presentation.ui.mypage.navigation.MyPageRoute
 
@@ -19,7 +19,7 @@ enum class MainBottomBarItemType(
     HOME(
         icon = Icons.Filled.Home,
         label = R.string.main_navigation_item_home,
-        route = HomeRoute.ROUTE
+        route = FollowerRoute.FOLLOWER
     ),
     LIST(
         icon = Icons.Filled.Menu,

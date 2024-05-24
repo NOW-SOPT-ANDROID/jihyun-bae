@@ -1,6 +1,6 @@
 package com.sopt.now.compose.domain.model
 
-data class ProfileEntity(
+data class ProfileModel(
     val id: Int = DEFAULT_ID,
     val profileImage: String = DEFAULT_PROFILE_IMAGE,
     val name: String,

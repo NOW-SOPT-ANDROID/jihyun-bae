@@ -1,11 +1,14 @@
 package com.sopt.now.compose.domain.usecase
 
-import com.sopt.now.compose.domain.model.ProfileEntity
+import com.sopt.now.compose.domain.model.ProfileModel
 import com.sopt.now.compose.domain.repository.ProfileRepository
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class InsertProfileUseCase(
+@Singleton
+class InsertProfileUseCase @Inject constructor(
     private val profileRepository: ProfileRepository
 ) {
-    suspend operator fun invoke(profile: ProfileEntity) =
+    suspend operator fun invoke(profile: ProfileModel) =
         profileRepository.insertProfile(profile = profile)
 }

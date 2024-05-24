@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseFakeRepoListDto(
+data class ResponseFakeReposDto(
     val id: Int,
     @SerialName("node_id")
     val nodeId: String,
@@ -107,7 +107,8 @@ data class ResponseFakeRepoListDto(
     val openIssues: Int,
     @SerialName("open_issues_count")
     val openIssuesCount: Int,
-    val owner: Owner,
+    @SerialName("owner")
+    val responseOwnerDto: ResponseOwnerDto,
     @SerialName("private")
     val isPrivate: Boolean,
     @SerialName("pulls_url")
@@ -149,7 +150,7 @@ data class ResponseFakeRepoListDto(
     val webCommitSignoffRequired: Boolean,
 ) {
     @Serializable
-    data class Owner(
+    data class ResponseOwnerDto(
         val login: String,
         val id: Int,
         @SerialName("node_id")

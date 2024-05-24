@@ -1,8 +1,6 @@
 package com.sopt.now.compose.data.repository
 
 import com.sopt.now.compose.data.datasource.local.SoptLocalDataSource
-import com.sopt.now.compose.data.mapper.toUser
-import com.sopt.now.compose.domain.model.UserEntity
 import com.sopt.now.compose.domain.repository.SoptRepository
 import javax.inject.Inject
 
@@ -15,11 +13,11 @@ class SoptRepositoryImpl @Inject constructor(
 
     override fun getIsLogin(): Boolean = soptLocalDataSource.isLogin
 
-    override fun setUser(user: UserEntity) {
-        soptLocalDataSource.user = user.toUser()
+    override fun setUserId(userId: Int) {
+        soptLocalDataSource.userId = userId
     }
 
-    override fun getUser(): UserEntity = soptLocalDataSource.user.toUserEntity()
+    override fun getUserId(): Int = soptLocalDataSource.userId
 
     override fun clearDataSource() {
         soptLocalDataSource.clear()

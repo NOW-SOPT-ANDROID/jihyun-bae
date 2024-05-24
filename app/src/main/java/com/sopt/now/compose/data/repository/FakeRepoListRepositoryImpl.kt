@@ -1,18 +1,18 @@
 package com.sopt.now.compose.data.repository
 
-import com.sopt.now.compose.data.datasource.remote.FakeRepoListRemoteDataSource
-import com.sopt.now.compose.data.mapper.toFakeRepoEntity
-import com.sopt.now.compose.domain.model.FakeRepoEntity
-import com.sopt.now.compose.domain.repository.FakeRepoListRepository
+import com.sopt.now.compose.data.datasource.remote.FakeReposRemoteDataSource
+import com.sopt.now.compose.data.mapper.toFakeRepoModel
+import com.sopt.now.compose.domain.model.FakeRepoModel
+import com.sopt.now.compose.domain.repository.FakeReposRepository
 import javax.inject.Inject
 
 class FakeRepoListRepositoryImpl @Inject constructor(
-    private val fakeRepoListRemoteDataSource: FakeRepoListRemoteDataSource
-) : FakeRepoListRepository {
-    override suspend fun getFakeRepoList(): Result<List<FakeRepoEntity>> =
+    private val fakeReposRemoteDataSource: FakeReposRemoteDataSource
+) : FakeReposRepository {
+    override suspend fun getFakeRepos(): Result<List<FakeRepoModel>> =
         runCatching {
-            fakeRepoListRemoteDataSource.getFakeRepoList().map { responseFakeRepoListDto ->
-                responseFakeRepoListDto.toFakeRepoEntity()
+            fakeReposRemoteDataSource.getFakeRepos().map { responseFakeRepoListDto ->
+                responseFakeRepoListDto.toFakeRepoModel()
             }
         }
 }

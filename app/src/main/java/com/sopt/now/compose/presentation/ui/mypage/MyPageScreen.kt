@@ -39,6 +39,8 @@ fun MyPageRoute(
     val uiState by viewModel.uiState.collectAsState()
     val lifecycleOwner = LocalLifecycleOwner.current
 
+    viewModel.getUserInfo()
+
     LaunchedEffect(viewModel.sideEffect, lifecycleOwner) {
         viewModel.sideEffect.flowWithLifecycle(lifecycle = lifecycleOwner.lifecycle)
             .collect { myPageSideEffect ->
@@ -93,7 +95,7 @@ fun MyPageScreen(
                                 shape = RoundedCornerShape(12.dp)
                             )
                             .padding(vertical = 4.dp, horizontal = 10.dp),
-                        text = it.mbti,
+                        text = it.phone,
                         fontSize = 12.sp,
                         lineHeight = 16.sp,
                         color = Color(0xFFF0683E)
@@ -108,7 +110,7 @@ fun MyPageScreen(
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
-                        text = "id : " + (it.id),
+                        text = "id : " + (it.authenticationId),
                         fontSize = 12.sp,
                         lineHeight = 16.sp,
                         color = Color(0xFF878784)

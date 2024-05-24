@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.flowWithLifecycle
-import com.sopt.now.compose.domain.model.ProfileEntity
+import com.sopt.now.compose.domain.model.ProfileModel
 import com.sopt.now.compose.presentation.type.DialogType
 import com.sopt.now.compose.theme.NOWSOPTAndroidTheme
 import com.sopt.now.compose.util.component.SoptAlertDialog
@@ -55,7 +55,7 @@ fun HomeRoute(
                     is HomeContract.HomeSideEffect.ShowAddProfileDialog -> viewModel.updateAddProfileDialog()
 
                     is HomeContract.HomeSideEffect.ShowDeleteProfileDialog -> viewModel.updateShowDeleteProfileDialog(
-                        homeSideEffect.profileEntity
+                        homeSideEffect.profileModel
                     )
                 }
             }
@@ -81,7 +81,7 @@ fun HomeScreen(
     onDeleteFriendDialogLeftBtnClick: () -> Unit = {},
     onDeleteFriendDialogRightBtnClick: () -> Unit = {},
     onAddFriendDialogBtnClick: () -> Unit = {},
-    onProfileLongClick: (ProfileEntity) -> Unit = {},
+    onProfileLongClick: (ProfileModel) -> Unit = {},
     onValueChangeName: (String) -> Unit = {},
     onValueChangeSelfDescription: (String) -> Unit = {},
     onFabClick: () -> Unit = {}
@@ -94,7 +94,7 @@ fun HomeScreen(
         ) {
             state.profileList.partition { it.id == 1 }.let { (myProfiles, friendProfiles) ->
                 items(myProfiles) { myProfile ->
-                    ProfileContainer(profileEntity = myProfile)
+                    ProfileContainer(profileModel = myProfile)
                 }
                 friendProfiles.groupBy { friendProfile ->
                     friendProfile.name.first()
@@ -104,7 +104,7 @@ fun HomeScreen(
                     }
                     items(profileEntities) { profile ->
                         ProfileContainer(
-                            profileEntity = profile,
+                            profileModel = profile,
                             onLongClick = onProfileLongClick
                         )
                     }
