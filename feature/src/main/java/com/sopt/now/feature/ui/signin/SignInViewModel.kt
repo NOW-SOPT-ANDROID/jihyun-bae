@@ -2,50 +2,53 @@ package com.sopt.now.feature.ui.signin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sopt.now.domain.model.UserEntity
+import com.sopt.now.coreui.util.view.UiState
 import com.sopt.now.domain.repository.SoptRepository
+import com.sopt.now.domain.usecase.PostSignInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val soptRepository: SoptRepository
+    private val soptRepository: SoptRepository,
+    private val postSignInUseCase: PostSignInUseCase
 ) : ViewModel() {
-    private val _userInfo: MutableStateFlow<UserEntity?> = MutableStateFlow(null)
-    val userInfo get() = _userInfo.asStateFlow()
+    private val _userId: MutableStateFlow<Int?> = MutableStateFlow(null)
+    val userId get() = _userId.asStateFlow()
 
-    private val _isLogin: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val isLogin get() = _isLogin.asStateFlow()
+    private val _signInState = MutableSharedFlow<UiState<Int?>>()
+    val signInState get() = _signInState.asSharedFlow()
 
-    private fun setIsLogin(isLogin: Boolean) {
+    fun setUserId(userId: Int) {
         viewModelScope.launch {
-            soptRepository.setIsLogin(isLogin = isLogin)
+            soptRepository.setUserId(userId = userId)
         }
     }
 
-    fun fetchUserInfo() {
+    fun fetchUserId() {
         viewModelScope.launch {
-            soptRepository.user.collect { userEntity ->
-                _userInfo.value = userEntity
+            soptRepository.userId.collect { isLogin ->
+                _userId.value = isLogin
             }
         }
     }
 
-    fun fetchAutoLogin() {
+    fun signIn(authenticationId: String, password: String) {
         viewModelScope.launch {
-            soptRepository.isLogin.collect { isLogin ->
-                _isLogin.value = isLogin
+            _signInState.emit(UiState.Loading)
+            postSignInUseCase(
+                authenticationId = authenticationId,
+                password = password
+            ).onSuccess { memberId ->
+                _signInState.emit(UiState.Success(memberId))
+            }.onFailure { throwable ->
+                _signInState.emit(UiState.Error(throwable.message))
             }
         }
     }
-
-    fun signIn(id: String, password: String): Boolean = userInfo.value?.let { userEntity ->
-        (userEntity.id == id && userEntity.password == password).let { isLogin ->
-            setIsLogin(isLogin)
-            isLogin
-        }
-    } ?: false
 }

@@ -4,12 +4,10 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
 import com.sopt.now.data.local.datasource.SoptLocalDataSource
-import com.sopt.now.data.local.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,10 +17,10 @@ class SoptLocalDataSourceImpl @Inject constructor(
 ) : SoptLocalDataSource {
     private object PreferencesKeys {
         val isLogin = booleanPreferencesKey(IS_LOGIN)
-        val user = stringPreferencesKey(USER)
+        val userId = intPreferencesKey(USER_ID)
     }
 
-    override var isLogin: Flow<Boolean> = dataStore.data.map { preferences ->
+    override val isLogin: Flow<Boolean> = dataStore.data.map { preferences ->
         preferences[PreferencesKeys.isLogin] ?: false
     }
 
@@ -32,13 +30,13 @@ class SoptLocalDataSourceImpl @Inject constructor(
         }
     }
 
-    override var user: Flow<User?> = dataStore.data.map { preferences ->
-        preferences[PreferencesKeys.user]?.let { user -> Json.decodeFromString(user) }
+    override val userId: Flow<Int?> = dataStore.data.map { preferences ->
+        preferences[PreferencesKeys.userId]
     }
 
-    override suspend fun setUser(user: User) {
+    override suspend fun setUserId(userId: Int) {
         dataStore.edit { preferences ->
-            preferences[PreferencesKeys.user] = user.toJsonString()
+            preferences[PreferencesKeys.userId] = userId
         }
     }
 
@@ -50,6 +48,6 @@ class SoptLocalDataSourceImpl @Inject constructor(
 
     companion object {
         private const val IS_LOGIN = "isLogin"
-        private const val USER = "user"
+        private const val USER_ID = "userId"
     }
 }

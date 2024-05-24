@@ -4,8 +4,12 @@ import com.sopt.now.data.local.datasource.ProfileLocalDataSource
 import com.sopt.now.data.local.datasource.SoptLocalDataSource
 import com.sopt.now.data.local.datasourceimpl.ProfileLocalDataSourceImpl
 import com.sopt.now.data.local.datasourceimpl.SoptLocalDataSourceImpl
-import com.sopt.now.data.remote.datasource.FakeRepoListRemoteDataSource
-import com.sopt.now.data.remote.datasourceimpl.FakeRepoListRemoteDataSourceImpl
+import com.sopt.now.data.remote.datasource.FakeReposRemoteDataSource
+import com.sopt.now.data.remote.datasource.ReqresRemoteDataSource
+import com.sopt.now.data.remote.datasource.SoptRemoteDataSource
+import com.sopt.now.data.remote.datasourceimpl.FakeReposRemoteDataSourceImpl
+import com.sopt.now.data.remote.datasourceimpl.ReqresRemoteDataSourceImpl
+import com.sopt.now.data.remote.datasourceimpl.SoptRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -25,5 +29,13 @@ abstract class DataSourceModule {
 
     @Binds
     @Singleton
-    abstract fun bindsDummyRemoteDataSource(dummyRemoteDataSourceImpl: FakeRepoListRemoteDataSourceImpl): FakeRepoListRemoteDataSource
+    abstract fun bindsFakeReposRemoteDataSource(fakeRepoListRemoteDataSourceImpl: FakeReposRemoteDataSourceImpl): FakeReposRemoteDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindReqresRemoteDataSource(reqresRemoteDataSourceImpl: ReqresRemoteDataSourceImpl): ReqresRemoteDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsSoptRemoteDataSource(soptRemoteDataSourceImpl: SoptRemoteDataSourceImpl): SoptRemoteDataSource
 }

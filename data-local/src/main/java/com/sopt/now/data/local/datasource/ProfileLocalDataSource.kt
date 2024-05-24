@@ -1,9 +1,9 @@
 package com.sopt.now.data.local.datasource
 
-import com.sopt.now.data.local.model.Profile
+import com.sopt.now.data.local.model.ProfileEntity
 
 interface ProfileLocalDataSource {
-    suspend fun getProfileList(): List<Profile>
-    suspend fun insertProfile(profile: Profile)
-    suspend fun deleteProfile(profile: Profile)
+    suspend fun getProfiles(): List<ProfileEntity>
+    suspend fun insertProfile(profileEntity: ProfileEntity)
+    suspend fun deleteProfile(profileEntity: ProfileEntity)
 }

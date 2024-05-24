@@ -1,7 +1,9 @@
 package com.sopt.now.di
 
 
-import com.sopt.now.data.remote.service.DummyService
+import com.sopt.now.data.remote.service.ReqresService
+import com.sopt.now.data.remote.service.SoptService
+import com.sopt.now.di.qualifier.Reqres
 import com.sopt.now.di.qualifier.Sopt
 import dagger.Module
 import dagger.Provides
@@ -15,8 +17,15 @@ import javax.inject.Singleton
 object ServiceModule {
     @Provides
     @Singleton
-    fun providesDummyService(
+    fun providesSoptService(
         @Sopt retrofit: Retrofit
-    ): DummyService =
-        retrofit.create(DummyService::class.java)
+    ): SoptService =
+        retrofit.create(SoptService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesReqresService(
+        @Reqres retrofit: Retrofit
+    ): ReqresService =
+        retrofit.create(ReqresService::class.java)
 }

@@ -1,8 +1,14 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.sopt.android.application)
     alias(libs.plugins.sopt.android.test)
     alias(libs.plugins.sopt.android.hilt)
     alias(libs.plugins.sopt.android.room)
+}
+
+val properties = Properties().apply {
+    load(project.rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -12,6 +18,8 @@ android {
         applicationId = "com.sopt.now"
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.versionName.get()
+        buildConfigField("String", "SOPT_BASE_URL", properties["sopt.base.url"].toString())
+        buildConfigField("String", "REQRES_IN_BASE_URL", properties["reqres.in.base.url"].toString())
     }
 
     buildTypes {

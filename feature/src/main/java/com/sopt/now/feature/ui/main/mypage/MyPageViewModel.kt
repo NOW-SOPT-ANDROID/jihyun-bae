@@ -2,8 +2,10 @@ package com.sopt.now.feature.ui.main.mypage
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sopt.now.domain.model.UserEntity
+import com.sopt.now.coreui.util.view.UiState
+import com.sopt.now.domain.model.SoptUserInfoModel
 import com.sopt.now.domain.repository.SoptRepository
+import com.sopt.now.domain.usecase.GetUserInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,22 +14,37 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
-    private val soptRepository: SoptRepository
+    private val soptRepository: SoptRepository,
+    private val getUserInfoUseCase: GetUserInfoUseCase
 ) : ViewModel() {
-    private val _userInfo: MutableStateFlow<UserEntity?> = MutableStateFlow(null)
-    val userInfo get() = _userInfo.asStateFlow()
+    private val _userId: MutableStateFlow<Int?> = MutableStateFlow(null)
+    val userId get() = _userId.asStateFlow()
 
-    fun fetchUserInfo() {
+    private val _getUserInfoState = MutableStateFlow<UiState<SoptUserInfoModel?>>(UiState.Empty)
+    val getUserInfoState get() = _getUserInfoState.asStateFlow()
+
+    fun fetchUserId() {
         viewModelScope.launch {
-            soptRepository.user.collect { userEntity ->
-                _userInfo.value = userEntity
+            soptRepository.userId.collect { isLogin ->
+                _userId.value = isLogin
+            }
+        }
+    }
+
+    fun getUserInfo(memberId: Int) {
+        viewModelScope.launch {
+            _getUserInfoState.emit(UiState.Loading)
+            getUserInfoUseCase(memberId = memberId).onSuccess { soptUserInfoEntity ->
+                _getUserInfoState.emit(UiState.Success(soptUserInfoEntity))
+            }.onFailure { throwable ->
+                _getUserInfoState.emit(UiState.Error(throwable.message))
             }
         }
     }
 
     fun logout() {
         viewModelScope.launch {
-            soptRepository.setIsLogin(isLogin = false)
+            soptRepository.clear()
         }
     }
 }

@@ -8,6 +8,6 @@ enum class SignUpType(
     ID_ERROR(descriptionRes = org.sopt.now.designsystem.R.string.sign_up_id_error),
     PASSWORD_ERROR(descriptionRes = org.sopt.now.designsystem.R.string.sign_up_password_error),
     NICKNAME_ERROR(descriptionRes = org.sopt.now.designsystem.R.string.sign_up_nickname_error),
-    MBTI_ERROR(descriptionRes = org.sopt.now.designsystem.R.string.sign_up_mbti_error),
+    PHONE_ERROR(descriptionRes = org.sopt.now.designsystem.R.string.sign_up_phone_error),
     SUCCESS(descriptionRes = org.sopt.now.designsystem.R.string.sign_up_success)
 }
