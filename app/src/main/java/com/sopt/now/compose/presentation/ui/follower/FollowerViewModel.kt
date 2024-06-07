@@ -19,9 +19,13 @@ class FollowerViewModel @Inject constructor(
 
     fun getReqresUsers() {
         viewModelScope.launch {
-            getReqresUsersUseCase(page = 1).onSuccess { followerList ->
+            getReqresUsersUseCase(page = PAGE).onSuccess { followerList ->
                 setState { currentState.copy(followerList = followerList) }
             }
         }
+    }
+
+    companion object {
+        const val PAGE = 1
     }
 }
