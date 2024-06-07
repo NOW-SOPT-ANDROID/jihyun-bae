@@ -8,7 +8,6 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.sopt.now.coreui.base.BindingActivity
 import com.sopt.now.coreui.util.context.showToast
-import com.sopt.now.coreui.util.context.stringOf
 import com.sopt.now.coreui.util.view.UiState
 import com.sopt.now.feature.databinding.ActivitySignInBinding
 import com.sopt.now.feature.ui.main.MainActivity
@@ -55,7 +54,9 @@ class SignInActivity :
         signInViewModel.signInState.flowWithLifecycle(lifecycle).onEach { uiState ->
             when (uiState) {
                 is UiState.Success -> {
-                    uiState.data?.let { signInViewModel.setUserId(userId = it) }
+                    uiState.data?.let { userId ->
+                        signInViewModel.setUserId(userId = userId)
+                    }
                 }
 
                 is UiState.Error -> showToast(uiState.message.orEmpty())
